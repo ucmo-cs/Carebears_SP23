@@ -15,7 +15,7 @@ CREATE TABLE vaccinations (
 );
 
 INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES (UUID(), 'Bordetella', 'NonCore', '12 Months', '6-12 Months', 'Canine');
-INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES (UUID(), 'Rabies (Canine)', 'Core', '12 Months', '12-36Months', 'Canine');
+INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES (UUID(), 'Rabies (Canine)', 'Core', '12 Months', '12-36 Months', 'Canine');
 INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES (UUID(), 'DHPP (Infant)', 'Core', '6 weeks', '2-4 weeks', 'Canine');
 INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES (UUID(), 'DHPP (Booster)', 'Core', '18 Months', '36 Months', 'Canine');
 INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES (UUID(), 'Canine Influenza', 'NonCore', '12 Months', '12 Months', 'Canine');
