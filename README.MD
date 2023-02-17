@@ -24,7 +24,10 @@ One the command is executed:
 1. Images will be pulled down and container will be spun up
 2. SQL statements with the .sql files will be executed
 
+## Swagger Documentation
+Upon running Spring Boot Application file, REST Service documentation (swagger) can be found: http://localhost:8080/petvax-services/swagger-ui/index.html
+
 ### Calling endpoints in Postman
-1. Run the 'VaccinationsApplication' file
+1. Run the Spring Boot Application file, such as 'VaccinationsApplication'
 2. In Postman, create a request such as:
    `http://localhost:8080/vaccinations?name=Bordetella`

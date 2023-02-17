@@ -9,7 +9,6 @@
     <artifactId>PetVax</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>petvax-app</module>
         <module>petvax-services</module>
     </modules>
     <version>1.0-SNAPSHOT</version>
