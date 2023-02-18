@@ -14,3 +14,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         format_sql: true
+management:
+  endpoints:
+    web:
+      base-path = /health
