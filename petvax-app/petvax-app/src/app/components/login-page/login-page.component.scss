@@ -1,0 +1,37 @@
+.login-page-container {
+    margin: 24px;
+}
+
+.login-page-title {
+    text-align: center;
+    font-size: 24px;
+    color: black;
+}
+
+.loginpage-modal-container {
+    margin: 150px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 4px;
+    width: 250px;
+    justify-content: center;
+    height: 300px;
+}
+
+.loginpage-modal-title {
+    font-size: 20px;
+    margin-bottom: 60px;
+}
+
+.loginpage-input {
+    width: 150px;
+    height: 30px;
+    margin-bottom: 16px;
+}
+
+.login-page-submit {
+    width: 150px;
+    height: 40px;
+}
