@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.SystemException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class VaccinationsService {
@@ -40,5 +43,18 @@ public class VaccinationsService {
         // If the vacciantion object is null then it will throw the NotFoundException exception
         Optional<VaccinationEntity> vaccination = vaccinationsRepository.findByName(name);
         return vaccination.map(vaccinationsConverter::convertVaccinationsToVaccinationResponse).orElseThrow(() -> new NotFoundException("name not found: " + name));
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public List<VaccinationsResponse> getVaccinationByType(final String type) throws SystemException {
+        List<VaccinationsResponse> listTypes;
+        List<VaccinationEntity> vaccinationTypes = vaccinationsRepository.findByType(type);
+
+        // Convert multiple vaccinationTypes into a response containing a list of types
+        listTypes = vaccinationsConverter.convertVaccinationsToVaccinationResponse(vaccinationTypes);
+        return listTypes;
     }
 }
