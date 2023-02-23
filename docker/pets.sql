@@ -28,6 +28,7 @@ CREATE TABLE pets (
   speciesId varchar(99) NOT NULL,
   breedId varchar(99) NOT NULL,
   age int(3) NOT NULL,
+  ownerId varchar(99),
   createdDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
 );
