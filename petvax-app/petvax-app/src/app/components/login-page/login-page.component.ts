@@ -14,9 +14,7 @@ export class LoginPageComponent {
   ) {}
 
 
-  ngOnInit(): void {
-    this.navigateHomepage()
-  }
+  ngOnInit(): void {}
   navigateHomepage() {
     this.router.navigate(['/home']);
   }
