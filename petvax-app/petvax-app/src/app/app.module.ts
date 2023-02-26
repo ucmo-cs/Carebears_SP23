@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
@@ -13,7 +12,8 @@ import { FooterComponent } from './components/footer/footer.component';
 const appRoutes: Routes = [
   // { path: 'vaccines', component: VaccinePageComponent},
   { path: 'home', component: HomePageComponent},
-  { path: 'login', component: LoginPageComponent}
+  { path: 'login', component: LoginPageComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full'}
   ];
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     RouterModule.forRoot(
       appRoutes,
       )

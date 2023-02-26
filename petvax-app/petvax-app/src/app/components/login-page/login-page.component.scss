@@ -1,5 +1,11 @@
 .login-page-container {
-    margin: 24px;
+    background-image: url('./../../../assets/images/background-image.jpg');
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
 .login-page-title {
@@ -9,29 +15,80 @@
 }
 
 .loginpage-modal-container {
-    margin: 150px auto;
+    margin:150px auto;
+    /* display: flex;
+    flex-direction: column; */
+    border: 1px solid slategrey;
+    border-radius: 4px;
+    width: 422px;
+    /* justify-content: center; */
+    height: 510px;
+}
+
+.loginpage-input-container {
     display: flex;
     flex-direction: column;
-    text-align: center;
-    border: 2px solid;
-    border-radius: 4px;
-    width: 250px;
-    justify-content: center;
-    height: 300px;
+    margin: 16px 24px;
+}
+
+.loginpage-header {
+    background-color: mistyrose;
+    opacity: 60%;
 }
 
 .loginpage-modal-title {
-    font-size: 20px;
-    margin-bottom: 60px;
+    font-size: 30px;
+    background-color: mistyrose;
+    text-align: center;
+    opacity: 75%;
+    font-weight: 900;
+    text-shadow: 0 0 black;
+    padding-top: 25px;
+    height: 50px;
+}
+
+.loginpage-inputs {
+    margin: 90px 24px;
 }
 
 .loginpage-input {
-    width: 150px;
+    width: 100%;
     height: 30px;
     margin-bottom: 16px;
+    background-color: mistyrose;
+    border: 1px solid black;
 }
+
+.loginpage-input-label {
+    font-size: 20px;
+    font-weight: 600;
+}
+
 
 .login-page-submit {
     width: 150px;
     height: 40px;
+    background-color: mistyrose;
+    border: 0;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 0 0 black;
+}
+
+.loginpage-submit-container {
+    display: flex;
+    justify-content: center;
+}
+
+.loginpage-footer {
+    background-color: mistyrose;
+    opacity: 60%;
+    bottom: 0;
+    position: fixed;
+    height: 109px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }

@@ -1,0 +1,22 @@
+target/
+
+.mvn/
+mvnw
+mvnw.cmd
+*~
+
+### STS ###
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
