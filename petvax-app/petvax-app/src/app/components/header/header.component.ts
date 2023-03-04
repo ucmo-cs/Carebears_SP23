@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
   userName = "User";
   initialName = this.userName.charAt(0);
+  isHomePage = false;
+
+  constructor(
+    private router:Router
+  ) {}
+
+  ngOnInit(): void {
+    this.isCurrentHomePage();
+  }
+
+  onHomeButtonClick() {
+    this.router.navigate(['/home']);
+  }
+
+  navigateVaccinePage() {
+    this.router.navigate(['/vaccines']);
+  }
+
+  isCurrentHomePage() {
+    if(window.location.pathname === '/home') {
+      this.isHomePage = true;
+    }
+  }
 }
