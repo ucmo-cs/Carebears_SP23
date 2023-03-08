@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 import java.time.Instant;
+import java.util.Optional;
 
 @JsonDeserialize(builder = VaccinationsResponse.Builder.class)
 public class VaccinationsResponse {
@@ -19,6 +20,16 @@ public class VaccinationsResponse {
     public VaccinationsResponse(final String uuid, String name, final String type, final String age,
                                 String frequency, String species, final Instant createdDate) {
         this.uuid = uuid;
+        this.name = name;
+        this.type = type;
+        this.age = age;
+        this.frequency = frequency;
+        this.species = species;
+        this.createdDate = createdDate;
+    }
+
+    public VaccinationsResponse(String name, final String type, final String age,
+                                String frequency, String species, final Instant createdDate) {
         this.name = name;
         this.type = type;
         this.age = age;
@@ -92,7 +103,7 @@ public class VaccinationsResponse {
 
         // Builder Response Constructor
         public Builder(final VaccinationsResponse vaccinationsResponse) {
-            setUuid(vaccinationsResponse.getUuid());
+            setUuid((vaccinationsResponse.getUuid()));
             setName(vaccinationsResponse.getName());
             setType(vaccinationsResponse.getType());
             setAge(vaccinationsResponse.getAge());
@@ -166,8 +177,11 @@ public class VaccinationsResponse {
 
         // Builds response object with appropriate values
         public VaccinationsResponse build() {
-            return new VaccinationsResponse(uuid, name, type, age,
-                    frequency, species, createdDate);
+            if (uuid == null) {
+                return new VaccinationsResponse(name, type, age, frequency, species, createdDate);
+            } else {
+                return new VaccinationsResponse(uuid, name, type, age, frequency, species, createdDate);
+            }
         }
     }
 }

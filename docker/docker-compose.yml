@@ -8,8 +8,8 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./vaccinations.sql:/docker-entrypoint-initdb.d/vaccinations.sql
       - ./pets.sql:/docker-entrypoint-initdb.d/pets.sql
+      - ./vaccinations.sql:/docker-entrypoint-initdb.d/vaccinations.sql
       - ./vaccinationRecords.sql:/docker-entrypoint-initdb.d/vaccinationRecords.sql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
