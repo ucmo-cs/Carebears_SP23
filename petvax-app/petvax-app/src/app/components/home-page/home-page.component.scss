@@ -1,0 +1,44 @@
+.container{
+    background-image: url(../../../assets/images/main-bg-image.jpg);
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+    height: auto;
+    width: auto;
+}
+
+.body{
+    background-color: #F2E1E1;
+    width: 1200px;
+    height: 725px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.innerBody{
+    background-color: #E2BEBE;
+    width: 1100px;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #0074D9;
+    margin-left: 30px;
+}
+
+h2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    margin-left: 5px;
+}
+
+.pets{
+    overflow-y: auto;
+    max-height: 500px;
+}
