@@ -13,21 +13,17 @@ import java.time.Instant;
 @Entity
 @Table(
         name = "vaccinations",
-        schema = "PETVAX",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "vaccine_name_unique", columnNames = "name"),
-                @UniqueConstraint(name = "vaccine_uuid_unique", columnNames = "uuid")
-        }
+        schema = "PETVAX"
 )
 public final class VaccinationEntity {
     @Column(
             name = "uuid",
-            nullable = false,
-            columnDefinition = "TEXT"
+            insertable = false,
+            updatable = false
     )
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name="uuid", strategy = "uuid2")
     private String uuid;
 
     @NotEmpty
