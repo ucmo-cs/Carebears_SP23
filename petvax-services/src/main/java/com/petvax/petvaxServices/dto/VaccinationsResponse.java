@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @JsonDeserialize(builder = VaccinationsResponse.Builder.class)
 public class VaccinationsResponse {
-    private String uuid;
+    private String vaccinationId;
     private String name;
     private String type;
     private String age;
@@ -17,19 +17,9 @@ public class VaccinationsResponse {
     private Instant createdDate;
 
     // Response constructor
-    public VaccinationsResponse(final String uuid, String name, final String type, final String age,
+    public VaccinationsResponse(final String vaccinationId, String name, final String type, final String age,
                                 String frequency, String species, final Instant createdDate) {
-        this.uuid = uuid;
-        this.name = name;
-        this.type = type;
-        this.age = age;
-        this.frequency = frequency;
-        this.species = species;
-        this.createdDate = createdDate;
-    }
-
-    public VaccinationsResponse(String name, final String type, final String age,
-                                String frequency, String species, final Instant createdDate) {
+        this.vaccinationId = vaccinationId;
         this.name = name;
         this.type = type;
         this.age = age;
@@ -39,10 +29,10 @@ public class VaccinationsResponse {
     }
 
     /**
-     * @return {@code uuid}
+     * @return {@code vaccinationId}
      */
-    public String getUuid() {
-        return uuid;
+    public String getVaccinationId() {
+        return vaccinationId;
     }
 
     /**
@@ -89,7 +79,7 @@ public class VaccinationsResponse {
 
     @JsonPOJOBuilder(withPrefix = "set")
     public static class Builder {
-        private String uuid;
+        private String vaccinationId;
         private String name;
         private String type;
         private String age;
@@ -103,7 +93,7 @@ public class VaccinationsResponse {
 
         // Builder Response Constructor
         public Builder(final VaccinationsResponse vaccinationsResponse) {
-            setUuid((vaccinationsResponse.getUuid()));
+            setVaccinationId((vaccinationsResponse.getVaccinationId()));
             setName(vaccinationsResponse.getName());
             setType(vaccinationsResponse.getType());
             setAge(vaccinationsResponse.getAge());
@@ -113,11 +103,11 @@ public class VaccinationsResponse {
         }
 
         /**
-         * @param uuid the createdDate to set
+         * @param vaccinationId the createdDate to set
          * @return {@code this} builder
          */
-        public VaccinationsResponse.Builder setUuid(String uuid) {
-            this.uuid = uuid;
+        public VaccinationsResponse.Builder setVaccinationId(String vaccinationId) {
+            this.vaccinationId = vaccinationId;
             return this;
         }
 
@@ -177,11 +167,7 @@ public class VaccinationsResponse {
 
         // Builds response object with appropriate values
         public VaccinationsResponse build() {
-            if (uuid == null) {
-                return new VaccinationsResponse(name, type, age, frequency, species, createdDate);
-            } else {
-                return new VaccinationsResponse(uuid, name, type, age, frequency, species, createdDate);
-            }
+                return new VaccinationsResponse(vaccinationId, name, type, age, frequency, species, createdDate);
         }
     }
 }
