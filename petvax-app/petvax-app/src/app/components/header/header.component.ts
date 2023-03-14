@@ -24,10 +24,6 @@ export class HeaderComponent {
     this.router.navigate(['/home']);
   }
 
-  navigateVaccinePage() {
-    this.router.navigate(['/vaccines']);
-  }
-
   isCurrentHomePage() {
     if(window.location.pathname === '/home') {
       this.isHomePage = true;

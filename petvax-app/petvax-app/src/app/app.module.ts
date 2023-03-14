@@ -8,11 +8,12 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { HeaderComponent } from './components/header/header.component';
 import { PetComponent } from './components/pet/pet.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PetVaccinesComponent } from './components/pet-vaccines/pet-vaccines.component';
 
 const appRoutes: Routes = [
-  // { path: 'vaccines', component: VaccinePageComponent},
   { path: 'home', component: HomePageComponent},
   { path: 'login', component: LoginPageComponent},
+  { path: 'vaccines', component: PetVaccinesComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'}
   ];
 @NgModule({
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     HomePageComponent,
     HeaderComponent,
     PetComponent,
-    FooterComponent
+    FooterComponent,
+    PetVaccinesComponent
   ],
   imports: [
     BrowserModule,
