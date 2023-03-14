@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HeaderComponent } from './components/header/header.component';
-import { PetComponent } from './components/pet/pet.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PetVaccinesComponent } from './components/pet-vaccines/pet-vaccines.component';
 
@@ -22,7 +21,6 @@ const appRoutes: Routes = [
     LoginPageComponent,
     HomePageComponent,
     HeaderComponent,
-    PetComponent,
     FooterComponent,
     PetVaccinesComponent
   ],
