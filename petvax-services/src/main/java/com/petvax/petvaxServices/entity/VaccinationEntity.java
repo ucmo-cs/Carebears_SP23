@@ -1,58 +1,64 @@
 package com.petvax.petvaxServices.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import java.time.Instant;
-
-import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(
         name = "vaccinations",
         schema = "PETVAX",
         uniqueConstraints = {
-                @UniqueConstraint(name = "vaccine_name_unique", columnNames = "name")
+                @UniqueConstraint(name = "vaccine_name_unique", columnNames = "name"),
+                @UniqueConstraint(name = "vaccine_uuid_unique", columnNames = "uuid")
         }
 )
-public class VaccinationEntity {
-
+public final class VaccinationEntity {
+    @Column(
+            name = "uuid",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     @Id
-    @SequenceGenerator(
-        name = "vaccination_sequence",
-        sequenceName = "vaccination_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = SEQUENCE,
-            generator = "vaccination_sequence"
-    )
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    private String uuid;
 
+    @NotEmpty
     @Column(
             name = "name",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String name;
+    @NotEmpty
     @Column(
             name = "type",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String type;
+    @NotNull
     @Column(
             name = "age",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String age;
+    @NotNull
     @Column(
             name = "frequency",
             nullable = false,
             columnDefinition = "TEXT"
     )
     private String frequency;
+    @NotEmpty
     @Column(
             name = "species",
             nullable = false,
@@ -60,29 +66,24 @@ public class VaccinationEntity {
     )
     private String species;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(
             name = "createdDate",
             updatable = false)
     private Instant createdDate;
 
-    // Empty entity constructor
-    public VaccinationEntity() {
+    /**
+     * @return name
+     */
+    public String getUuid() {
+        return uuid;
     }
 
-    // Entity Constructor
-    public VaccinationEntity(String name,
-                             String type,
-                             String age,
-                             String frequency,
-                             String species,
-                             Instant createdDate) {
-        this.name = name;
-        this.type = type;
-        this.age = age;
-        this.frequency = frequency;
-        this.species = species;
-        this.createdDate = createdDate;
+    /**
+     * @param uuid the name to set
+     */
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     /**

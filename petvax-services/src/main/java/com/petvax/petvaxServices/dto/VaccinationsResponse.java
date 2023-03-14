@@ -7,6 +7,7 @@ import java.time.Instant;
 
 @JsonDeserialize(builder = VaccinationsResponse.Builder.class)
 public class VaccinationsResponse {
+    private String uuid;
     private String name;
     private String type;
     private String age;
@@ -15,14 +16,22 @@ public class VaccinationsResponse {
     private Instant createdDate;
 
     // Response constructor
-    public VaccinationsResponse(final String name, final String type, final String age,
+    public VaccinationsResponse(final String uuid, String name, final String type, final String age,
                                 String frequency, String species, final Instant createdDate) {
+        this.uuid = uuid;
         this.name = name;
         this.type = type;
         this.age = age;
         this.frequency = frequency;
         this.species = species;
         this.createdDate = createdDate;
+    }
+
+    /**
+     * @return {@code uuid}
+     */
+    public String getUuid() {
+        return uuid;
     }
 
     /**
@@ -69,6 +78,7 @@ public class VaccinationsResponse {
 
     @JsonPOJOBuilder(withPrefix = "set")
     public static class Builder {
+        private String uuid;
         private String name;
         private String type;
         private String age;
@@ -82,12 +92,22 @@ public class VaccinationsResponse {
 
         // Builder Response Constructor
         public Builder(final VaccinationsResponse vaccinationsResponse) {
+            setUuid(vaccinationsResponse.getUuid());
             setName(vaccinationsResponse.getName());
             setType(vaccinationsResponse.getType());
             setAge(vaccinationsResponse.getAge());
             setFrequency(vaccinationsResponse.getFrequency());
             setSpecies(vaccinationsResponse.getSpecies());
             setCreatedDate(vaccinationsResponse.getCreatedDate());
+        }
+
+        /**
+         * @param uuid the createdDate to set
+         * @return {@code this} builder
+         */
+        public VaccinationsResponse.Builder setUuid(String uuid) {
+            this.uuid = uuid;
+            return this;
         }
 
         /**
@@ -146,7 +166,7 @@ public class VaccinationsResponse {
 
         // Builds response object with appropriate values
         public VaccinationsResponse build() {
-            return new VaccinationsResponse(name, type, age,
+            return new VaccinationsResponse(uuid, name, type, age,
                     frequency, species, createdDate);
         }
     }

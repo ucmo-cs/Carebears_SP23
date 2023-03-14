@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface VaccinationsRepository extends JpaRepository<VaccinationEntity, Integer> {
+public interface VaccinationsRepository extends JpaRepository<VaccinationEntity, String> {
 
     Optional<VaccinationEntity> findByName(String name);
 
     List<VaccinationEntity> findByType(String type);
 
     List<VaccinationEntity> findAll();
+
+    Optional<VaccinationEntity> findByUuid(String uuid);
 
 }

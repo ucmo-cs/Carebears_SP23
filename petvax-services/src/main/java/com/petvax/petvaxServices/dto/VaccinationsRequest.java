@@ -2,12 +2,14 @@ package com.petvax.petvaxServices.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.petvax.petvaxServices.entity.VaccinationEntity;
 
 import java.time.Instant;
 
 @JsonDeserialize(builder = com.petvax.petvaxServices.dto.VaccinationsRequest.Builder.class)
-public class VaccinationsRequest {
+public final class VaccinationsRequest {
 
+    private final String uuid;
     private String name;
     private String type;
     private String age;
@@ -15,8 +17,9 @@ public class VaccinationsRequest {
     private String species;
     private Instant createdDate;
 
-    public VaccinationsRequest(final String name, final String type, final String age,
+    public VaccinationsRequest(final String uuid, final String name, final String type, final String age,
                         final String frequency, final String species, final Instant createdDate) {
+        this.uuid = uuid;
         this.name = name;
         this.type = type;
         this.age = age;
@@ -25,6 +28,7 @@ public class VaccinationsRequest {
         this.createdDate = createdDate;
     }
 
+    public String getUuid() { return uuid; }
     public String getName() { return name; }
 
     public String getType() { return type; }
@@ -39,6 +43,7 @@ public class VaccinationsRequest {
 
     @JsonPOJOBuilder(withPrefix = "set")
     public static class Builder {
+        private String uuid;
         private String name;
         private String type;
         private String age;
@@ -61,10 +66,19 @@ public class VaccinationsRequest {
         }
 
         /**
+         * @param uuid the name to set
+         * @return {@code this} builder
+         */
+        public Builder setUuid(String uuid) {
+            this.uuid = uuid;
+            return this;
+        }
+
+        /**
          * @param name the name to set
          * @return {@code this} builder
          */
-        private Builder setName(String name) {
+        public Builder setName(String name) {
             this.name = name;
             return this;
         }
@@ -73,7 +87,7 @@ public class VaccinationsRequest {
          * @param type the type to set
          * @return {@code this} builder
          */
-        private Builder setType(String type) {
+        public Builder setType(String type) {
             this.type = type;
             return this;
         }
@@ -82,7 +96,7 @@ public class VaccinationsRequest {
          * @param age the age to set
          * @return {@code this} builder
          */
-        private Builder setAge(String age) {
+        public Builder setAge(String age) {
             this.age = age;
             return this;
         }
@@ -91,7 +105,7 @@ public class VaccinationsRequest {
          * @param frequency the frequency to set
          * @return {@code this} builder
          */
-        private Builder setFrequency(String frequency) {
+        public Builder setFrequency(String frequency) {
             this.frequency = frequency;
             return this;
         }
@@ -100,7 +114,7 @@ public class VaccinationsRequest {
          * @param species the species to set
          * @return {@code this} builder
          */
-        private Builder setSpecies(String species) {
+        public Builder setSpecies(String species) {
             this.species = species;
             return this;
         }
@@ -115,8 +129,8 @@ public class VaccinationsRequest {
         }
 
         // Builds request object with appropriate values
-        protected VaccinationsRequest build() {
-            return new VaccinationsRequest(name, type, age,
+        public VaccinationsRequest build() {
+            return new VaccinationsRequest(uuid, name, type, age,
                     frequency, species, createdDate);
         }
     }

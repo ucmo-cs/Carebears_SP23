@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -9,7 +9,6 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 export class LoginPageComponent {
   
   constructor(
-    private route:ActivatedRoute,
     private router:Router
   ) {}
 

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PET_LIST } from './PET_LIST_MOCK_DATA';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
@@ -9,24 +11,40 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 
 export class HomePageComponent {
   userName = "UserName";
-  pet1Name = "CatName";
-  pet2Name = "DogName";
-  pet1 = setAnimalImg("cat");
-  pet2 = setAnimalImg("dog");
-}
 
-function setAnimalImg(animalSpecies:string): string {
-  const dogImg = "../../../assets/images/dog-head-temp.png";
-  const catImg = "../../../assets/images/cat-head-temp.png";
+  data: any;
+
+  constructor(
+    private router:Router
+    // private http: HttpClient
+  ) {
+
+  }
+  ngOnInit(): void {
+    this.getPetList();
+  }
+
+  getPetList() {
+    return PET_LIST;
+  }
   
-  switch(animalSpecies){
-    case "dog":
-      return dogImg;
-      break;
-    case "cat":
-      return catImg;
-      break;
-    default :
-      return "";
+  navigateVaccinePage() {
+    this.router.navigate(['/vaccines']);
+  }
+
+  setAnimalImg(petKind:string): string {
+    const dogImg = "../../../assets/images/dog-head-temp.png";
+    const catImg = "../../../assets/images/cat-head-temp.png";
+    
+    switch(petKind){
+      case "dog":
+        return dogImg;
+        break;
+      case "cat":
+        return catImg;
+        break;
+      default :
+        return "";
+    }
   }
 }
