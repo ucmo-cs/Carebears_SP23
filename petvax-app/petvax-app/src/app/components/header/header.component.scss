@@ -1,0 +1,47 @@
+.container{
+    width: auto;
+    height: 150px;
+    background-color: rgba(244,219,219, .9);
+    border: 1px solid #B3A4A4;
+    //opacity: 0.3;
+    //box-sizing: border-box;
+}
+
+.buttonHome{
+    padding: 10px 10px;
+    background-color: white;
+    border-radius: 8px;
+    border: 2.4px solid #B2A4A4;
+    margin-right: 100px;
+    float: right;
+    font-size: 30px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.buttons{
+    margin: 0;
+    position: relative;
+    top: 30%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.button{
+    padding: 10px 10px;
+    //background-color: white;
+    border-radius: 8px;
+    border: 2.5px solid #B2A4A4;
+    margin-right: 50px;
+    float: right;
+    font-size: 30px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.circle {
+    height: 35px;
+    width: 35px;
+    background-color: #F4DBDB;
+    border-radius: 50%;
+    border: 1px solid #B2A4A4;
+    display: inline-block;
+}
