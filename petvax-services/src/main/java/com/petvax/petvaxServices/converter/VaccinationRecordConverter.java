@@ -25,6 +25,7 @@ public final class VaccinationRecordConverter {
 
         // Creates response with returned value based upon request
         vaccinationRecordResponseBuilder.setVaccinationDate(vaccinationRecordEntity.getVaccinationDate());
+        vaccinationRecordResponseBuilder.setproviderId(vaccinationRecordEntity.getproviderId());
         vaccinationRecordResponseBuilder.setActive(vaccinationRecordEntity.getActive());
 
         return vaccinationRecordResponseBuilder.build();

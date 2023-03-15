@@ -44,6 +44,13 @@ public final class VaccinationRecordEntity implements Serializable {
     )
     private Instant vaccinationDate;
 
+    @NotEmpty
+    @Column(
+            name = "providerId",
+            nullable = false
+    )
+    private String providerId;
+
     @CreationTimestamp
     @Column(
             name = "createdDate",
@@ -118,6 +125,20 @@ public final class VaccinationRecordEntity implements Serializable {
      */
     public void setVaccinationDate(Instant vaccinationDate) {
         this.vaccinationDate = vaccinationDate;
+    }
+
+    /**
+     * @return providerId
+     */
+    public String getproviderId() {
+        return providerId;
+    }
+
+    /**
+     * @param providerId the name to set
+     */
+    public void setproviderId(String providerId) {
+        this.providerId = providerId;
     }
 
    /**

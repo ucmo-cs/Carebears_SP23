@@ -9,6 +9,7 @@ services:
       - "3306:3306"
     volumes:
       - ./pets.sql:/docker-entrypoint-initdb.d/pets.sql
+      - ./providers.sql:/docker-entrypoint-initdb.d/providers.sql
       - ./vaccinations.sql:/docker-entrypoint-initdb.d/vaccinations.sql
       - ./vaccinationRecords.sql:/docker-entrypoint-initdb.d/vaccinationRecords.sql
   phpmyadmin:
