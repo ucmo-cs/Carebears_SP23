@@ -73,6 +73,19 @@ public class VaccinationsService {
     }
 
     /**
+     * @param species
+     * @return
+     */
+    public List<VaccinationsResponse> getVaccinationBySpecies(final String species) throws SystemException {
+        List<VaccinationsResponse> listSpecies;
+        List<VaccinationEntity> vaccinationSpecies = vaccinationsRepository.findBySpecies(species);
+
+        // Convert multiple vaccinationSpecies into a response containing a list of species
+        listSpecies = vaccinationsConverter.convertVaccinationsToVaccinationResponse(vaccinationSpecies);
+        return listSpecies;
+    }
+
+    /**
      * @param vaccinationRequest
      */
     @Transactional
