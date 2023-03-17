@@ -12,16 +12,16 @@ export interface VaccinesList {
 
 // Table Content
 const VAX_DATA: VaccinesList[] = [
-  {id: 1, name: 'Rabis01', provider: 'PettyPet01', date: '02/01/2023'},
-  {id: 2, name: 'Rabis02', provider: 'PettyPet02', date: '02/02/2023'},
-  {id: 3, name: 'Rabis03', provider: 'PettyPet03', date: '02/03/2023'},
-  {id: 4, name: 'Rabis04', provider: 'PettyPet04', date: '02/04/2023'},
-  {id: 5, name: 'Rabis05', provider: 'PettyPet05', date: '02/05/2023'},
-  {id: 6, name: 'Rabis06', provider: 'PettyPet06', date: '02/06/2023'},
-  {id: 7, name: 'Rabis07', provider: 'PettyPet07', date: '02/07/2023'},
-  {id: 8, name: 'Rabis08', provider: 'PettyPet08', date: '02/08/2023'},
-  {id: 9, name: 'Rabis09', provider: 'PettyPet09', date: '02/09/2023'},
-  {id: 10, name: 'Rabis10', provider: 'PettyPet10', date: '02/10/2023'},
+  {id: 1, name: 'Rabies01', provider: 'PettyPet01', date: '02/01/2023'},
+  {id: 2, name: 'Rabies02', provider: 'PettyPet02', date: '02/02/2023'},
+  {id: 3, name: 'Rabies03', provider: 'PettyPet03', date: '02/03/2023'},
+  {id: 4, name: 'Rabies04', provider: 'PettyPet04', date: '02/04/2023'},
+  {id: 5, name: 'Rabies05', provider: 'PettyPet05', date: '02/05/2023'},
+  {id: 6, name: 'Rabies06', provider: 'PettyPet06', date: '02/06/2023'},
+  {id: 7, name: 'Rabies07', provider: 'PettyPet07', date: '02/07/2023'},
+  {id: 8, name: 'Rabies08', provider: 'PettyPet08', date: '02/08/2023'},
+  {id: 9, name: 'Rabies09', provider: 'PettyPet09', date: '02/09/2023'},
+  {id: 10, name: 'Rabies10', provider: 'PettyPet10', date: '02/10/2023'},
 ];
 
 @Component({
@@ -32,7 +32,7 @@ const VAX_DATA: VaccinesList[] = [
 
 export class VaccinationPageComponent implements AfterViewInit{
   // Table Headers
-  displayedColumns = ['id', 'name', 'provider', 'date'];
+  displayedColumns = ['name', 'provider', 'date'];
   dataSource = new MatTableDataSource(VAX_DATA);
 
   constructor(private _liveAnnouncer: LiveAnnouncer) {

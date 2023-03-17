@@ -34,15 +34,18 @@
   
   table {
     width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .mat-mdc-form-field {
     font-size: 20px;
-    width: 100%;
+    width: 100%;  
   }
 
   th.mat-sort-header {
     background-color: rgba(244,219,219);
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
   .print-button {
