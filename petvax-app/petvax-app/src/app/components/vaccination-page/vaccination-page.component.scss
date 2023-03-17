@@ -1,0 +1,53 @@
+.container{
+    background-image: url(../../../assets/images/main-bg-image.jpg);
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size:cover;
+    height: auto;
+    width: auto;
+}
+
+.body{
+    background-color: white;
+    width: 1200px;
+    height: 725px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    border-radius: 25px;
+}
+
+.table-section{
+    padding: 50px;
+    height: auto;
+    width: auto;
+
+}
+
+.example-container {
+    height: 500px;
+    overflow: auto;
+    border-radius: 8px;
+    border: 2.5px solid #B2A4A4;
+  }
+  
+  table {
+    width: 100%;
+  }
+
+  .mat-mdc-form-field {
+    font-size: 20px;
+    width: 100%;
+  }
+
+  th.mat-sort-header {
+    background-color: rgba(244,219,219);
+  }
+
+  .print-button {
+    background-color: white;
+    border: white;
+    float: right;
+    margin-right: 50px;
+  }
