@@ -45,15 +45,6 @@ export class VaccinationPageComponent implements AfterViewInit{
     this.dataSource.sort = this.sort;
   }
 
-  // Table Sort
-  announceSortChange(sortState: Sort) {
-      if (sortState.direction) {
-        this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-      } else {
-        this._liveAnnouncer.announce('Sorting cleared');
-      }
-  }
-
   // Table Search Filter
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
