@@ -16,7 +16,6 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HeaderComponent } from './components/header/header.component';
-import { PetComponent } from './components/pet/pet.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { VaccinationPageComponent } from './components/vaccination-page/vaccination-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -33,7 +32,6 @@ const appRoutes: Routes = [
     LoginPageComponent,
     HomePageComponent,
     HeaderComponent,
-    PetComponent,
     FooterComponent,
     VaccinationPageComponent,
     NavigationComponent
