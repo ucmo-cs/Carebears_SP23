@@ -10,6 +10,7 @@ export interface VaccinesList {
   date: string; 
 }
 
+// Table Content
 const VAX_DATA: VaccinesList[] = [
   {id: 1, name: 'Rabis01', provider: 'PettyPet01', date: '02/01/2023'},
   {id: 2, name: 'Rabis02', provider: 'PettyPet02', date: '02/02/2023'},
@@ -30,6 +31,7 @@ const VAX_DATA: VaccinesList[] = [
 })
 
 export class VaccinationPageComponent implements AfterViewInit{
+  // Table Headers
   displayedColumns = ['id', 'name', 'provider', 'date'];
   dataSource = new MatTableDataSource(VAX_DATA);
 
@@ -43,12 +45,8 @@ export class VaccinationPageComponent implements AfterViewInit{
     this.dataSource.sort = this.sort;
   }
 
-  /** Announce the change in sort state for assistive technology. */
+  // Table Sort
   announceSortChange(sortState: Sort) {
-      // This example uses English messages. If your application supports
-      // multiple language, you would internationalize these strings.
-      // Furthermore, you can customize the message to add additional
-      // details about the values being sorted.
       if (sortState.direction) {
         this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
       } else {
@@ -56,6 +54,7 @@ export class VaccinationPageComponent implements AfterViewInit{
       }
   }
 
+  // Table Search Filter
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
