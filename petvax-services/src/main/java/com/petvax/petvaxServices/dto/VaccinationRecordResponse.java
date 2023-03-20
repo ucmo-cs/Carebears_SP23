@@ -2,7 +2,7 @@ package com.petvax.petvaxServices.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-import com.petvax.petvaxServices.entity.VaccinationEntity;
+import com.petvax.petvaxServices.entity.ProviderEntity;
 
 import java.time.Instant;
 
@@ -10,15 +10,15 @@ import java.time.Instant;
 public class VaccinationRecordResponse {
     private final VaccinationsResponse vaccination;
     private Instant vaccinationDate;
-    private String providerId;
+    private ProviderEntity provider;
     private Boolean active;
 
     // Response constructor
     public VaccinationRecordResponse(final VaccinationsResponse vaccination,
-                                     final Instant vaccinationDate, final String providerId, final Boolean active) {
+                                     final Instant vaccinationDate, final ProviderEntity provider, final Boolean active) {
         this.vaccination = vaccination;
         this.vaccinationDate = vaccinationDate;
-        this.providerId = providerId;
+        this.provider = provider;
         this.active = active;
     }
 
@@ -37,7 +37,7 @@ public class VaccinationRecordResponse {
     /**
      * @return {@code providerId}
      */
-    public String getproviderId() { return providerId; }
+    public ProviderEntity getProvider() { return provider; }
 
     /**
      * @return {@code active}
@@ -50,7 +50,7 @@ public class VaccinationRecordResponse {
     public static class Builder {
         private VaccinationsResponse vaccination;
         private Instant vaccinationDate;
-        private String providerId;
+        private ProviderEntity provider;
         private Boolean active;
 
         // Empty Builder constructor
@@ -61,7 +61,7 @@ public class VaccinationRecordResponse {
         public Builder(final VaccinationRecordResponse vaccinationRecordResponse) {
             setVacciantion(vaccinationRecordResponse.getVaccination());
             setVaccinationDate(vaccinationRecordResponse.getVaccinationDate());
-            setproviderId(vaccinationRecordResponse.getproviderId());
+            setProvider(vaccinationRecordResponse.getProvider());
             setActive(vaccinationRecordResponse.getActive());
         }
 
@@ -83,11 +83,11 @@ public class VaccinationRecordResponse {
         }
 
         /**
-         * @param providerId the name to set
+         * @param provider the name to set
          * @return {@code this} builder
          */
-        public Builder setproviderId(String providerId) {
-            this.providerId = providerId;
+        public Builder setProvider(ProviderEntity provider) {
+            this.provider = provider;
             return this;
         }
 
@@ -102,7 +102,7 @@ public class VaccinationRecordResponse {
 
         // Builds response object with appropriate values
         public VaccinationRecordResponse build() {
-            return new VaccinationRecordResponse(vaccination, vaccinationDate, providerId, active);
+            return new VaccinationRecordResponse(vaccination, vaccinationDate, provider, active);
         }
 
     }
