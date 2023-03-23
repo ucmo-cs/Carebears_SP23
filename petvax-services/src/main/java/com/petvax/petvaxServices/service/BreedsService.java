@@ -1,26 +1,17 @@
 package com.petvax.petvaxServices.service;
 
 import com.petvax.petvaxServices.converter.BreedsConverter;
-import com.petvax.petvaxServices.converter.SpeciesConverter;
 import com.petvax.petvaxServices.dto.BreedsResponse;
-import com.petvax.petvaxServices.dto.SpeciesResponse;
 import com.petvax.petvaxServices.entity.BreedEntity;
-import com.petvax.petvaxServices.entity.SpeciesEntity;
-import com.petvax.petvaxServices.entity.VaccinationRecordEntity;
 import com.petvax.petvaxServices.exception.NotFoundException;
-import com.petvax.petvaxServices.repository.BreedsRepository;
-import com.petvax.petvaxServices.repository.SpeciesRepository;
+import com.petvax.petvaxServices.repository.BreedsRepository;;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.SystemException;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class BreedsService {
