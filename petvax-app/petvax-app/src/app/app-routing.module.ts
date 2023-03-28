@@ -6,11 +6,16 @@ import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { VaccinationPageComponent } from './components/vaccination-page/vaccination-page.component';
+import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
+import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent, pathMatch: 'full'},
   { path: 'home', component: HomePageComponent },
   { path: 'vaccines', component: VaccinationPageComponent},
+  { path: 'wallet', component: WalletPageComponent},
+  { path: 'walletDetail', component: WalletDetailsComponent},
+
 ];
 
 @NgModule({

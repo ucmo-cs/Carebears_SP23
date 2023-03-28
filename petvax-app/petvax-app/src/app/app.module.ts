@@ -19,8 +19,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { VaccinationPageComponent } from './components/vaccination-page/vaccination-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
+import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 
 const appRoutes: Routes = [
+  { path: 'walletDetail', component: WalletDetailsComponent},
+  { path: 'wallet', component: WalletPageComponent},
   { path: 'vaccines', component: VaccinationPageComponent},
   { path: 'home', component: HomePageComponent},
   { path: 'login', component: LoginPageComponent},
@@ -34,7 +38,9 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     VaccinationPageComponent,
-    NavigationComponent
+    NavigationComponent,
+    WalletPageComponent,
+    WalletDetailsComponent
   ],
   imports: [
     MatTableModule, 

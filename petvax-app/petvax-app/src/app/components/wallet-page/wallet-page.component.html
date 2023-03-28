@@ -1,1 +1,35 @@
-<p>wallet-page works!</p>
+<div class="container">
+<app-header></app-header>
+<div style="padding: 20px;"></div>
+<app-navigation></app-navigation>
+<div class="body" style="display: internal;">
+
+    <!-- Wallet Button -->
+    <div style="display: internal;">
+        <button class="button" *ngFor="let wallet of getWalletList()" (click)="navigateWalletDetail()">
+            <div style="padding: 10px;">
+                <img src = "../../../assets/images/wallet-item.png" width=100px height=100px/>
+                <p>{{wallet.wallet_name}}</p>
+            </div>
+        </button>
+    </div>
+
+    
+    <!-- Add Button -->
+    <button class = "button" id = "add-button">
+        <div style="padding: 10px;">
+        <img src="../../../assets/images/plus.png" height ="100" width="100" />
+        </div>
+    </button>
+
+    <!-- Remove Button -->
+    <button class = "button" id = "remove-button">
+        <div style="padding: 10px;">
+        <img src="../../../assets/images/minus.png" height ="100" width="100" />
+        </div>
+    </button>
+
+</div>
+<div style="padding: 20px;"></div>
+<app-footer></app-footer>
+</div>
