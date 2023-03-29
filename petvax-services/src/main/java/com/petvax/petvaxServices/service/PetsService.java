@@ -98,7 +98,7 @@ public class PetsService {
         // Checks if the list contains value or not
         // Throws an exception if the list is empty
         if (petEntities.isEmpty()) {
-            throw new NotFoundException(String.format("No vaccination records found for pet with ownerID: [%s]", ownerID));
+            throw new NotFoundException(String.format("No pet found for pet with ownerID: [%s]", ownerID));
         }
 
         // Iterate through each pet to determine if 'active' is true or not
@@ -123,6 +123,6 @@ public class PetsService {
         // Uses the map function to determine whether or not to build the response
         // If the pet object is null then it will throw the NotFoundException exception
         Optional<PetEntity> pet = petsRepository.findByUuid(age);
-        return pet.map(petsConverter::convertPetsToPetResponse).orElseThrow(() -> new NotFoundException(String.format("Id not found: [%s]", age)));
+        return pet.map(petsConverter::convertPetsToPetResponse).orElseThrow(() -> new NotFoundException(String.format("Age not found: [%s]", age)));
     }
 }

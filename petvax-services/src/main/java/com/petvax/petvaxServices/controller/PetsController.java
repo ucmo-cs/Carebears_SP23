@@ -33,7 +33,7 @@ public class PetsController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
-            @ApiResponse(responseCode = "404", description = "vaccination does not exist"),
+            @ApiResponse(responseCode = "404", description = "pet does not exist"),
             @ApiResponse(responseCode = "500", description = "System Error")
     })
     @ResponseStatus(HttpStatus.OK)
@@ -52,7 +52,7 @@ public class PetsController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
-            @ApiResponse(responseCode = "404", description = "vaccination does not exist"),
+            @ApiResponse(responseCode = "404", description = "pet does not exist"),
             @ApiResponse(responseCode = "500", description = "System Error")
     })
     @ResponseStatus(HttpStatus.OK)
@@ -71,7 +71,7 @@ public class PetsController {
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
-            @ApiResponse(responseCode = "404", description = "ownerID does not exist"),
+            @ApiResponse(responseCode = "404", description = "pet does not exist"),
             @ApiResponse(responseCode = "500", description = "System Error")
     })
     @ResponseStatus(HttpStatus.OK)
