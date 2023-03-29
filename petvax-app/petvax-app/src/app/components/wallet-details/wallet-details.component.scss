@@ -1,0 +1,45 @@
+.container{
+    background-image: url(../../../assets/images/main-bg-image.jpg);
+    -webkit-background-size:cover;
+    -o-background-size:cover;
+    -moz-background-size:cover;
+    background-size: auto;
+    height: 100%;
+    width: all;
+}
+
+.body{
+    background-color: white;
+    width: 1200px;
+    height: 725px;
+    margin: 0 auto;
+    padding-left: 50px;
+    padding-top: 20px;
+    position: relative;
+    border-radius: 25px;
+    overflow-y: auto;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1{
+    padding-bottom: 10px;
+    padding-right: 40px;
+}
+
+p{
+    display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#editBttn{
+    //margin-left: auto;
+}
+
+.bodyFirst{
+    border: 1px dotted black;
+    display: flex;
+    align-items: center; /* Vertical align the elements to the center */
+}
