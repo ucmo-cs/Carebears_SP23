@@ -1,7 +1,11 @@
 import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, ElementRef} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+declare var require: any
+const html2pdf = require('html2pdf.js');
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 export interface VaccinesList {
   name: string;
@@ -40,6 +44,7 @@ export class VaccinationPageComponent implements AfterViewInit{
   }
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  @ViewChild('content', { static: false }) content!: ElementRef;
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
@@ -50,7 +55,27 @@ export class VaccinationPageComponent implements AfterViewInit{
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
+  public generatePDF(): void {
+    const doc = new jsPDF('p', 'pt', 'a4');
+
+    const specialElementHandlers = {
+      '#editor': function (element: any, renderer: any) {
+        return true;
+      }
+    };
+
+    const table = this.content.nativeElement;
+
+    html2pdf().from(table).set({
+      margin: 10,
+      filename: 'vaccines.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { dpi: 192, letterRendering: true },
+      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait'},
+      pagebreak: { avoid: ['.table-header'] }
+    }).save();
+  }
 }
 
 

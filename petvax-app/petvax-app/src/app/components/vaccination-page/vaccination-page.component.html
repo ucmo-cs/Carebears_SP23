@@ -17,8 +17,10 @@
           </mat-form-field>
 
           <section class="example-container mat-elevation-z8" tabindex="0">
-
+            <div #content>
             <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+              
               
               <!-- Vaccine Name Column -->
               <ng-container matColumnDef="name">
@@ -45,12 +47,15 @@
               <tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
               </tr>
+
+              
             </table>
+          </div>
           </section>
         </div>
 
         <!-- Print Button section -->
-        <button class="print-button">
+        <button class="print-button" (click)="generatePDF()">
           <img src="../../../assets/images/print.png" height ="50" width="50" />
         </button>
 
