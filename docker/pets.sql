@@ -33,4 +33,4 @@ CREATE TABLE pets (
   PRIMARY KEY (`ID`)
 );
 
-INSERT INTO `pets` (`UUID`, `Name`, `SpeciesId`, `BreedId`, `Age`) VALUES ('a90a655e-b25b-11ed-8531-0242ac120002', 'Huck', '1', '1', '17');
+INSERT INTO `pets` (`UUID`, `Name`, `SpeciesId`, `BreedId`, `OwnerID`, `Age`) VALUES ('a90a655e-b25b-11ed-8531-0242ac120002', 'Huck', '1', '1', '1', '17');
