@@ -32,4 +32,4 @@ CREATE TABLE pets (
   PRIMARY KEY (`uuid`)
 );
 
-INSERT INTO `pets` (`UUID`, `Name`, `SpeciesId`, `BreedId`, `Age`) VALUES ('a90a655e-b25b-11ed-8531-0242ac120002', 'Huck', '46e45c98-758f-4ff9-9811-389e5b206e0c', 'c523cc7e-a5ed-4279-bda1-065c224abae4', '17');
+INSERT INTO `pets` (`UUID`, `Name`, `SpeciesId`, `BreedId`, `OwnerId`, `Age`) VALUES ('a90a655e-b25b-11ed-8531-0242ac120002', 'Huck', '46e45c98-758f-4ff9-9811-389e5b206e0c', 'c523cc7e-a5ed-4279-bda1-065c224abae4', 'e3c45ad6-ce86-11ed-afa1-0242ac120002', '17');
