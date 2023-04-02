@@ -1,0 +1,62 @@
+{
+  "wallets": [
+    {
+      "id": "1",
+      "name": "2022 Vaccines"
+    },
+    {
+      "id": "2",
+      "name": "Wallet1"
+    },
+    {
+      "id": "3",
+      "name": "Wallet2"
+    },
+    {
+      "id": "4",
+      "name": "Wallet4"
+    },
+    {
+      "id": "5",
+      "name": "Wallet5"
+    },
+    {
+      "id": "6",
+      "name": "Wallet6"
+    },
+    {
+      "id": "7",
+      "name": "Wallet7"
+    },
+    {
+      "id": "8",
+      "name": "Wallet8"
+    },
+    {
+      "id": "9",
+      "name": "Wallet9"
+    },
+    {
+      "id": "10",
+      "name": "Wallet10"
+    },
+    {
+      "name": "Wallet11",
+      "id": "zLjMy47"
+    },
+    {
+      "name": "Wallet12",
+      "id": "JRrJ3Yp"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

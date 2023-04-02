@@ -21,6 +21,13 @@ import { VaccinationPageComponent } from './components/vaccination-page/vaccinat
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
 import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
+import { WalletAddComponent } from './components/wallet-add/wallet-add.component';
+
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'walletDetail', component: WalletDetailsComponent},
@@ -30,6 +37,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginPageComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'}
   ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,9 +48,14 @@ const appRoutes: Routes = [
     VaccinationPageComponent,
     NavigationComponent,
     WalletPageComponent,
-    WalletDetailsComponent
+    WalletDetailsComponent,
+    WalletAddComponent
   ],
   imports: [
+    FormsModule,
+    HttpClientModule,
+    MatCardModule,
+    MatDialogModule,
     MatTableModule, 
     MatFormFieldModule, MatInputModule, BrowserAnimationsModule, MatSortModule,
     BrowserModule,

@@ -6,17 +6,17 @@
 
     <!-- Wallet Button -->
     <div style="display: internal;">
-        <button class="button" *ngFor="let wallet of getWalletList()" (click)="goToWalletDetail()">
+        <button class="button" *ngFor="let wallet of wallets" (click)="goToWalletDetail()">
             <div style="padding: 10px;">
                 <img src = "../../../assets/images/wallet-item.png" width=100px height=100px/>
-                <p>{{wallet.wallet_name}}</p>
+                <p>{{wallet.name}}</p>
             </div>
         </button>
     </div>
 
     
     <!-- Add Button -->
-    <button class = "button" id = "add-button">
+    <button class = "button" id = "add-button" (click)="showAddWalletForm()">
         <div style="padding: 10px;">
         <img src="../../../assets/images/plus.png" height ="100" width="100" />
         </div>
