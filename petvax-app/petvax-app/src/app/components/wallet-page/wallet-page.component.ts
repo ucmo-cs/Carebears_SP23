@@ -25,7 +25,7 @@ export class WalletPageComponent {
     return WALLET_LIST;
   }
 
-  navigateWalletDetail() {
+  goToWalletDetail(){
     this.router.navigate(['/walletDetail']);
   }
 }

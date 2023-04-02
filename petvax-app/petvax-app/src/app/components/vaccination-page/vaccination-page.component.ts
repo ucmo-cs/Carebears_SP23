@@ -5,7 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 declare var require: any
 const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+//import 'jspdf-autotable';
 
 export interface VaccinesList {
   name: string;

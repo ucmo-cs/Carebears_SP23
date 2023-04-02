@@ -2,16 +2,61 @@
     <app-header></app-header>
     <div style="padding: 20px;"></div>
     <app-navigation></app-navigation>
-    <div class="body" style="display: internal;">
-        <div class ="bodyFirst" style="display: internal;">
-            <h1>WalletName</h1> 
-            <button id="editBttn">Edit</button>
+
+    <div class="body">
+
+        <div class ="first-section">
+            <div class ="title-section"><h1>WalletName</h1></div>
+            <div class ="edit-button-section"><button class = "editBttn">Edit</button></div>
+            <div class ="back-button-section">
+                <button class = "backBttn" (click)="goToWalletPage()">
+                    <img src="../../../assets/images/back.png" height ="90" width="90" />
+                </button>
+            </div>
         </div>
-        <div class ="bodySecond">
-            <h2>Purpose: </h2><p></p>
+
+        <div class ="second-section">
+            <h2>Purpose: </h2> 
             <p>I don't know if this is wrong, because someone else is telling me that it's wrong. 
             But I feel this so let me just like try my best not to let this happen again. 
             We weren't necessarily put in the best position to make the best decisions.</p>
+        </div>
+
+        <div class = "third-section">
+            <section class="table-container mat-elevation-z8" tabindex="0">
+                <div #content>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                        
+                        <!-- Vaccine Name Column -->
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Vaccine </th>
+                            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+                        
+                        <!-- Provider Column -->
+                        <ng-container matColumnDef="provider">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by provider"> Veterinarian </th>
+                            <td mat-cell *matCellDef="let element"> {{element.provider}} </td>
+                        </ng-container>
+                        
+                        <!-- Date Column -->
+                        <ng-container matColumnDef="date">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by date"> Date </th>
+                            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div class="fourth-section">
+        <!-- Print Button section -->
+        <button class="printBttn" (click)="generatePDF()">
+            <img src="../../../assets/images/print.png" height ="60" width="60" />
+        </button>
         </div>
     
     </div>
