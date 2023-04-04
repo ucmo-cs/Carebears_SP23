@@ -14,6 +14,8 @@ public interface VaccinationsRepository extends JpaRepository<VaccinationEntity,
 
     List<VaccinationEntity> findByType(String type);
 
+    List<VaccinationEntity> findBySpecies(String species);
+
     List<VaccinationEntity> findAll();
 
     Optional<VaccinationEntity> findByUuid(String uuid);
