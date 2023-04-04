@@ -19,9 +19,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { VaccinationPageComponent } from './components/vaccination-page/vaccination-page.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
 
 const appRoutes: Routes = [
   { path: 'vaccines', component: VaccinationPageComponent},
+  { path: 'wallet', component: WalletPageComponent},
   { path: 'home', component: HomePageComponent},
   { path: 'login', component: LoginPageComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'}
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     FooterComponent,
     VaccinationPageComponent,
-    NavigationComponent
+    NavigationComponent,
+    WalletPageComponent
   ],
   imports: [
     MatTableModule, 

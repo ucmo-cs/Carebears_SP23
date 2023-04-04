@@ -6,6 +6,7 @@
     height: 100%;
     width: 100%;
     position: fixed;
+    
 }
 
 .login-page-title {
@@ -15,14 +16,18 @@
 }
 
 .loginpage-modal-container {
-    margin:150px auto;
-    /* display: flex;
-    flex-direction: column; */
     border: 1px solid slategrey;
     border-radius: 4px;
     width: 422px;
-    /* justify-content: center; */
-    height: 510px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    z-index: 1;
+    max-height: calc(100% - 109px);
+    overflow-y: scroll;
 }
 
 .loginpage-input-container {
@@ -88,7 +93,7 @@
     position: fixed;
     height: 109px;
     width: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
 }
