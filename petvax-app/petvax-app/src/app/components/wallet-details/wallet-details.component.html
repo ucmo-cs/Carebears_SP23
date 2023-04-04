@@ -6,7 +6,7 @@
     <div class="body">
 
         <div class ="first-section">
-            <div class ="title-section"><h1>WalletName</h1></div>
+            <div class ="title-section"><h1 *ngIf="walletData">{{walletData.name}}</h1></div>
             <div class ="edit-button-section"><button class = "editBttn">Edit</button></div>
             <div class ="back-button-section">
                 <button class = "backBttn" (click)="goToWalletPage()">
@@ -17,9 +17,7 @@
 
         <div class ="second-section">
             <h2>Purpose: </h2> 
-            <p>I don't know if this is wrong, because someone else is telling me that it's wrong. 
-            But I feel this so let me just like try my best not to let this happen again. 
-            We weren't necessarily put in the best position to make the best decisions.</p>
+            <p *ngIf="walletData">{{walletData.purpose}}</p>
         </div>
 
         <div class = "third-section">

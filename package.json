@@ -2,6 +2,7 @@
   "dependencies": {
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
-    "jspdf-autotable": "^3.5.28"
+    "jspdf-autotable": "^3.5.28",
+    "ngx-cookie-service": "^15.0.0"
   }
 }

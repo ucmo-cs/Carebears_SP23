@@ -7,6 +7,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 declare var require: any
 const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
+import { identifierName } from '@angular/compiler';
 
 export interface VaccinesList {
   name: string;
@@ -30,18 +31,41 @@ const VAX_DATA: VaccinesList[] = [
   styleUrls: ['./wallet-details.component.scss']
 })
 export class WalletDetailsComponent {
-  data: any;
+  
+  walletData: any;
+  walletVaccinesData: any;
+
+  dataSource!: MatTableDataSource<any>;
+  displayedColumns = ['name', 'provider', 'date'];
+  
+  walletID?: number;
+  walletName = 'WalletName';
+  
 
   constructor(
-    private router:Router
-    // private http: HttpClient
-  ) {
+    private router: Router,
+    private http: HttpClient,
+  ) { }
 
-  }
   ngOnInit(): void {
-    this.getWalletList();
-  }
+    const id = localStorage.getItem('id');
 
+    if (id) {
+      const url = `http://localhost:3000/wallets?id=${id}`;
+
+      this.http.get(url).subscribe((data: any) => {
+        console.log(data);
+        this.walletData = data[0];
+        this.setupDataSource();
+      });
+    }
+  }
+  
+  setupDataSource(): void {
+    this.dataSource = new MatTableDataSource(this.walletData.vaccines);
+    this.dataSource.sort = this.sort;
+  }
+  
   getWalletList() {
     return WALLET_LIST;
   }
@@ -50,15 +74,11 @@ export class WalletDetailsComponent {
     this.router.navigate(['/wallet']);
   }
 
-  displayedColumns = ['name', 'provider', 'date'];
-  dataSource = new MatTableDataSource(VAX_DATA);
-
 
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild('content', { static: false }) content!: ElementRef;
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
   }
 
   public generatePDF(): void {

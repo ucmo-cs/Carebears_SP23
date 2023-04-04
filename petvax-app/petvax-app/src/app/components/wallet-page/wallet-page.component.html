@@ -6,7 +6,7 @@
 
     <!-- Wallet Button -->
     <div style="display: internal;">
-        <button class="button" *ngFor="let wallet of wallets" (click)="goToWalletDetail()">
+        <button class="button" *ngFor="let wallet of wallets" (click)="viewWalletInfo(wallet.id)">
             <div style="padding: 10px;">
                 <img src = "../../../assets/images/wallet-item.png" width=100px height=100px/>
                 <p>{{wallet.name}}</p>

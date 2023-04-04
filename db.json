@@ -1,52 +1,116 @@
 {
   "wallets": [
     {
-      "id": "1",
-      "name": "2022 Vaccines"
+      "id": 1,
+      "name": "2022 Vaccines",
+      "purpose": "Test description for 2022 Vaccines.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        },
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/27/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
     },
     {
-      "id": "2",
-      "name": "Wallet1"
+      "id": 2,
+      "name": "Wallet1",
+      "purpose": "Test description for Wallet1.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        },
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/27/2020"
+        }
+      ]
     },
     {
-      "id": "3",
-      "name": "Wallet2"
+      "id": 3,
+      "name": "Wallet2",
+      "purpose": "Test description for Wallet2.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        }
+      ]
     },
     {
-      "id": "4",
-      "name": "Wallet4"
+      "id": 4,
+      "name": "Wallet4",
+      "purpose": "Test description for Wallet4.",
+      "vaccines": [
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/27/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
     },
     {
-      "id": "5",
-      "name": "Wallet5"
+      "id": 5,
+      "name": "Wallet5",
+      "purpose": "Test description for Wallet5.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
     },
     {
-      "id": "6",
-      "name": "Wallet6"
+      "id": 6,
+      "name": "Wallet6",
+      "purpose": "Test description for Wallet6.",
+      "vaccines": [
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
     },
     {
-      "id": "7",
-      "name": "Wallet7"
-    },
-    {
-      "id": "8",
-      "name": "Wallet8"
-    },
-    {
-      "id": "9",
-      "name": "Wallet9"
-    },
-    {
-      "id": "10",
-      "name": "Wallet10"
-    },
-    {
-      "name": "Wallet11",
-      "id": "zLjMy47"
-    },
-    {
-      "name": "Wallet12",
-      "id": "JRrJ3Yp"
+      "name": "Wallet7",
+      "id": 7
     }
   ],
   "comments": [
