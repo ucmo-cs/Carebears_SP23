@@ -17,7 +17,7 @@ public final class VaccinationsConverter {
         // Creates response with returned value based upon request
         VaccinationsResponse.Builder vaccinationResponseBuilder = new VaccinationsResponse.Builder();
 
-        vaccinationResponseBuilder.setUuid(vaccinationEntity.getUuid());
+        vaccinationResponseBuilder.setVaccinationId(vaccinationEntity.getUuid());
         vaccinationResponseBuilder.setName(vaccinationEntity.getName());
         vaccinationResponseBuilder.setType(vaccinationEntity.getType());
         vaccinationResponseBuilder.setAge(vaccinationEntity.getAge());

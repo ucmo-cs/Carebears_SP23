@@ -3,14 +3,14 @@ CREATE DATABASE IF NOT EXISTS PETVAX;
 USE PETVAX;
 
 CREATE TABLE vaccinations (
-  UUID char(36) NOT NULL,
+  uuid char(36) NOT NULL,
   name varchar(99) NOT NULL,
   type varchar(99) NOT NULL,
   age varchar(99) NOT NULL,
   frequency varchar(99) NOT NULL,
   species varchar (50) NOT NULL,
   createdDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`UUID`)
+  PRIMARY KEY (`uuid`)
 );
 
 INSERT INTO `vaccinations` (`UUID`, `Name`, `Type`, `Age`, `Frequency`, `Species`) VALUES ('a91ccd21-b25b-11ed-8531-0242ac120002', 'Bordetella', 'NonCore', '12 Months', '6-12 Months', 'Canine');
