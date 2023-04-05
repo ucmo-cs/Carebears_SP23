@@ -1,6 +1,5 @@
 package com.petvax.petvaxServices.converter;
 
-import com.petvax.petvaxServices.dto.PetsRequest;
 import com.petvax.petvaxServices.dto.PetsResponse;
 import com.petvax.petvaxServices.entity.PetEntity;
 import org.springframework.stereotype.Component;
