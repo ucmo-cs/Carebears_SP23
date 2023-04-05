@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, ViewChild, ElementRef} from '@angular/core';
-import { WALLET_LIST } from '../wallet-page/WALLET_LIST_MOCK_DATA';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
@@ -15,15 +14,6 @@ export interface VaccinesList {
   provider: string;
   date: string; 
 }
-
-// Table Content
-const VAX_DATA: VaccinesList[] = [
-  {id: 1, name: 'Rabies01', provider: 'PettyPet01', date: '02/01/2023'},
-  {id: 3, name: 'Rabies03', provider: 'PettyPet03', date: '02/03/2023'},
-  {id: 4, name: 'Rabies04', provider: 'PettyPet04', date: '02/04/2023'},
-  {id: 6, name: 'Rabies06', provider: 'PettyPet06', date: '02/06/2023'},
-  {id: 7, name: 'Rabies07', provider: 'PettyPet07', date: '02/07/2023'},
-];
 
 @Component({
   selector: 'app-wallet-details',
@@ -47,6 +37,7 @@ export class WalletDetailsComponent {
     private http: HttpClient,
   ) { }
 
+  // Code to fetch information from db.json only for the passed ID from WalletPage. 
   ngOnInit(): void {
     const id = localStorage.getItem('id');
 
@@ -61,26 +52,17 @@ export class WalletDetailsComponent {
     }
   }
   
+  /*************************************************** TABLE FUNCTIONS ***************************************************/
+  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  // Function set-ups data source for mat-table.
   setupDataSource(): void {
     this.dataSource = new MatTableDataSource(this.walletData.vaccines);
     this.dataSource.sort = this.sort;
   }
-  
-  getWalletList() {
-    return WALLET_LIST;
-  }
 
-  goToWalletPage() {
-    this.router.navigate(['/wallet']);
-  }
-
-
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  /*************************************************** PRINT FUNCTIONS ***************************************************/
   @ViewChild('content', { static: false }) content!: ElementRef;
-
-  ngAfterViewInit() {
-  }
-
+  // Function to generate a pdf file for the print button. 
   public generatePDF(): void {
     const doc = new jsPDF('p', 'pt', 'a4');
 
@@ -100,5 +82,11 @@ export class WalletDetailsComponent {
       jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait'},
       pagebreak: { avoid: ['.table-header'] }
     }).save();
+  }
+
+  /*************************************************** OTHER FUNCTIONS ***************************************************/
+  // Function for the back button routing.
+  goToWalletPage() {
+      this.router.navigate(['/wallet']);
   }
 }

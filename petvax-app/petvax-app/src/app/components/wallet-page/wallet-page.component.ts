@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { WALLET_LIST } from './WALLET_LIST_MOCK_DATA';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,45 +16,36 @@ import { CookieService } from 'ngx-cookie-service';
 export class WalletPageComponent {
   data: any;
   wallets: Wallets[] = [];
+
+  // URL used for calls from json.db file. Will be changed to APIs when ready. 
   url = 'http://localhost:3000/wallets';
 
   constructor(
-    //private cookieService: CookieService,
     public dialog: MatDialog,
     private router:Router,
     private http: HttpClient
   ) {}
 
+  // Code fetches data from the db.json and assigns it to a local variable wallets that can be used in the component's template.
   ngOnInit(): void {
-    this.getWalletList();
+    
     this.http.get<Wallets[]>(this.url).subscribe((data) => { this.wallets = data; });
+    this.getWalletList();
   }
 
-  // ngOnInit(): void {
-  //   const id = this.cookieService.get('id');
-
-  //   if (id) {
-  //     const url = `http://localhost:3000/wallets?id=${id}`;
-
-  //     this.http.get(url).subscribe((data: any) => {
-  //       console.log(data);
-  //       this.wallets = data;
-  //     });
-  //   }
-
-  //   this.getWalletList();
-  // }
-
+  // Function to get wallets from URL. Used in HTML. 
   getWalletList() {
     return this.http.get(this.url);
   }
 
+  // Function to set a WalletID to local storage when clicked on a wallet. 
+  // It also redirects to wallet-details page. 
   viewWalletInfo(walletID: number){
-    //this.cookieService.set('id', walletID.toString());
     localStorage.setItem('id', walletID.toString());
     this.router.navigate(['/walletDetail']);
   }
 
+  // Function that opens the WalletAddComponent still in work...
   showAddWalletForm(): void{
     this.dialog.open(WalletAddComponent, {
       width: '500px'
