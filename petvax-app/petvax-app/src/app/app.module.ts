@@ -33,6 +33,7 @@ const appRoutes: Routes = [
   { path: 'walletDetail', component: WalletDetailsComponent},
   { path: 'wallet', component: WalletPageComponent},
   { path: 'vaccines', component: VaccinationPageComponent},
+  { path: 'wallet', component: WalletPageComponent},
   { path: 'home', component: HomePageComponent},
   { path: 'login', component: LoginPageComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full'}

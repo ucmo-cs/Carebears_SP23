@@ -82,6 +82,25 @@ public class VaccinationsController {
     }
 
     /**
+     * Returns vaccination by species
+     *
+     * @param species Vaccination
+     */
+    @ApiOperation(value = "getVaccinationBySpecies",
+            notes = "Returns vaccination details by param species")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "404", description = "vaccination does not exist"),
+            @ApiResponse(responseCode = "500", description = "System Error")
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path="/vaccinationSpecies", params = "species")
+    public List<VaccinationsResponse> getVaccinationBySpecies(@RequestParam(required = false) String species) throws SystemException {
+        return vaccinationsService.getVaccinationBySpecies(species);
+    }
+
+    /**
      * Creates vaccination.
      *
      * @param vaccination Vaccination details
