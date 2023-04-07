@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS PETVAX;
+
+USE PETVAX;
+
+CREATE TABLE wallets (
+  UUID char(36) NOT NULL,
+  walletId char(99) NOT NULL,
+  PRIMARY KEY (`UUID`)
+);
+
+INSERT INTO `wallets` (`UUID`, `walletId`) VALUES ('8ce3d690-d414-11ed-afa1-0242ac120002', '969997a6-d414-11ed-afa1-0242ac120002');
