@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -41,6 +42,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     MatTableModule, 
+    HttpClientModule,
     MatFormFieldModule, MatInputModule, BrowserAnimationsModule, MatSortModule,
     BrowserModule,
     RouterModule.forRoot(
