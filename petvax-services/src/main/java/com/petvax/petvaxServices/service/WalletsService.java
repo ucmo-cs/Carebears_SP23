@@ -32,7 +32,7 @@ public class WalletsService {
      * @return
      */
     @Transactional(readOnly = true)
-    public WalletsResponse getWalletByWalletId(final String walletId) {
+    public WalletsResponse getWalletByWalletId(boolean active, final String walletId) {
         // Optional object used in the case that the request returns a null value
         // Uses the map function to determine whether or not to build the response
         // If the wallet object is null then it will throw the NotFoundException exception

@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(
@@ -12,36 +13,29 @@ import javax.validation.constraints.NotEmpty;
 )
 public final class WalletEntity {
     @Column(
-            name = "uuid",
-            insertable = false,
-            updatable = false
-    )
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    private String uuid;
-
-    @NotEmpty
-    @Column(
             name = "walletId",
             nullable = false,
             columnDefinition = "TEXT"
     )
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private String walletId;
 
-    /**
-     * @return uuid
-     */
-    public String getUuid() {
-        return uuid;
-    }
+    @NotEmpty
+    @Column(
+            name = "petId",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String petId;
 
-    /**
-     * @param uuid the name to set
-     */
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+    @NotNull
+    @Column(
+            name = "active",
+            nullable = false
+    )
+    private Boolean active;
 
     /**
      * @return walletId
@@ -55,5 +49,33 @@ public final class WalletEntity {
      */
     public void setWalletId(String walletId) {
         this.walletId = walletId;
+    }
+
+    /**
+     * @return petId
+     */
+    public String getPetId() {
+        return petId;
+    }
+
+    /**
+     * @param petId the petId to set
+     */
+    public void setPetId(String petId) {
+        this.petId = petId;
+    }
+
+    /**
+     * @return active
+     */
+    public Boolean getActive() {
+        return active;
+    }
+
+    /**
+     * @param active the name to set
+     */
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

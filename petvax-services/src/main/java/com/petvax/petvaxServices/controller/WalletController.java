@@ -34,7 +34,7 @@ public class WalletController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/wallets/{walletId}")
-    public WalletsResponse getWalletByWalletId(@PathParam("walletId") final String walletId) {
-        return walletsService.getWalletByWalletId(walletId);
+    public WalletsResponse getWalletByWalletId(@PathParam("walletId") boolean active, final String walletId) {
+        return walletsService.getWalletByWalletId(active, walletId);
     }
 }

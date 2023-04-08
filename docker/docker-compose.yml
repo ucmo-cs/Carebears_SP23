@@ -13,6 +13,7 @@ services:
       - ./pets.sql:/docker-entrypoint-initdb.d/pets.sql
       - ./providers.sql:/docker-entrypoint-initdb.d/providers.sql
       - ./vaccinationRecords.sql:/docker-entrypoint-initdb.d/vaccinationRecords.sql
+      - ./wallets.sql:/docker-entrypoint-initdb.d/wallets.sql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: pma
