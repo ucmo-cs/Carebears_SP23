@@ -9,7 +9,7 @@ export interface Wallets {
     vaccines: Vaccine[];
 }
 
-interface Vaccine {
+export interface Vaccine {
   id: number;
   name: string;
   provider: string;

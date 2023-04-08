@@ -1,15 +1,63 @@
-<mat-card>
-    <form class="form" (ngSubmit)="onSubmit()">
-      <div>
+<div class="container">
+
+  <app-header></app-header>
+  <div style="padding: 20px;"></div>
+  <app-navigation></app-navigation>
+
+  <div class="body" style="display: internal;">
+
+    <h1>Add Wallet</h1>
+
+    <form class="form-container" (ngSubmit)="onSubmit()">
+
+      <div class="form-field-name">
         <label for="name">Name:</label>
         <input matInput name="newWalletName" [(ngModel)]="newWalletName" required>
       </div>
-      <div>
+
+      <div class="form-field-purpose">
         <label for="purpose">Purpose:</label>
-        <textarea id="purpose" name="purpose" rows="3" required></textarea>
+        <textarea matInput purpose="newWalletPurpose" name="purpose" rows="3" [(ngModel)]="newWalletPurpose" required></textarea>
       </div>
-      <div>
-        <button type="submit">Submit</button>
+
+      <h2>Double-click to add/remove...</h2>
+
+      <div class="form-field-vaccines">
+        <div class="form-field-available-vaccines">
+          <label>All Vaccines</label>
+          <select multiple size="5">
+            <option *ngFor="let vaccine of allVaccines" [value]="vaccine" (dblclick)="addVaccine(vaccine)" >
+              {{ vaccine.name }} at {{ vaccine.provider }} in {{ vaccine.date }}
+            </option>
+          </select>
+        </div>
+        
+        <!--div>
+          <button>Add</button>
+          <button>Remove</button>
+        </div-->
+        
+        <div class="form-field-selected-vaccines">
+          <label>Wallet Vaccines</label>
+          <select multiple size="5">
+            <option *ngFor="let vaccine of selectedVaccines" [value]="vaccine" (dblclick)="removeVaccine(vaccine)">
+              {{ vaccine.name }} at {{ vaccine.provider }} in {{ vaccine.date }}
+            </option>
+          </select>
+        </div>
+        
       </div>
+
+      <div class="form-field-button">
+        <button id="cancelBttn" type="cancel" (click)="cancelForm()">Cancel</button>
+        <button id="submitBttn" type="submit">Submit</button>
+      </div>
+
     </form>
-</mat-card>
+  
+  </div>
+  <div style="padding: 20px;"></div>
+  <app-footer></app-footer>
+  </div>
+  
+

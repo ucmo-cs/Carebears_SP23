@@ -45,10 +45,7 @@ export class WalletPageComponent {
     this.router.navigate(['/walletDetail']);
   }
 
-  // Function that opens the WalletAddComponent still in work...
-  showAddWalletForm(): void{
-    this.dialog.open(WalletAddComponent, {
-      width: '500px'
-    });
+  goToAddWaletPage(){
+    this.router.navigate(['/walletAdd']);
   }
 }
