@@ -4,10 +4,6 @@ import com.petvax.petvaxServices.dto.PetsResponse;
 import com.petvax.petvaxServices.entity.PetEntity;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.SystemException;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 public class PetsConverter {
 
@@ -22,6 +18,7 @@ public class PetsConverter {
         petResponseBuilder.setBreedID(petEntity.getBreedID());
         petResponseBuilder.setOwnerID(petEntity.getOwnerID());
         petResponseBuilder.setAge(petEntity.getAge());
+        petResponseBuilder.setActive(petEntity.getActive());
 
         return petResponseBuilder.build();
     }
