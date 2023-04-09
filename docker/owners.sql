@@ -19,3 +19,4 @@ CREATE TABLE owners (
 );
 
 INSERT INTO `owners` (`UUID`,`fname`,`lname`,`address1`,`city`,`state`,`zipCode`,`email`,`username`,`password`) VALUES ('f1e18004-dc0b-443f-89e7-dc0c16734518','Mark','Twain','234 W 10th St','Kansas City','MO','64105 ','Sam.L.Clemens@gmail.com','Sawyer', 'password');
+INSERT INTO `owners` (`UUID`,`fname`,`lname`,`address1`,`city`,`state`,`zipCode`,`email`,`username`,`password`) VALUES ('5886228a-d668-11ed-afa1-0242ac120002','Becky','Bron','416 Jackson Street','Warrensburg','MO','64093','bronrebecca@gmail.com','Becky', 'password');
