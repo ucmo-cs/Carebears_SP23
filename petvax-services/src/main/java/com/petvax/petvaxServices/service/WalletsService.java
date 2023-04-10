@@ -11,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.SystemException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class WalletsService {
@@ -25,6 +29,34 @@ public class WalletsService {
     public WalletsService(WalletsRepository walletsRepository, WalletsConverter walletsConverter) {
         this.walletsRepository = walletsRepository;
         this.walletsConverter = walletsConverter;
+    }
+
+    /**
+     * @param petId
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public List<WalletsResponse> getWalletByPetId(boolean active,
+                                                                       final String petId) throws SystemException {
+
+        List<WalletEntity> walletEntities = walletsRepository.findByPetId(petId);
+
+        // Checks if the list contains value or not
+        // Throws an exception if the list is empty
+        if (walletEntities.isEmpty()) {
+            throw new NotFoundException(String.format("No wallets found for pet with id: [%s]", petId));
+        }
+
+        // Iterate through each wallet to determine if 'active' is true or not
+        // If true adds to the walletStream variable. Otherwise, doesn't.
+        Stream<WalletEntity> walletStream = walletEntities.stream();
+        if (active) {
+            walletStream = walletStream.filter(walletEntity -> walletEntity.getActive());
+        }
+
+        return walletStream
+                .map(walletsConverter::convertWalletsToWalletResponse)
+                .collect(Collectors.toList());
     }
 
     /**

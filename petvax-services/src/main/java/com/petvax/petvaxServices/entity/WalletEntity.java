@@ -30,6 +30,10 @@ public final class WalletEntity {
     )
     private String petId;
 
+    @ManyToOne
+    @JoinColumn(name = "walletId", nullable = false, insertable = false, updatable = false)
+    private WalletEntity walletEntity;
+
     @NotNull
     @Column(
             name = "active",
@@ -49,6 +53,20 @@ public final class WalletEntity {
      */
     public void setWalletId(String walletId) {
         this.walletId = walletId;
+    }
+
+    /**
+     * @return walletEntity
+     */
+    public WalletEntity getWalletEntity() {
+        return walletEntity;
+    }
+
+    /**
+     * @param walletEntity the walletEntity to set
+     */
+    public void setWalletEntity(WalletEntity walletEntity) {
+        this.walletEntity = walletEntity;
     }
 
     /**

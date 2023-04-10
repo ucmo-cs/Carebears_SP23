@@ -9,4 +9,4 @@ CREATE TABLE wallets (
   PRIMARY KEY (`walletId`)
 );
 
-INSERT INTO `wallets` (`walletId`, `petId`, active) VALUES ('969997a6-d414-11ed-afa1-0242ac120002', 'a90a655e-b25b-11ed-8531-0242ac120002', 1);
+INSERT INTO `wallets` (`walletId`, `petId`, `active`) VALUES ('969997a6-d414-11ed-afa1-0242ac120002', 'a90a655e-b25b-11ed-8531-0242ac120002', 1);
