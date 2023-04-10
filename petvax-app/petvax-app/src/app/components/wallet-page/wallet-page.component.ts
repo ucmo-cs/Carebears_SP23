@@ -19,6 +19,7 @@ export class WalletPageComponent {
 
   // URL used for calls from json.db file. Will be changed to APIs when ready. 
   url = 'http://localhost:3000/wallets';
+  selectedActionIndex: number = -1;
 
   constructor(
     public dialog: MatDialog,
@@ -38,6 +39,10 @@ export class WalletPageComponent {
     return this.http.get(this.url);
   }
 
+  onGetActions(selectedIndex: number) {
+    this.selectedActionIndex = selectedIndex
+  }
+
   // Function to set a WalletID to local storage when clicked on a wallet. 
   // It also redirects to wallet-details page. 
   viewWalletInfo(walletID: number){
@@ -47,5 +52,10 @@ export class WalletPageComponent {
 
   goToAddWaletPage(){
     this.router.navigate(['/walletAdd']);
+  }
+
+  removeWallet(deletedIndex: number) {
+    this.wallets.splice(deletedIndex, 1);
+    this.selectedActionIndex = -1;
   }
 }
