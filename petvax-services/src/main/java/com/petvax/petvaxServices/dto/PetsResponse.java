@@ -3,8 +3,6 @@ package com.petvax.petvaxServices.dto;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import java.time.Instant;
-
 @JsonDeserialize(builder = PetsResponse.Builder.class)
 public class PetsResponse {
     private String uuid;
@@ -13,9 +11,10 @@ public class PetsResponse {
     private String breedID;
     private String ownerID;
     private String age;
+    private Boolean active;
 
     // Response constructor
-    public PetsResponse(final String uuid, String name, String speciesID, String breedID, String ownerID, String age) {
+    public PetsResponse(final String uuid, String name, String speciesID, String breedID, String ownerID, String age, Boolean active) {
 
         this.uuid = uuid;
         this.name = name;
@@ -23,6 +22,7 @@ public class PetsResponse {
         this.breedID = breedID;
         this.ownerID = ownerID;
         this.age = age;
+        this.active = active;
     }
 
     /**
@@ -67,6 +67,13 @@ public class PetsResponse {
         return age;
     }
 
+    /**
+     * @return {@code active}
+     */
+    public Boolean getActive() {
+        return active;
+    }
+
     @JsonPOJOBuilder(withPrefix = "set")
     public static class Builder {
         private String uuid;
@@ -75,6 +82,7 @@ public class PetsResponse {
         private String breedID;
         private String ownerID;
         private String age;
+        private Boolean active;
 
         // Empty Builder constructor
         public Builder() {
@@ -89,6 +97,7 @@ public class PetsResponse {
             setBreedID(petsResponse.getBreedID());
             setOwnerID(petsResponse.getOwnerID());
             setAge(petsResponse.getAge());
+            setActive(petsResponse.getActive());
         }
 
         /**
@@ -145,9 +154,18 @@ public class PetsResponse {
             return this;
         }
 
+        /**
+         * @param active the active to set
+         * @return {@code this} builder
+         */
+        public PetsResponse.Builder setActive(Boolean active) {
+            this.active = active;
+            return this;
+        }
+
         // Builds response object with appropriate values
         public PetsResponse build() {
-            return new PetsResponse(uuid, name, speciesID, breedID, ownerID, age);
+            return new PetsResponse(uuid, name, speciesID, breedID, ownerID, age, active);
         }
     }
 }
