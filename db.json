@@ -111,16 +111,113 @@
     {
       "name": "Wallet7",
       "id": 7
+    },
+    {
+      "name": "Wallet Test",
+      "purpose": "Testing Adding Vaccines",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "name": "WaletTest2",
+      "purpose": "Wallet Test 2",
+      "vaccines": [
+        {
+          "id": 7,
+          "name": "Vaccine7",
+          "provider": "Provider7",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 6,
+          "name": "Vaccine6",
+          "provider": "Provider6",
+          "date": "02/29/2020"
+        }
+      ],
+      "id": 9
+    },
+    {
+      "name": "WalletTest3",
+      "purpose": "WalletTest3",
+      "vaccines": [
+        {
+          "id": 4,
+          "name": "Vaccine4",
+          "provider": "Provider4",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ],
+      "id": 10
     }
   ],
-  "comments": [
+  "vaccines": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "Vaccine1",
+      "provider": "Provider1",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 2,
+      "name": "Vaccine2",
+      "provider": "Provider2",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 3,
+      "name": "Vaccine3",
+      "provider": "Provider3",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 4,
+      "name": "Vaccine4",
+      "provider": "Provider4",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 5,
+      "name": "Vaccine5",
+      "provider": "Provider5",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 6,
+      "name": "Vaccine6",
+      "provider": "Provider6",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 7,
+      "name": "Vaccine7",
+      "provider": "Provider7",
+      "date": "02/29/2020"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
