@@ -3,17 +3,21 @@ package com.petvax.petvaxServices.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.Instant;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 @Entity
 @Table(
         name = "owners",
-        schema = "PETVAX",
-        uniqueConstraints = @UniqueConstraint(columnNames = "userName")
+        schema = "PETVAX"
 )
 public final class OwnerEntity {
     @Column(
@@ -83,20 +87,11 @@ public final class OwnerEntity {
             columnDefinition = "VARCHAR(99)"
     )
     private String email;
-    @NotNull
-    @Column(
-            name = "userName",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-    private String userName;
-    @NotNull
-    @Column(
-            name = "password",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-    private String password;
+
+    @OneToOne
+    @JoinColumn(name = "ownerId",nullable = false, insertable = false, updatable = false)
+    private UserEntity userEntity;
+
     @CreationTimestamp
     @Column(
             name = "createdDate",
@@ -229,32 +224,12 @@ public final class OwnerEntity {
         this.email = email;
     }
 
-    /**
-     * @return userName
-     */
-    public String getUserName() {
-        return userName;
+    public UserEntity getUserEntity() {
+        return userEntity;
     }
 
-    /**
-     * @param userName the name to set
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /**
-     * @return password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param password the name to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 
     /**
@@ -270,4 +245,5 @@ public final class OwnerEntity {
     public void setCreatedDate(Instant createdDate) {
         this.createdDate = createdDate;
     }
+
 }

@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.SystemException;
@@ -36,6 +37,7 @@ public class ProvidersController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/provider", params = "name")
+    @PreAuthorize("hasRole('USER')")
     public ProvidersResponse getProviderByName(@RequestParam(required = false) String name) {
         return providersService.getProviderByName(name);
     }
@@ -55,6 +57,7 @@ public class ProvidersController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/providers", params = "city")
+    @PreAuthorize("hasRole('USER')")
     public List<ProvidersResponse> getProvidersByCity(@RequestParam(required = false) String city) throws SystemException {
         return providersService.getProvidersByCity(city);
     }

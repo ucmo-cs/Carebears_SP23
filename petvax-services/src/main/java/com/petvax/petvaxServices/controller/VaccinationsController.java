@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.SystemException;
@@ -39,6 +41,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/vaccinations", params = "name")
+    @PreAuthorize("hasRole('USER')")
     public VaccinationsResponse getVaccinationByName(@RequestParam(required = false) String name) {
         return vaccinationsService.getVaccination(name);
     }
@@ -58,6 +61,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/vaccinations/{uuid}")
+    @PreAuthorize("hasRole('USER')")
     public VaccinationsResponse getVaccinationByUuid(@PathParam("uuid") final String uuid) {
         return vaccinationsService.getVaccinationByUuid(uuid);
     }
@@ -77,6 +81,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/vaccinationType", params = "type")
+    @PreAuthorize("hasRole('USER')")
     public List<VaccinationsResponse> getVaccinationByType(@RequestParam(required = false) String type) throws SystemException {
         return vaccinationsService.getVaccinationByType(type);
     }
@@ -96,6 +101,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/vaccinationSpecies", params = "species")
+    @PreAuthorize("hasRole('USER')")
     public List<VaccinationsResponse> getVaccinationBySpecies(@RequestParam(required = false) String species) throws SystemException {
         return vaccinationsService.getVaccinationBySpecies(species);
     }
@@ -114,6 +120,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(path="/vaccinations")
+    @PreAuthorize("hasRole('USER')")
     public VaccinationsResponse createVaccination(@RequestBody @Valid final VaccinationsRequest vaccination) {
         return vaccinationsService.createVaccination(vaccination);
     }
@@ -132,6 +139,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @PutMapping(path="/vaccinations/{vaccinationId}")
+    @PreAuthorize("hasRole('USER')")
     public VaccinationsResponse updateVaccination(@RequestBody @Valid final VaccinationsRequest vaccination, @PathVariable final String vaccinationId) {
         return vaccinationsService.updateVaccination(vaccination, vaccinationId);
     }
@@ -148,6 +156,7 @@ public class VaccinationsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(path="/vaccinations/{vaccinationId}")
+    @PreAuthorize("hasRole('USER')")
     public void deleteVaccination(@PathVariable final String vaccinationId) {
         vaccinationsService.deleteVaccination(vaccinationId);
     }

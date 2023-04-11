@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.SystemException;
@@ -47,6 +48,7 @@ public class BreedsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/breed", params = "name")
+    @PreAuthorize("hasRole('USER')")
     public BreedsResponse getBreedByName(@RequestParam(required = false) String name) {
         return breedsService.getBreedByName(name);
     }

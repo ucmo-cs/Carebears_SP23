@@ -13,9 +13,8 @@ CREATE TABLE owners (
   zipCode varchar(10) NOT NULL,
   email varchar(99),
   username varchar(50) NOT NULL,
-  password varchar(50) NOT NULL,
   createdDate datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`UUID`)
 );
 
-INSERT INTO `owners` (`UUID`,`fname`,`lname`,`address1`,`city`,`state`,`zipCode`,`email`,`username`,`password`) VALUES ('f1e18004-dc0b-443f-89e7-dc0c16734518','Mark','Twain','234 W 10th St','Kansas City','MO','64105 ','Sam.L.Clemens@gmail.com','Sawyer', 'password');
+INSERT INTO `owners` (`UUID`,`fname`,`lname`,`address1`,`city`,`state`,`zipCode`,`email`,`username`) VALUES ('f1e18004-dc0b-443f-89e7-dc0c16734518','Mark','Twain','234 W 10th St','Kansas City','MO','64105 ','Sam.L.Clemens@gmail.com','Sawyer');

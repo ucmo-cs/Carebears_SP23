@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,10 +22,10 @@ public class OwnersController {
     /**
      * Returns owner by username.
      *
-     * @param username Owner
+     * @param uuid Owner
      */
-    @ApiOperation(value = "findOwnerByUserName",
-            notes = "Returns owner details by param username")
+    @ApiOperation(value = "findOwnerByUuid",
+            notes = "Returns owner details by param id")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
@@ -32,8 +33,9 @@ public class OwnersController {
             @ApiResponse(responseCode = "500", description = "System Error")
     })
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(path="/owner/{username}")
-    public OwnersResponse findOwnerByUserName(@PathVariable("username") final String username) {
-        return ownersService.findOwnerByUserName(username);
+    @GetMapping(path="/owner/{uuid}")
+    @PreAuthorize("hasRole('USER')")
+    public OwnersResponse findOwnerByUuid(@PathVariable("uuid") final String uuid) {
+        return ownersService.findOwnerByUuid(uuid);
     }
 }

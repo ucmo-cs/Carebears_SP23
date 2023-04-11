@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.SystemException;
@@ -38,6 +39,7 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets", params = "name")
+    @PreAuthorize("hasRole('USER')")
     public PetsResponse getPetByName(@RequestParam(required = false) String name) {
         return petsService.getPet(name);
     }
@@ -57,6 +59,7 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets/{petId}")
+    @PreAuthorize("hasRole('USER')")
     public PetsResponse getPetByPetId(@PathParam("petId") final String petId) {
         return petsService.getPetByUuid(petId);
     }
@@ -76,6 +79,7 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets")
+    @PreAuthorize("hasRole('USER')")
     public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID) throws SystemException {
         return petsService.getPetByOwnerID(active, ownerID);
     }

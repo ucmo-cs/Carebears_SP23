@@ -10,6 +10,7 @@ services:
     volumes:
       - ./vaccinations.sql:/docker-entrypoint-initdb.d/vaccinations.sql
       - ./owners.sql:/docker-entrypoint-initdb.d/owners.sql
+      - ./users.sql:/docker-entrypoint-initdb.d/users.sql
       - ./pets.sql:/docker-entrypoint-initdb.d/pets.sql
       - ./providers.sql:/docker-entrypoint-initdb.d/providers.sql
       - ./vaccinationRecords.sql:/docker-entrypoint-initdb.d/vaccinationRecords.sql

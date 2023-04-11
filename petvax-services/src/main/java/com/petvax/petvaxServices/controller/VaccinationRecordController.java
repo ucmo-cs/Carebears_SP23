@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.SystemException;
@@ -36,6 +37,7 @@ public class VaccinationRecordController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/vaccinationRecord")
+    @PreAuthorize("hasRole('USER')")
     public List<VaccinationRecordResponse> getVaccinationRecordByPetId(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "petId") final String petId) throws SystemException {
         return vaccinationRecordService.getVaccinationRecordByPetId(active, petId);
     }
