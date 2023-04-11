@@ -18,6 +18,7 @@ public class PetsConverter {
         petResponseBuilder.setBreedID(petEntity.getBreedID());
         petResponseBuilder.setOwnerID(petEntity.getOwnerID());
         petResponseBuilder.setAge(petEntity.getAge());
+        petResponseBuilder.setActive(petEntity.getActive());
 
         return petResponseBuilder.build();
     }
