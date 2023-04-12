@@ -7,13 +7,17 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 public class WalletsResponse {
     private String walletId;
     private String petId;
+    private String name;
+    private String purpose;
     private Boolean active;
 
     // Response constructor
-    public WalletsResponse(final String walletId, final String petId, final Boolean active) {
+    public WalletsResponse(final String walletId, final String petId, final String name, final String purpose, final Boolean active) {
 
         this.walletId = walletId;
         this.petId = petId;
+        this.name = name;
+        this.purpose = purpose;
         this.active = active;
     }
 
@@ -30,6 +34,16 @@ public class WalletsResponse {
     public String getPetId() { return petId; }
 
     /**
+     * @return {@code name}
+     */
+    public String getName() { return name; }
+
+    /**
+     * @return {@code purpose}
+     */
+    public String getPurpose() { return purpose; }
+
+    /**
      * @return {@code active}
      */
     public Boolean getActive() { return active; }
@@ -38,6 +52,8 @@ public class WalletsResponse {
     public static class Builder {
         private String walletId;
         private String petId;
+        private String name;
+        private String purpose;
         private Boolean active;
 
         // Empty Builder constructor
@@ -48,6 +64,8 @@ public class WalletsResponse {
         public Builder(final WalletsResponse walletsResponse) {
             setWalletId(walletsResponse.getWalletId());
             setPetId(walletsResponse.getPetId());
+            setName(walletsResponse.getName());
+            setPurpose(walletsResponse.getPurpose());
             setActive(walletsResponse.getActive());
         }
 
@@ -70,6 +88,24 @@ public class WalletsResponse {
         }
 
         /**
+         * @param name the createdDate to set
+         * @return {@code this} builder
+         */
+        public WalletsResponse.Builder setName(final String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * @param purpose the createdDate to set
+         * @return {@code this} builder
+         */
+        public WalletsResponse.Builder setPurpose(final String purpose) {
+            this.purpose = purpose;
+            return this;
+        }
+
+        /**
          * @param active the createdDate to set
          * @return {@code this} builder
          */
@@ -80,7 +116,7 @@ public class WalletsResponse {
 
         // Builds response object with appropriate values
         public WalletsResponse build() {
-            return new WalletsResponse(walletId, petId, active);
+            return new WalletsResponse(walletId, petId, name, purpose, active);
         }
     }
 }

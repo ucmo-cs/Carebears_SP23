@@ -30,6 +30,22 @@ public final class WalletEntity {
     )
     private String petId;
 
+    @NotEmpty
+    @Column(
+            name = "name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String name;
+
+    @NotEmpty
+    @Column(
+            name = "purpose",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String purpose;
+
     @ManyToOne
     @JoinColumn(name = "walletId", nullable = false, insertable = false, updatable = false)
     private WalletEntity walletEntity;
@@ -81,6 +97,34 @@ public final class WalletEntity {
      */
     public void setPetId(String petId) {
         this.petId = petId;
+    }
+
+    /**
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return purpose
+     */
+    public String getPurpose() {
+        return purpose;
+    }
+
+    /**
+     * @param purpose the purpose to set
+     */
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
     }
 
     /**

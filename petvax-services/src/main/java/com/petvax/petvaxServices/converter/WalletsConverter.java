@@ -16,6 +16,10 @@ public final class WalletsConverter {
 
         walletResponseBuilder.setPetId(walletEntity.getPetId());
 
+        walletResponseBuilder.setName(walletEntity.getName());
+
+        walletResponseBuilder.setPurpose(walletEntity.getPurpose());
+
         walletResponseBuilder.setActive(walletEntity.getActive());
 
         return walletResponseBuilder.build();
