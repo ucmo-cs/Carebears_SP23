@@ -22,7 +22,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
 import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 import { WalletAddComponent } from './components/wallet-add/wallet-add.component';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 
@@ -59,6 +59,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatDialogModule,
     MatTableModule, 
+    MatGridListModule,
     MatFormFieldModule, MatInputModule, BrowserAnimationsModule, MatSortModule,
     BrowserModule,
     RouterModule.forRoot(
