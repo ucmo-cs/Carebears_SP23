@@ -4,7 +4,7 @@ import com.petvax.petvaxServices.converter.BreedsConverter;
 import com.petvax.petvaxServices.dto.BreedsResponse;
 import com.petvax.petvaxServices.entity.BreedEntity;
 import com.petvax.petvaxServices.exception.NotFoundException;
-import com.petvax.petvaxServices.repository.BreedsRepository;;
+import com.petvax.petvaxServices.repository.BreedsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
