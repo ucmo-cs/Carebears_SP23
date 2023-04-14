@@ -55,7 +55,10 @@ export class WalletPageComponent {
   }
 
   removeWallet(deletedIndex: number) {
-    this.wallets.splice(deletedIndex, 1);
-    this.selectedActionIndex = -1;
+    this.http.delete<Wallets[]>(`${this.url}/${deletedIndex}`).subscribe(() => {
+        this.selectedActionIndex = -1;
+        window.location.reload();
+    }
+    )
   }
 }
