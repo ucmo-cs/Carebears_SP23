@@ -55,7 +55,14 @@ export class WalletPageComponent {
   }
 
   removeWallet(deletedIndex: number) {
-    this.wallets.splice(deletedIndex, 1);
-    this.selectedActionIndex = -1;
+    let deletedIndexFinal = deletedIndex + 1;
+    this.http.delete<Wallets[]>(`${this.url}/${deletedIndex}`).subscribe(() => {
+      // this.wallets.splice(deletedIndex, 1);
+        console.log('wallet deleted')
+        this.selectedActionIndex = -1;
+        window.location.reload();
+        // this.getWalletList();
+    }
+    )
   }
 }
