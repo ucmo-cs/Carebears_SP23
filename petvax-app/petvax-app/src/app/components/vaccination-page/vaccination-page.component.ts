@@ -1,5 +1,4 @@
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {AfterViewInit, Component, ViewChild, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, ElementRef, Inject} from '@angular/core';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 declare var require: any
@@ -10,7 +9,7 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { VaccinationRecord } from './vaccinationRecord';
 import { MatInput } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
-
+import { CookieService } from 'ngx-cookie-service';
 
 export interface VaccinesList {
   name: string;
@@ -22,22 +21,38 @@ export interface VaccinesList {
 @Component({
   selector: 'app-vaccination-page',
   templateUrl: './vaccination-page.component.html',
-  styleUrls: ['./vaccination-page.component.scss'],
+  styleUrls: ['./vaccination-page.component.scss']
+  //providers: [CookieService],
 })
 
 export class VaccinationPageComponent {
+  //cookieService=Inject(CookieService);
   dataSource!: MatTableDataSource<any>;
   displayedColumns = ['vaccination.name', 'provider.name', 'vaccinationDate'];
   datePipe = new DatePipe('en-US');
 
   constructor(
+    
+    private cookieService: CookieService,
     private router: Router,
-    private http: HttpClient,
-  ) { }
+    private http: HttpClient
+  ) {
+   
+  }
+  
+  
+
   
    // Code to fetch information from db.json only for the passed ID from WalletPage. 
    ngOnInit(): void {
+    //this.setupDataSource();
     this.setupDataSource();
+    //this.cookieService.set('petId', 'a90a655e-b25b-11ed-8531-0242ac120002');
+    this.setPetIdCookie();
+  }
+
+  private setPetIdCookie() {
+    this.cookieService.set('petId', '918b1b3a-d672-11ed-afa1-0242ac120002');
   }
 
   /*************************************************** TABLE DATA FUNCTIONS ***************************************************/
@@ -49,13 +64,14 @@ export class VaccinationPageComponent {
     const httpOtions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Cookie': 'petId="a90a655e-b25b-11ed-8531-0242ac120002"'
+        'Cookie': 'petId=918b1b3a-d672-11ed-afa1-0242ac120002'
       }),
       withCredentials: true
     };
     
 
     this.http.get<VaccinationRecord[]>(url, httpOtions).subscribe((data: any) => {
+    //this.http.get<VaccinationRecord[]>(url).subscribe((data: any) => {
       console.log(data);
       this.dataSource = new MatTableDataSource<VaccinationRecord>(data);
       // Function used for sorting objects within object

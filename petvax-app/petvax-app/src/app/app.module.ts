@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-
+import { CookieService } from 'ngx-cookie-service';
 import {MatTableModule} from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -28,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+
 
 const appRoutes: Routes = [
   { path: 'walletAdd', component: WalletAddComponent},
@@ -66,7 +67,7 @@ const appRoutes: Routes = [
       appRoutes,
       ), 
   ],
-  providers: [],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

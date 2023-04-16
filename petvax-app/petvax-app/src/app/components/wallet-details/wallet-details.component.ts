@@ -62,6 +62,7 @@ export class WalletDetailsComponent {
 
   /*************************************************** PRINT FUNCTIONS ***************************************************/
   @ViewChild('content', { static: false }) content!: ElementRef;
+  
   // Function to generate a pdf file for the print button. 
   public generatePDF(): void {
     const doc = new jsPDF('p', 'pt', 'a4');

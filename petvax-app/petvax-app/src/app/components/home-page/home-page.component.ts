@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PET_LIST } from './PET_LIST_MOCK_DATA';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { Pet } from './pet';
 
 @Component({
   selector: 'app-home-page',
@@ -15,6 +17,7 @@ export class HomePageComponent {
   data: any;
 
   constructor(
+    private cookieService: CookieService,
     private router:Router
     // private http: HttpClient
   ) {
@@ -29,6 +32,8 @@ export class HomePageComponent {
   }
   
   navigateVaccinePage() {
+    // this.cookieService.set('petId', 'a90a655e-b25b-11ed-8531-0242ac120002');
+    // localStorage.setItem('petId', 'a90a655e-b25b-11ed-8531-0242ac120002');
     this.router.navigate(['/vaccines']);
   }
 
