@@ -39,9 +39,10 @@ export class LoginPageComponent implements OnInit {
         localStorage.setItem('token', response.token);
         const token = localStorage.getItem('token');
         if (token !== null) {
-          this.userService.getOwnerDetails(this.username, token).subscribe(
-            (ownerDetails:any) => {
-              document.cookie = `ownerId=${ownerDetails.id};`;
+          this.userService.getOwnerId(this.username, token).subscribe(
+            (response:any) => {
+              const ownerId = response.ownerId;
+              document.cookie = `ownerId=${ownerId};`;
               this.router.navigate(['/home']);
             },
             (error:any) => {

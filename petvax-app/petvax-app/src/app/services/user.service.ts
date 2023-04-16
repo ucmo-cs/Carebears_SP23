@@ -20,8 +20,8 @@ export class UserService {
     return this.httpClient.get(`${this.url}/petvax-services/checkToken`);
   }
 
-  getOwnerDetails(username: string, token: string):Observable<any> {
+  getOwnerId(username: string, token: string):Observable<any> {
       const headers = { 'Authorization': `Bearer ${token}` };
-      return this.httpClient.get(`${this.url}/owners/${username}`, { headers });
+      return this.httpClient.get(`${this.url}/userDetails?username=${username}`, { headers });
     }
 }

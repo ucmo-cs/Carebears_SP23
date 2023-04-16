@@ -1,6 +1,8 @@
 package com.petvax.petvaxServices.service;
 
 import com.petvax.petvaxServices.config.JwtUtil;
+import com.petvax.petvaxServices.converter.UserConverter;
+import com.petvax.petvaxServices.dto.UserResponse;
 import com.petvax.petvaxServices.entity.UserEntity;
 import com.petvax.petvaxServices.exception.NotFoundException;
 import com.petvax.petvaxServices.repository.UserRepository;
@@ -16,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -33,11 +36,15 @@ public class UserService implements UserDetailsService {
     AuthenticationManager authenticationManager;
 
     @Autowired
+    UserConverter userConverter;
+
+    @Autowired
     JwtUtil jwtUtil;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, UserConverter userConverter) {
         this.userRepository = userRepository;
+        this.userConverter = userConverter;
     }
 
     @Override
@@ -57,7 +64,6 @@ public class UserService implements UserDetailsService {
 
     public ResponseEntity<String> login(Map<String, String> requestMap) {
         LOG.info("Inside Info");
-        System.out.println(this.getUserDetail());
         try {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(requestMap.get("username"), requestMap.get("password"))
@@ -85,5 +91,18 @@ public class UserService implements UserDetailsService {
     public ResponseEntity<String> checkToken() {
         ResponseEntity<String> message = new ResponseEntity("Success!", HttpStatus.OK);
         return message;
+    }
+
+    /**
+     * @param username
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public UserResponse findByUsername(String username) {
+        // Optional object used in the case that the request returns a null value
+        // Uses the map function to determine whether or not to build the response
+        // If the user object is null then it will throw the NotFoundException exception
+        Optional<UserEntity> user = userRepository.findByUsername(username);
+        return user.map(userConverter::convertUserToUserResponse).orElseThrow(() -> new NotFoundException(String.format("User not found: [%s]", username)));
     }
 }

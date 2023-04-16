@@ -1,5 +1,7 @@
 package com.petvax.petvaxServices.controller;
 
+import com.petvax.petvaxServices.dto.UserResponse;
+import com.petvax.petvaxServices.entity.UserEntity;
 import com.petvax.petvaxServices.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -8,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.SystemException;
+import javax.websocket.server.PathParam;
 import java.util.Map;
 
 @RestController
@@ -56,5 +60,18 @@ public class UserController {
             ResponseEntity<String> message = new ResponseEntity(ex, HttpStatus.INTERNAL_SERVER_ERROR);
             return message;
         }
+    }
+
+    @ApiOperation(value = "findByUsername")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "404", description = "user not found"),
+            @ApiResponse(responseCode = "500", description = "System Error")
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(path="/userDetails")
+    public UserResponse findByUsername(@RequestParam(required = false) String username) throws SystemException {
+        return userService.findByUsername(username);
     }
 }
