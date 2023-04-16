@@ -5,7 +5,8 @@ import {MatTableDataSource} from '@angular/material/table';
 declare var require: any
 const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
-//import 'jspdf-autotable';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 export interface VaccinesList {
   name: string;
@@ -14,47 +15,48 @@ export interface VaccinesList {
   date: string; 
 }
 
-// Table Content
-const VAX_DATA: VaccinesList[] = [
-  {id: 1, name: 'Rabies01', provider: 'PettyPet01', date: '02/01/2023'},
-  {id: 2, name: 'Rabies02', provider: 'PettyPet02', date: '02/02/2023'},
-  {id: 3, name: 'Rabies03', provider: 'PettyPet03', date: '02/03/2023'},
-  {id: 4, name: 'Rabies04', provider: 'PettyPet04', date: '02/04/2023'},
-  {id: 5, name: 'Rabies05', provider: 'PettyPet05', date: '02/05/2023'},
-  {id: 6, name: 'Rabies06', provider: 'PettyPet06', date: '02/06/2023'},
-  {id: 7, name: 'Rabies07', provider: 'PettyPet07', date: '02/07/2023'},
-  {id: 8, name: 'Rabies08', provider: 'PettyPet08', date: '02/08/2023'},
-  {id: 9, name: 'Rabies09', provider: 'PettyPet09', date: '02/09/2023'},
-  {id: 10, name: 'Rabies10', provider: 'PettyPet10', date: '02/10/2023'},
-];
-
 @Component({
   selector: 'app-vaccination-page',
   templateUrl: './vaccination-page.component.html',
   styleUrls: ['./vaccination-page.component.scss'],
 })
-
-export class VaccinationPageComponent implements AfterViewInit{
-  // Table Headers
+export class VaccinationPageComponent {
+  vaccinationRecord: any[] = [];
+  dataSource!: MatTableDataSource<any>;
   displayedColumns = ['name', 'provider', 'date'];
-  dataSource = new MatTableDataSource(VAX_DATA);
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {
-    
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+  ) { }
+  
+   // Code to fetch information from db.json only for the passed ID from WalletPage. 
+   ngOnInit(): void {
+    this.setupDataSource();
   }
 
+  /*************************************************** TABLE DATA FUNCTIONS ***************************************************/
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
-  @ViewChild('content', { static: false }) content!: ElementRef;
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+  setupDataSource(): void {
+    const url = 'http://localhost:3000/vaccines';
+    this.http.get<VaccinesList[]>(url).subscribe((data: any) => {
+      console.log(data);
+      this.dataSource = new MatTableDataSource<VaccinesList>(data);
+      this.dataSource.sort = this.sort;
+    });
   }
+
+  /*************************************************** SEARCH FUNCTION ***************************************************/
 
   // Table Search Filter
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  /*************************************************** PRINT PDF ***************************************************/
+  @ViewChild('content', { static: false }) content!: ElementRef;
 
   public generatePDF(): void {
     const doc = new jsPDF('p', 'pt', 'a4');
