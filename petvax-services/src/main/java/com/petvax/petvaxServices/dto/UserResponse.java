@@ -3,7 +3,7 @@ package com.petvax.petvaxServices.dto;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-@JsonDeserialize(builder = WalletsResponse.Builder.class)
+@JsonDeserialize(builder = UserResponse.Builder.class)
 public class UserResponse {
     private String ownerId;
 

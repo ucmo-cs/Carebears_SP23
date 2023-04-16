@@ -2,6 +2,7 @@ package com.petvax.petvaxServices.service;
 
 import com.petvax.petvaxServices.config.JwtUtil;
 import com.petvax.petvaxServices.converter.UserConverter;
+import com.petvax.petvaxServices.dto.LoginResponse;
 import com.petvax.petvaxServices.dto.UserResponse;
 import com.petvax.petvaxServices.entity.UserEntity;
 import com.petvax.petvaxServices.exception.NotFoundException;
@@ -9,6 +10,7 @@ import com.petvax.petvaxServices.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -62,7 +65,7 @@ public class UserService implements UserDetailsService {
         return userDetail;
     }
 
-    public ResponseEntity<String> login(Map<String, String> requestMap) {
+    public ResponseEntity<LoginResponse> login(Map<String, String> requestMap) {
         LOG.info("Inside Info");
         try {
             Authentication auth = authenticationManager.authenticate(
@@ -70,27 +73,30 @@ public class UserService implements UserDetailsService {
             );
             if(auth.isAuthenticated()) {
                 if(this.getUserDetail().getStatus().equalsIgnoreCase("true")) {
-                    return new ResponseEntity<String>("{\"token\":\""+
-                            jwtUtil.generateToken(this.getUserDetail().getUsername(),
-                                    this.getUserDetail().getRole()) + "\"}",
-                    HttpStatus.OK);
+                    LoginResponse response = new LoginResponse.Builder()
+                            .setToken(jwtUtil.generateToken(this.getUserDetail().getUsername(),
+                                    this.getUserDetail().getRole()))
+                            .setMessage("Success!")
+                            .build();
+                    return ResponseEntity.ok(response);
                 } else {
-                    return new ResponseEntity<String>("{\"message\":\""+
-                            "Wait for admin approval."+"\"}",
-                            HttpStatus.BAD_REQUEST);
+                    LoginResponse response = new LoginResponse.Builder()
+                            .setMessage("Wait for admin approval.")
+                            .build();
+                    return ResponseEntity.badRequest().body(response);
                 }
             }
         } catch(Exception ex) {
             LOG.error("{}", ex);
         }
-        return new ResponseEntity<String>("{\"message\":\""+
-                "Bad Credentials."+"\"}",
-                HttpStatus.BAD_REQUEST);
+        LoginResponse response = new LoginResponse.Builder()
+                .setMessage("Bad Credentials.")
+                .build();
+        return ResponseEntity.badRequest().body(response);
     }
 
     public ResponseEntity<String> checkToken() {
-        ResponseEntity<String> message = new ResponseEntity("Success!", HttpStatus.OK);
-        return message;
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     /**

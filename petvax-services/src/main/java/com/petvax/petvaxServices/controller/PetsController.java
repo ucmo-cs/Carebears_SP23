@@ -39,7 +39,6 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets", params = "name")
-    @PreAuthorize("hasRole('USER')")
     public PetsResponse getPetByName(@RequestParam(required = false) String name) {
         return petsService.getPet(name);
     }
@@ -59,7 +58,6 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets/{petId}")
-    @PreAuthorize("hasRole('USER')")
     public PetsResponse getPetByPetId(@PathParam("petId") final String petId) {
         return petsService.getPetByUuid(petId);
     }
@@ -79,7 +77,7 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets")
-    @PreAuthorize("hasRole('USER')")
+    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
     public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID) throws SystemException {
         return petsService.getPetByOwnerID(active, ownerID);
     }

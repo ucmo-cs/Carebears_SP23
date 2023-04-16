@@ -1,5 +1,6 @@
 package com.petvax.petvaxServices.controller;
 
+import com.petvax.petvaxServices.dto.LoginResponse;
 import com.petvax.petvaxServices.dto.UserResponse;
 import com.petvax.petvaxServices.entity.UserEntity;
 import com.petvax.petvaxServices.service.UserService;
@@ -35,13 +36,8 @@ public class UserController {
     })
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(path="/login")
-    public ResponseEntity<String> login(@RequestBody(required = true) Map<String, String> requestMap) {
-        try {
-            return userService.login(requestMap);
-        } catch (Exception ex) {
-            ResponseEntity<String> message = new ResponseEntity(ex, HttpStatus.INTERNAL_SERVER_ERROR);
-            return message;
-        }
+    public ResponseEntity<LoginResponse> login(@RequestBody(required = true) Map<String, String> requestMap) {
+        return userService.login(requestMap);
     }
 
     @ApiOperation(value = "checkToken")

@@ -17,7 +17,7 @@ export class UserService {
   }
 
   checkToken():Observable<any> {
-    return this.httpClient.get(`${this.url}/petvax-services/checkToken`);
+    return this.httpClient.get(`${this.url}/checkToken`);
   }
 
   getOwnerId(username: string, token: string):Observable<any> {
