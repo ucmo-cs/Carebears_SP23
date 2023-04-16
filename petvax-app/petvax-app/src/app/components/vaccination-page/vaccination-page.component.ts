@@ -5,8 +5,12 @@ import {MatTableDataSource} from '@angular/material/table';
 declare var require: any
 const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { VaccinationRecord } from './vaccinationRecord';
+import { MatInput } from '@angular/material/input';
+import { DatePipe } from '@angular/common';
+
 
 export interface VaccinesList {
   name: string;
@@ -20,10 +24,11 @@ export interface VaccinesList {
   templateUrl: './vaccination-page.component.html',
   styleUrls: ['./vaccination-page.component.scss'],
 })
+
 export class VaccinationPageComponent {
-  vaccinationRecord: any[] = [];
   dataSource!: MatTableDataSource<any>;
-  displayedColumns = ['name', 'provider', 'date'];
+  displayedColumns = ['vaccination.name', 'provider.name', 'vaccinationDate'];
+  datePipe = new DatePipe('en-US');
 
   constructor(
     private router: Router,
@@ -36,24 +41,60 @@ export class VaccinationPageComponent {
   }
 
   /*************************************************** TABLE DATA FUNCTIONS ***************************************************/
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   setupDataSource(): void {
-    const url = 'http://localhost:3000/vaccines';
-    this.http.get<VaccinesList[]>(url).subscribe((data: any) => {
+    //const url = 'http://localhost:3000/vaccinationRecord';
+    const url = `http://localhost:8080/petvax-services/vaccinationRecord`;
+    const httpOtions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Cookie': 'petId="a90a655e-b25b-11ed-8531-0242ac120002"'
+      }),
+      withCredentials: true
+    };
+    
+
+    this.http.get<VaccinationRecord[]>(url, httpOtions).subscribe((data: any) => {
       console.log(data);
-      this.dataSource = new MatTableDataSource<VaccinesList>(data);
+      this.dataSource = new MatTableDataSource<VaccinationRecord>(data);
+      // Function used for sorting objects within object
+      this.dataSource.sortingDataAccessor = (item, property) => {
+        switch(property) {
+          case 'vaccination.name': return item.vaccination.name;
+          case 'provider.name': return item.provider.name;
+          default: return item[property];
+        }
+      };
+
       this.dataSource.sort = this.sort;
     });
   }
 
   /*************************************************** SEARCH FUNCTION ***************************************************/
-
   // Table Search Filter
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    
+    this.dataSource.filter = filterValue;
+    
+    // Function from MatTableDataSource to specify a custom filter
+    // to determine rows to show or hide in table based on input
+    this.dataSource.filterPredicate = (data, filter) => {
+      const searchText = filter.toLowerCase();
+      const vaccinationDate = new Date(data.vaccinationDate);
+      const formattedDate = `${vaccinationDate.getMonth()+1}`.padStart(2, '0') +
+                            `/${vaccinationDate.getDate()}`.padStart(2, '0') +
+                            `/${vaccinationDate.getFullYear()}`;
+  
+      return (
+        data.vaccination.name.toLowerCase().includes(searchText) ||
+        data.provider.name.toLowerCase().includes(searchText) || 
+        formattedDate.toLowerCase().includes(searchText)
+      );
+    };
   }
+  
 
   /*************************************************** PRINT PDF ***************************************************/
   @ViewChild('content', { static: false }) content!: ElementRef;

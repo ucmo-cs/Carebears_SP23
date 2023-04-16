@@ -219,5 +219,175 @@
       "provider": "Provider7",
       "date": "02/29/2020"
     }
+  ],
+  "vaccinationRecord": [
+    {
+      "vaccination": {
+          "vaccinationId": "a92203f8-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Booster)",
+          "type": "Core",
+          "age": "18 Months",
+          "frequency": "36 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-05-27T18:10:00Z",
+      "provider": {
+          "uuid": "e35ec3bd-02c0-4c19-a30d-e79891bab65f",
+          "name": "Blue Springs Pet Clinic",
+          "address1": "1201 US-40",
+          "address2": null,
+          "city": "Blue Springs",
+          "state": "MO",
+          "zipCode": "64015",
+          "email": "vet@bspetclinic.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a91ccd21-b25b-11ed-8531-0242ac120002",
+          "name": "Bordetella",
+          "type": "NonCore",
+          "age": "12 Months",
+          "frequency": "6-12 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-09-17T19:30:53Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": false
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a91ccd21-b25b-11ed-8531-0242ac120002",
+          "name": "Bordetella",
+          "type": "NonCore",
+          "age": "12 Months",
+          "frequency": "6-12 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2022-09-19T14:30:21Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a91dfba7-b25b-11ed-8531-0242ac120002",
+          "name": "Rabies (Canine)",
+          "type": "Core",
+          "age": "12 Months",
+          "frequency": "12-36 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-09-17T19:30:53Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a92017c0-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Infant)",
+          "type": "Core",
+          "age": "6 weeks",
+          "frequency": "2-4 weeks",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-01-21T17:32:51Z",
+      "provider": {
+          "uuid": "e35ec3bd-02c0-4c19-a30d-e79891bab65f",
+          "name": "Blue Springs Pet Clinic",
+          "address1": "1201 US-40",
+          "address2": null,
+          "city": "Blue Springs",
+          "state": "MO",
+          "zipCode": "64015",
+          "email": "vet@bspetclinic.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": false
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a92017c0-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Infant)",
+          "type": "Core",
+          "age": "6 weeks",
+          "frequency": "2-4 weeks",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-03-04T22:22:31Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": false
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a92017c0-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Infant)",
+          "type": "Core",
+          "age": "6 weeks",
+          "frequency": "2-4 weeks",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-04-15T21:22:31Z",
+      "provider": {
+          "uuid": "e35ec3bd-02c0-4c19-a30d-e79891bab65f",
+          "name": "Blue Springs Pet Clinic",
+          "address1": "1201 US-40",
+          "address2": null,
+          "city": "Blue Springs",
+          "state": "MO",
+          "zipCode": "64015",
+          "email": "vet@bspetclinic.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+    }
   ]
 }
