@@ -1,4 +1,4 @@
-package com.petvax.petvaxServices.utils;
+package com.petvax.petvaxServices.config;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

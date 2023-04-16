@@ -4,7 +4,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent, pathMatch: 'full'},
+  { path: '', redirectTo: LoginPageComponent, pathMatch: 'full'},
+  { path: 'login', component: LoginPageComponent},
   { path: 'home', component: HomePageComponent },
 ];
 

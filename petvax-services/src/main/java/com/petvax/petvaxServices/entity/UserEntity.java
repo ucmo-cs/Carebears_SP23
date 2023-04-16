@@ -6,7 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.*;
 
 @Entity
 @Table(
@@ -56,10 +55,10 @@ public class UserEntity {
 
     @NotNull
     @Column(
-            name = "enabled",
+            name = "status",
             nullable = false
     )
-    private Boolean enabled;
+    private String status;
 
     public String getUuid() {
         return uuid;
@@ -85,19 +84,19 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public String getRole() {
+        return String.valueOf(role);
     }
 
     public void setRole(Role role) {
         this.role = role;
     }
-    public Boolean getEnabled() {
-        return enabled;
+    public String getStatus() {
+        return status;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getOwnerId() {
