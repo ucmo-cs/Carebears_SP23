@@ -6,7 +6,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 declare var require: any
 const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
-import { identifierName } from '@angular/compiler';
+import { Vaccine } from '../wallet-page/wallet-modal';
 
 export interface VaccinesList {
   name: string;
@@ -22,6 +22,8 @@ export interface VaccinesList {
 })
 export class WalletDetailsComponent {
   
+  urlVaccines = 'http://localhost:3000/vaccines';
+  urlWallet = 'http://localhost:3000/wallets';
   walletData: any;
   walletVaccinesData: any;
 
@@ -30,6 +32,11 @@ export class WalletDetailsComponent {
   
   walletID?: number;
   walletName = 'WalletName';
+  isEdit: boolean = false;
+  newWalletName: any;
+  newWalletPurpose: any;
+  selectedVaccines: Vaccine [] = [];
+  allVaccines: Vaccine[] = [];
   
 
   constructor(
@@ -50,7 +57,30 @@ export class WalletDetailsComponent {
         this.setupDataSource();
       });
     }
+
+    this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
+    this.getVaccinesList();
+
   }
+  
+  getVaccinesList() {
+    return this.http.get(this.urlVaccines);
+  }
+
+    /******************************************* DOUBLE CLICK FUNCTIONS *******************************************/
+    addVaccine(selectedVaccine: any): void {
+      if (!this.selectedVaccines.includes(selectedVaccine)) {
+        this.selectedVaccines.push(selectedVaccine);
+      }
+      console.log("Working!");
+    }
+    
+    removeVaccine(selectedVaccine: any): void {
+      const index = this.selectedVaccines.indexOf(selectedVaccine);
+      if (index >= 0) {
+        this.selectedVaccines.splice(index, 1);
+      }
+    }
   
   /*************************************************** TABLE FUNCTIONS ***************************************************/
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -88,5 +118,31 @@ export class WalletDetailsComponent {
   // Function for the back button routing.
   goToWalletPage() {
       this.router.navigate(['/wallet']);
+  }
+
+  onEdit() {
+    this.newWalletName = this.walletData.name;
+    this.newWalletPurpose = this.walletData.purpose;
+    this.selectedVaccines = this.walletData.vaccines;
+    this.isEdit = true;
+
+  }
+
+  onUpdateDetailstoServer() {
+    if (this.newWalletName) {
+      const newWallet = { 
+        name: this.newWalletName, 
+        purpose: this.newWalletPurpose, 
+        vaccines: this.selectedVaccines
+      };
+      this.http.post(this.urlWallet, newWallet).subscribe(() => {
+        this.router.navigate(['/wallet']);
+        window.scrollTo(0, 0);
+      });
+    }
+  }
+
+  onCancelEdit() {
+    this.isEdit = false;
   }
 }
