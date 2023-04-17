@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PET_LIST } from './PET_LIST_MOCK_DATA';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Pet } from './pet';
+
 
 @Component({
   selector: 'app-home-page',
@@ -12,28 +12,39 @@ import { Pet } from './pet';
 })
 
 export class HomePageComponent {
-  userName = "UserName";
+  url = 'http://localhost:8080/petvax-services/pets';
+  httpOtions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+    withCredentials: true
+  };
 
-  data: any;
+  userName = "UserName";
+  pets: Pet[] = [];
 
   constructor(
     private cookieService: CookieService,
-    private router:Router
-    // private http: HttpClient
-  ) {
+    private router:Router,
+    private http: HttpClient
+  ) {}
 
-  }
   ngOnInit(): void {
-    this.getPetList();
+    this.setUserIdCookie();
+    this.http.get<Pet[]>(this.url, this.httpOtions).subscribe((data) => { this.pets = data; });
+  }
+
+  private setUserIdCookie() {
+    
+    this.cookieService.set('ownerID', 'f1e18004-dc0b-443f-89e7-dc0c16734518');
   }
 
   getPetList() {
-    return PET_LIST;
+    return this.http.get(this.url);
   }
-  
-  navigateVaccinePage() {
-    // this.cookieService.set('petId', 'a90a655e-b25b-11ed-8531-0242ac120002');
-    // localStorage.setItem('petId', 'a90a655e-b25b-11ed-8531-0242ac120002');
+
+  navigateVaccinePage(petUUID: string) {
+    this.cookieService.set('petId', petUUID);
     this.router.navigate(['/vaccines']);
   }
 
@@ -42,12 +53,10 @@ export class HomePageComponent {
     const catImg = "../../../assets/images/cat-head-temp.png";
     
     switch(petKind){
-      case "dog":
+      case "46e45c98-758f-4ff9-9811-389e5b206e0c":
         return dogImg;
-        break;
-      case "cat":
+      case "43fcc314-d672-11ed-afa1-0242ac120002":
         return catImg;
-        break;
       default :
         return "";
     }

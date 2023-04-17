@@ -1,32 +1,23 @@
-import {AfterViewInit, Component, ViewChild, ElementRef, Inject} from '@angular/core';
-import {MatSort, Sort} from '@angular/material/sort';
+import {Component, ViewChild, ElementRef} from '@angular/core';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-declare var require: any
-const html2pdf = require('html2pdf.js');
-import jsPDF from 'jspdf';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { VaccinationRecord } from './vaccinationRecord';
-import { MatInput } from '@angular/material/input';
 import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
 
-export interface VaccinesList {
-  name: string;
-  id: number;
-  provider: string;
-  date: string; 
-}
+declare var require: any
+const html2pdf = require('html2pdf.js');
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-vaccination-page',
   templateUrl: './vaccination-page.component.html',
   styleUrls: ['./vaccination-page.component.scss']
-  //providers: [CookieService],
 })
 
 export class VaccinationPageComponent {
-  //cookieService=Inject(CookieService);
   dataSource!: MatTableDataSource<any>;
   displayedColumns = ['vaccination.name', 'provider.name', 'vaccinationDate'];
   datePipe = new DatePipe('en-US');
@@ -36,44 +27,30 @@ export class VaccinationPageComponent {
     private cookieService: CookieService,
     private router: Router,
     private http: HttpClient
-  ) {
-   
-  }
+  ) {}
   
-  
-
-  
-   // Code to fetch information from db.json only for the passed ID from WalletPage. 
+   // Code to fetch information from API using petiD
    ngOnInit(): void {
-    //this.setupDataSource();
+    const cookieValue = this.cookieService.get('petId'); 
     this.setupDataSource();
-    //this.cookieService.set('petId', 'a90a655e-b25b-11ed-8531-0242ac120002');
-    this.setPetIdCookie();
-  }
-
-  private setPetIdCookie() {
-    this.cookieService.set('petId', '918b1b3a-d672-11ed-afa1-0242ac120002');
   }
 
   /*************************************************** TABLE DATA FUNCTIONS ***************************************************/
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   setupDataSource(): void {
-    //const url = 'http://localhost:3000/vaccinationRecord';
     const url = `http://localhost:8080/petvax-services/vaccinationRecord`;
     const httpOtions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Cookie': 'petId=918b1b3a-d672-11ed-afa1-0242ac120002'
       }),
       withCredentials: true
     };
     
-
     this.http.get<VaccinationRecord[]>(url, httpOtions).subscribe((data: any) => {
-    //this.http.get<VaccinationRecord[]>(url).subscribe((data: any) => {
-      console.log(data);
+  
       this.dataSource = new MatTableDataSource<VaccinationRecord>(data);
+
       // Function used for sorting objects within object
       this.dataSource.sortingDataAccessor = (item, property) => {
         switch(property) {
