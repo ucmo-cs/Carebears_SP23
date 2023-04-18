@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
