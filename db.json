@@ -389,5 +389,25 @@
       },
       "active": true
     }
+  ],
+  "pets": [
+    {
+      "uuid": "918b1b3a-d672-11ed-afa1-0242ac120002",
+      "name": "Agnes",
+      "speciesID": "43fcc314-d672-11ed-afa1-0242ac120002",
+      "breedID": "c3a61ec6-d672-11ed-afa1-0242ac120002",
+      "ownerID": "f1e18004-dc0b-443f-89e7-dc0c16734518",
+      "age": "7",
+      "active": true
+  },
+  {
+      "uuid": "a90a655e-b25b-11ed-8531-0242ac120002",
+      "name": "Huck",
+      "speciesID": "46e45c98-758f-4ff9-9811-389e5b206e0c",
+      "breedID": "c523cc7e-a5ed-4279-bda1-065c224abae4",
+      "ownerID": "f1e18004-dc0b-443f-89e7-dc0c16734518",
+      "age": "17",
+      "active": true
+  }
   ]
 }
