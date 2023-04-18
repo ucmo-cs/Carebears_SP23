@@ -1,8 +1,6 @@
 package com.petvax.petvaxServices.controller;
 
 import com.petvax.petvaxServices.dto.BreedsResponse;
-import com.petvax.petvaxServices.entity.BreedEntity;
-import com.petvax.petvaxServices.entity.SpeciesEntity;
 import com.petvax.petvaxServices.repository.BreedsRepository;
 import com.petvax.petvaxServices.repository.SpeciesRepository;
 import com.petvax.petvaxServices.service.BreedsService;
@@ -12,9 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.SystemException;
-import java.util.List;
 
 @RestController
 @RequestMapping
