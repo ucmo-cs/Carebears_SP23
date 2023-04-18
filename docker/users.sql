@@ -7,12 +7,10 @@ CREATE TABLE users (
   username varchar(50) NOT NULL,
   password varchar(50) NOT NULL,
   role varchar(10) NOT NULL,
-  enabled tinyint(1),
+  status char(5) DEFAULT 'false',
   ownerId char(36) NOT NULL,
   PRIMARY KEY (`UUID`)
 );
 
-INSERT INTO `users` (`UUID`,`username`,`password`, `role`, `enabled`, `ownerId`) VALUES ('f1e18004-dc0b-443f-89e7-dc0c16734518','Sawyer', 'password', 'USER', 1, 'f1e18004-dc0b-443f-89e7-dc0c16734518');
---INSERT INTO `users` (`UUID`,`username`,`password`, `role`, `enabled`, `ownerId`) VALUES ('f1e18004-dc0b-443f-89e7-dc0c16734518','Becky', 'password', 'USER', 1, 'f1e18004-dc0b-443f-89e7-dc0c16734518');
-INSERT INTO `users` (`UUID`,`username`,`password`, `role`, `enabled`, `ownerId`) VALUES (UUID(), 'user', 'password', 'USER', 1);
-
+INSERT INTO `users` (`UUID`,`username`,`password`, `role`, `status`, `ownerId`) VALUES ('f1e18004-dc0b-443f-89e7-dc0c16734518','Sawyer', 'password', 'USER', 'true', 'f1e18004-dc0b-443f-89e7-dc0c16734518');
+INSERT INTO `users` (`UUID`,`username`,`password`, `role`, `status`, `ownerId`) VALUES ('c49181d0-dd46-11ed-8971-0242ac180002','Becky', 'password', 'USER', 'true', '5886228a-d668-11ed-afa1-0242ac120002');

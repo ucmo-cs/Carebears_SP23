@@ -10,12 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.SystemException;
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping
 public class PetsController {
 
@@ -77,8 +80,11 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets")
-    @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
-    public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID) throws SystemException {
+    public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID, HttpServletResponse response) throws SystemException {
+        Cookie cookie = new Cookie("ownerID", ownerID);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+
         return petsService.getPetByOwnerID(active, ownerID);
     }
 }

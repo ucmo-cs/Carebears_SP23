@@ -15,7 +15,6 @@ export class PetsService {
   }
 
   getPetsByOwner(ownerCookie: string, token: string): Observable<any> {
-
     const headers = {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -29,6 +28,4 @@ export class PetsService {
 
     return this.httpClient.get(`${this.url}/pets?active=true`, options);
   }
-
-
 }

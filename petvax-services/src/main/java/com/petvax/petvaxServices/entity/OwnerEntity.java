@@ -89,7 +89,7 @@ public final class OwnerEntity {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "ownerId",nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "uuid",nullable = false, insertable = false, updatable = false)
     private UserEntity userEntity;
 
     @CreationTimestamp

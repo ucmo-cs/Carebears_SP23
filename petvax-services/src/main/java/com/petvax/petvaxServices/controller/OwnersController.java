@@ -34,7 +34,6 @@ public class OwnersController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/owner/{uuid}")
-    @PreAuthorize("hasRole('USER')")
     public OwnersResponse findOwnerByUuid(@PathVariable("uuid") final String uuid) {
         return ownersService.findOwnerByUuid(uuid);
     }

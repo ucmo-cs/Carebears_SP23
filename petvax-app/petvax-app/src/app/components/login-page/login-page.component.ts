@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { PetsService } from '../../services/pets.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -17,20 +16,11 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private userService:UserService,
     private cookieService: CookieService,
-    private petsService:PetsService
+    private userService:UserService
   ){}
 
   ngOnInit() {
-//     this.userService.checkToken().subscribe(
-//       (response:any) => {
-//         this.router.navigate(['/home']);
-//       },
-//       (error:any) => {
-//         console.log(error);
-//       }
-//     );
   }
 
   handleSubmit() {
@@ -46,27 +36,8 @@ export class LoginPageComponent implements OnInit {
           this.userService.getOwnerId(this.username, token).subscribe(
             (response: any) => {
               const ownerId = response.ownerId;
-              this.cookieService.set('ownerId', ownerId);
-//               TODO: Address Refused cookie error
-//               if (ownerId) {
-//                 let ownerCookie = this.cookieService.get('ownerId');
-//                 console.log(ownerCookie);
-//                 this.petsService.getPetsByOwner(ownerCookie, token).subscribe(
-//                   (response: any) => {
-//                     localStorage.setItem('pets', JSON.stringify(response));
-//                     this.router.navigate(['/home']);
-//                   },
-//                   (error: any) => {
-//                     if (error.error?.message) {
-//                       this.responseMessage = error.error?.message;
-//                     } else {
-//                       this.responseMessage = 'Something went wrong';
-//                     }
-//                   }
-//                 );
-//               } else {
-//                 this.responseMessage = 'Failed to get owner ID';
-//               }
+              const expirationDate = new Date(Date.now() + 1000 * 60 * 60 * 10);
+              this.cookieService.set('ownerID', ownerId, expirationDate, '/', '', true, 'Strict');
               this.router.navigate(['/home']);
             },
             (error: any) => {
