@@ -5,24 +5,38 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonDeserialize(builder = PetsResponse.Builder.class)
 public class PetsResponse {
+    private final SpeciesResponse species;
+    private final BreedsResponse breed;
     private String uuid;
     private String name;
-    private String speciesID;
-    private String breedID;
     private String ownerID;
     private String age;
     private Boolean active;
 
     // Response constructor
-    public PetsResponse(final String uuid, String name, String speciesID, String breedID, String ownerID, String age, Boolean active) {
+    public PetsResponse(final SpeciesResponse species, final BreedsResponse breed, String uuid, String name, String ownerID, String age, Boolean active) {
 
+        this.species = species;
+        this.breed = breed;
         this.uuid = uuid;
         this.name = name;
-        this.speciesID = speciesID;
-        this.breedID = breedID;
         this.ownerID = ownerID;
         this.age = age;
         this.active = active;
+    }
+
+    /**
+     * @return {@code species}
+     */
+    public SpeciesResponse getSpecies() {
+        return species;
+    }
+
+    /**
+     * @return {@code breed}
+     */
+    public BreedsResponse getBreed() {
+        return breed;
     }
 
     /**
@@ -37,20 +51,6 @@ public class PetsResponse {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * @return {@code speciesID}
-     */
-    public String getSpeciesID() {
-        return speciesID;
-    }
-
-    /**
-     * @return {@code breedID}
-     */
-    public String getBreedID() {
-        return breedID;
     }
 
     /**
@@ -76,10 +76,10 @@ public class PetsResponse {
 
     @JsonPOJOBuilder(withPrefix = "set")
     public static class Builder {
+        private SpeciesResponse species;
+        private BreedsResponse breed;
         private String uuid;
         private String name;
-        private String speciesID;
-        private String breedID;
         private String ownerID;
         private String age;
         private Boolean active;
@@ -91,13 +91,29 @@ public class PetsResponse {
         // Builder Response Constructor
         public Builder(final PetsResponse petsResponse) {
 
+            setSpecies(petsResponse.getSpecies());
+            setBreed(petsResponse.getBreed());
             setUuid(petsResponse.getUuid());
             setName(petsResponse.getName());
-            setSpeciesID(petsResponse.getSpeciesID());
-            setBreedID(petsResponse.getBreedID());
             setOwnerID(petsResponse.getOwnerID());
             setAge(petsResponse.getAge());
             setActive(petsResponse.getActive());
+        }
+
+        /**
+         * @param species the species to set
+         * @return {@code this} builder
+         */
+        public void setSpecies(SpeciesResponse species) {
+            this.species = species;
+        }
+
+        /**
+         * @param breed the breed to set
+         * @return {@code this} builder
+         */
+        public void setBreed(BreedsResponse breed) {
+            this.breed = breed;
         }
 
         /**
@@ -115,24 +131,6 @@ public class PetsResponse {
          */
         public PetsResponse.Builder setName(String name) {
             this.name = name;
-            return this;
-        }
-
-        /**
-         * @param speciesID the createdDate to set
-         * @return {@code this} builder
-         */
-        public PetsResponse.Builder setSpeciesID(String speciesID) {
-            this.speciesID = speciesID;
-            return this;
-        }
-
-        /**
-         * @param breedID the createdDate to set
-         * @return {@code this} builder
-         */
-        public PetsResponse.Builder setBreedID(String breedID) {
-            this.breedID = breedID;
             return this;
         }
 
@@ -165,7 +163,7 @@ public class PetsResponse {
 
         // Builds response object with appropriate values
         public PetsResponse build() {
-            return new PetsResponse(uuid, name, speciesID, breedID, ownerID, age, active);
+            return new PetsResponse(species, breed, uuid, name, ownerID, age, active);
         }
     }
 }
