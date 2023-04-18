@@ -34,7 +34,6 @@ public class SpeciesController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/species", params = "speciesName")
-    @PreAuthorize("hasRole('USER')")
     public SpeciesResponse getSpeciesByName(@RequestParam(required = false) String speciesName) {
         return speciesService.getSpeciesByName(speciesName);
     }

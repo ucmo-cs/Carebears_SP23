@@ -48,7 +48,6 @@ public class BreedsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/breed", params = "name")
-    @PreAuthorize("hasRole('USER')")
     public BreedsResponse getBreedByName(@RequestParam(required = false) String name) {
         return breedsService.getBreedByName(name);
     }

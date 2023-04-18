@@ -37,7 +37,6 @@ public class ProvidersController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/provider", params = "name")
-    @PreAuthorize("hasRole('USER')")
     public ProvidersResponse getProviderByName(@RequestParam(required = false) String name) {
         return providersService.getProviderByName(name);
     }
@@ -57,7 +56,6 @@ public class ProvidersController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/providers", params = "city")
-    @PreAuthorize("hasRole('USER')")
     public List<ProvidersResponse> getProvidersByCity(@RequestParam(required = false) String city) throws SystemException {
         return providersService.getProvidersByCity(city);
     }
