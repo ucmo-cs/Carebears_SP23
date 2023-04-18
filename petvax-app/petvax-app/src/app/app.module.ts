@@ -8,9 +8,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSortModule} from '@angular/material/sort';
 
-//import {LiveAnnouncer} from '@angular/cdk/a11y';
-//import {AfterViewInit, ViewChild} from '@angular/core';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
