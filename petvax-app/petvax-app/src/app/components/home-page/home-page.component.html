@@ -7,7 +7,7 @@
     <div class = "innerBody" >
       <h2>Please, choose one of your pets:</h2>
       <div class = "pets" style="display: internal;">
-        <button class="button" *ngFor="let pet of pets" style="margin: 10px;">
+        <button class="button" *ngFor="let pet of pets" style="margin: 10px;" (click)="goToVaccines(pet.uuid)">
           <div style="padding: 30px;">
             <img [src] = "setAnimalImg(pet.speciesID)" width=100px height=100px/>
             <h2>{{pet.name}}</h2>

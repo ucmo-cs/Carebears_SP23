@@ -73,6 +73,11 @@ export class HomePageComponent {
     }
   }
 
+  goToVaccines(petUUID: string) {
+    this.cookieService.set('petId', petUUID);
+    this.router.navigate(['/vaccines']);
+  }
+
   setAnimalImg(petKind:string): string {
       const dogImg = "../../../assets/images/dog-head-temp.png";
       const catImg = "../../../assets/images/cat-head-temp.png";
