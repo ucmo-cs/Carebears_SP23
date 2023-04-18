@@ -1,14 +1,14 @@
 package com.petvax.petvaxServices.repository;
 
-import com.petvax.petvaxServices.entity.OwnerEntity;
+import com.petvax.petvaxServices.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface OwnersRepository extends JpaRepository<OwnerEntity, String> {
+public interface UserRepository extends JpaRepository<UserEntity, String> {
 
-    Optional<OwnerEntity> findOwnerByUuid(String uuid);
+    Optional<UserEntity> findByUsername(String username);
 
 }

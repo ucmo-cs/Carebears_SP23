@@ -6,10 +6,10 @@
     <div class="loginpage-modal-container">
         <div class="loginpage-modal-title"> LOGIN </div>
         <div class="loginpage-inputs">
-            <div class="loginpage-input-container"> <label class="loginpage-input-label">Username</label> <input class="loginpage-input" type="text"/> </div>
-            <div class="loginpage-input-container"> <label class="loginpage-input-label">Password</label><input class="loginpage-input" type="password"/> </div>
+            <div class="loginpage-input-container"> <label class="loginpage-input-label">Username</label><input class="loginpage-input" type="text" [(ngModel)]="username"/> </div>
+            <div class="loginpage-input-container"> <label class="loginpage-input-label">Password</label><input class="loginpage-input" type="password" [(ngModel)]="password"/> </div>
         </div>
-        <div class="loginpage-submit-container"> <button class="login-page-submit" type="submit" (click)="navigateHomepage()">LOGIN</button>
+        <div class="loginpage-submit-container"> <button class="login-page-submit" type="submit" (click)="handleSubmit()">LOGIN</button>
         </div>
     </div>
     <div class="loginpage-footer"></div>

@@ -28,15 +28,15 @@ public class OwnersService {
     }
 
     /**
-     * @param username
+     * @param uuid
      * @return
      */
     @Transactional(readOnly = true)
-    public OwnersResponse findOwnerByUserName(final String username) {
+    public OwnersResponse findOwnerByUuid(final String uuid) {
         // Optional object used in the case that the request returns a null value
         // Uses the map function to determine whether or not to build the response
         // If the owner object is null then it will throw the NotFoundException exception
-        Optional<OwnerEntity> owner = ownersRepository.findOwnerByUserName(username);
-        return owner.map(ownersConverter::convertOwnerToOwnerResponse).orElseThrow(() -> new NotFoundException(String.format("username not found: [%s]", username)));
+        Optional<OwnerEntity> owner = ownersRepository.findOwnerByUuid(uuid);
+        return owner.map(ownersConverter::convertOwnerToOwnerResponse).orElseThrow(() -> new NotFoundException(String.format("Id not found: [%s]", uuid)));
     }
 }
