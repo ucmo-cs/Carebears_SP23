@@ -11,8 +11,11 @@ import {MatSortModule} from '@angular/material/sort';
 //import {LiveAnnouncer} from '@angular/cdk/a11y';
 //import {AfterViewInit, ViewChild} from '@angular/core';
 
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { TokenInterceptorInterceptor } from './services/token-interceptor.interceptor';
+
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -25,9 +28,6 @@ import { WalletAddComponent } from './components/wallet-add/wallet-add.component
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -65,9 +65,18 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(
       appRoutes,
-      ), 
+      ),
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [ CookieService ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi: true
+    },
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

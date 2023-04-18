@@ -10,7 +10,8 @@ import { WalletPageComponent } from './components/wallet-page/wallet-page.compon
 import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent, pathMatch: 'full'},
+  { path: '', redirectTo: LoginPageComponent, pathMatch: 'full'},
+  { path: 'login', component: LoginPageComponent},
   { path: 'home', component: HomePageComponent },
   { path: 'vaccines', component: VaccinationPageComponent},
   { path: 'wallet', component: WalletPageComponent},

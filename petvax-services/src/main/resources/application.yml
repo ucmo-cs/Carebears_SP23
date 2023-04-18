@@ -16,7 +16,13 @@ spring:
       hibernate:
         format_sql: true
         globally_quoted_identifiers: true
+  security:
+    user:
+      name: user
+      password: password
 management:
   endpoints:
     web:
       base-path = /health
+springfox.documentation.swagger-ui:
+  path: /swagger-ui/index.html

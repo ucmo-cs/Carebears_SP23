@@ -9,9 +9,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@ServletComponentScan
+@ServletComponentScan(basePackages = {"com.petvax.petvaxServices.config", "com.petvax.petvaxServices.servlet"})
 @SpringBootApplication
+@EnableSwagger2
 public class VaccinationsApplication {
 
     public static void main(final String[] args) {
