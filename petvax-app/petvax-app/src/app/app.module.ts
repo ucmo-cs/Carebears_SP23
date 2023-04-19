@@ -25,6 +25,7 @@ import { WalletAddComponent } from './components/wallet-add/wallet-add.component
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 const appRoutes: Routes = [
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatDialogModule,
     MatTableModule, 
+    MatMenuModule,
     MatGridListModule,
     MatFormFieldModule, MatInputModule, BrowserAnimationsModule, MatSortModule,
     BrowserModule,

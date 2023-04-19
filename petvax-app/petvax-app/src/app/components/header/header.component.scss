@@ -2,7 +2,8 @@
     width: auto;
     height: 150px;
     background-color: rgba(244,219,219, .9);
-    border: 1px solid #B3A4A4;
+    border: 3px solid #B3A4A4;
+    display: flex;
 }
 
 .buttonHome{
@@ -16,12 +17,17 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.buttons{
+.buttons-section{
     margin: 0;
-    position: relative;
-    top: 30%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    //position: relative;
+    width: 100%;
+    height: auto;
+    //top: 30%;
+    //-ms-transform: translateY(-50%);
+    //transform: translateY(-50%);
+    border: 3px solid red;
+    display: flex;
+    float: right;
 }
 
 .button{
@@ -32,8 +38,36 @@
     float: right;
     font-size: 30px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
+.home-section{
+    border: 3px solid red;
+}
+///////////////////////
+.user-section, .help-section{
+    position: relative;
+    border: 3px solid red;
+  }
+  
+  .logout-option {
+    display: none;
+    position: absolute;
+    bottom: -50px;
+    left: -20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2.5px solid #B2A4A4;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    float: right;
+  }
+  
+  .wrapper:hover .logout-option {
+    display: block;
+  }
+//////////////////////
 .circle {
     height: 35px;
     width: 35px;
@@ -50,3 +84,11 @@
 .show-home-button {
     display: flex;
 }
+
+.logo-section {
+    float: left;
+    width: 30%;
+    height: auto;
+    border: 3px solid #B3A4A4;
+}
+  
