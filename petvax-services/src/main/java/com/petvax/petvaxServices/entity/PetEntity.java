@@ -1,5 +1,6 @@
 package com.petvax.petvaxServices.entity;
 
+import com.petvax.petvaxServices.dto.SpeciesResponse;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
@@ -38,21 +39,23 @@ public class PetEntity {
     )
     private String name;
 
-    @NotEmpty
-    @Column(
+    @ManyToOne
+    @JoinColumn(
             name = "speciesID",
             nullable = false,
-            columnDefinition = "TEXT"
+            insertable = false,
+            updatable = false
     )
-    private String speciesID;
+    private SpeciesEntity speciesEntity;
 
-    @NotEmpty
-    @Column(
+    @ManyToOne
+    @JoinColumn(
             name = "breedID",
             nullable = false,
-            columnDefinition = "TEXT"
+            insertable = false,
+            updatable = false
     )
-    private String breedID;
+    private BreedEntity breedEntity;
 
     @NotEmpty
     @Column(
@@ -106,31 +109,31 @@ public class PetEntity {
     }
 
     /**
-     * @return speciesID
+     * @return speciesEntity
      */
-    public String getSpeciesID() {
-        return speciesID;
+    public SpeciesEntity getSpeciesEntity() {
+        return speciesEntity;
     }
 
     /**
-     * @param speciesID the type to set
+     * @param speciesEntity the speciesEntity to set
      */
-    public void setSpeciesID(String speciesID) {
-        this.speciesID = speciesID;
+    public void setSpeciesEntity(SpeciesEntity speciesEntity) {
+        this.speciesEntity = speciesEntity;
     }
 
     /**
-     * @return breedID
+     * @return breedEntity
      */
-    public String getBreedID() {
-        return breedID;
+    public BreedEntity getBreedEntity() {
+        return breedEntity;
     }
 
     /**
-     * @param breedID the age to set
+     * @param breedEntity the breedEntity to set
      */
-    public void setBreedID(String breedID) {
-        this.breedID = breedID;
+    public void setBreedEntity(BreedEntity breedEntity) {
+        this.breedEntity = breedEntity;
     }
 
     /**
