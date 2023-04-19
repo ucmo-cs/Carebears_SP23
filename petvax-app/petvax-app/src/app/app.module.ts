@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import {MatTableModule} from '@angular/material/table';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSortModule} from '@angular/material/sort';
 
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -22,11 +17,19 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
 import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 import { WalletAddComponent } from './components/wallet-add/wallet-add.component';
+
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSortModule } from '@angular/material/sort';
 
+//import {LiveAnnouncer} from '@angular/cdk/a11y';
+//import {AfterViewInit, ViewChild} from '@angular/core';
 
 const appRoutes: Routes = [
   { path: 'walletAdd', component: WalletAddComponent},
