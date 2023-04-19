@@ -15,20 +15,12 @@ import org.springframework.stereotype.Component;
 public class PetsConverter {
 
     @Autowired
-    private SpeciesConverter speciesConverter;
-
-    @Autowired
     private BreedsConverter breedsConverter;
 
     public PetsResponse convertPetsToPetResponse(final PetEntity petEntity) {
 
         // Creates response with returned value based upon request
         PetsResponse.Builder petResponseBuilder = new PetsResponse.Builder();
-
-        // Adds species details to response using the species response
-        SpeciesEntity species = petEntity.getSpeciesEntity();
-        SpeciesResponse speciesResponse = speciesConverter.convertSpeciesToSpeciesResponse(species);
-        petResponseBuilder.setSpecies(speciesResponse);
 
         // Adds breed details to response using the breed response
         BreedEntity breed = petEntity.getBreedEntity();
