@@ -30,7 +30,7 @@ public class VaccinationRecordController {
      * @param petId Vaccination
      */
     @ApiOperation(value = "getVaccinationRecordByPetId",
-            notes = "Returns vaccination record details by param petId")
+            notes = "Returns vaccination reco serve --openrd details by param petId")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "Bad request"),
