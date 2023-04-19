@@ -86,4 +86,9 @@ export class HomePageComponent {
           return "";
       }
     }
+
+    navigateVaccinePage(uuid: string) {
+      this.cookieService.set('petId', uuid);
+      this.router.navigate(['/vaccines']);
+    }
 }

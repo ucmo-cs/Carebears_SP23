@@ -1,20 +1,29 @@
-<div class="container" >
-<div style= "float: left;"><img src="../../../assets/images/logo.png" height="150" width="350"/></div>
-<div class="buttons">
-   
-    <!--Once db is implement, user should be replaced by user's name and U letter by a variable that represents first letter of user's name-->
-    <button class="button">
-        <span class="circle">{{initialName}}</span>     {{userName}}
-    </button>
+<div class="container">
+    <div class = "logo-section"><img src="../../../assets/images/logo.png" height="100%" width="90%" /></div>
+    <div class="buttons-section">
 
-    <button class="button">
-        <span class="circle">?</span>     Help
-    </button>
+        <div class ="home-section">
+            <button class="button" (click)="onHomeButtonClick()" [ngClass]="isHomePage ? 'hide-home-button' : 'show-home-button' ">
+                <img src="../../../assets/images/dog-house.png" height="35" width="35"/>&nbsp;Home
+            </button>
+        </div>
 
-    <button class="button">
-        <img src="../../../assets/images/dog-house.png" height ="30" width="30" />     Home
-    </button>
+        <div class ="help-section">
+            <button class="button">
+                <span class="circle">?</span> Help
+            </button>
+        </div>
+
+
+        <!--Once db is implement, user should be replaced by user's name and U letter by a variable that represents first letter of user's name-->
+        <div class="user-section">
+            <button mat-button [matMenuTriggerFor]="menu" class="button">
+                <span class="circle">{{firstLetterName}}</span> {{owner.fname}}
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Profile</button>
+                <button mat-menu-item>Log-out</button>
+            </mat-menu>
+        </div>
+    </div>
 </div>
-
-</div>
-
