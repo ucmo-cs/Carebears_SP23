@@ -18,7 +18,6 @@ export class PetsService {
     const headers = {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json',
-      'Cookie': `ownerID=${ownerCookie}`
     };
 
     const options = {
@@ -27,5 +26,20 @@ export class PetsService {
     };
 
     return this.httpClient.get(`${this.url}/pets?active=true`, options);
+  }
+
+  getPetByUUID(petCookie: string, token: string): Observable<any> {
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'Cookie': `petId=${petCookie}; SameSite=None; Secure` 
+    }
+
+    const options = {
+      headers: new HttpHeaders(headers),
+      withCredentials: true
+    };
+
+    return this.httpClient.get(`${this.url}/pets/{petId}?active=true&petId=${petCookie}`, options);
   }
 }
