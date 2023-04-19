@@ -1,5 +1,8 @@
 package com.petvax.petvaxServices.controller;
 
+import com.petvax.petvaxServices.dto.VaccinationsRequest;
+import com.petvax.petvaxServices.dto.VaccinationsResponse;
+import com.petvax.petvaxServices.dto.WalletsRequest;
 import com.petvax.petvaxServices.dto.WalletsResponse;
 import com.petvax.petvaxServices.service.WalletsService;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.SystemException;
+import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -63,5 +67,37 @@ public class WalletController {
     @GetMapping(path="/wallets/{walletId}")
     public WalletsResponse getWalletByWalletId(@PathParam("walletId") boolean active, final String walletId) {
         return walletsService.getWalletByWalletId(active, walletId);
+    }
+    /**
+     * Creates wallet.
+     *
+     * @param wallet Wallets details
+     */
+    @ApiOperation(value = "createWallets",
+            notes = "Creates wallet")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "500", description = "System Error")
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(path="/wallet")
+    public WalletsResponse createWallet(@RequestBody @Valid final WalletsRequest wallet) {
+        return walletsService.createWallet(wallet);
+    }
+    /**
+     * Deletes wallet.
+     */
+    @ApiOperation(value = "deleteWallet",
+            notes = "Deletes Wallet")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "404", description = "wallet id is invalid"),
+            @ApiResponse(responseCode = "500", description = "System Error")
+    })
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(path="/wallet/{walletId}")
+    public void deleteWallet(@PathVariable final String walletId) {
+        walletsService.deleteWallet(walletId);
     }
 }
