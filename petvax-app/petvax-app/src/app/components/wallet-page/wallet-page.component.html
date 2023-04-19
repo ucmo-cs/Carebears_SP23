@@ -1,0 +1,53 @@
+<div class="container">
+    <app-header></app-header>
+    <div style="padding: 20px;"></div>
+    <app-navigation></app-navigation>
+    <div class="body" style="display: internal;">
+        <!-- Wallet Button -->
+        <div style="display: internal;">
+            <mat-grid-list cols="6" rowHeight="1:1">
+                <mat-grid-tile *ngFor="let wallet of wallets; let i = index">
+                    <button class="button"  (click)="onGetActions(i)">
+                        <div style="padding: 10px;">
+                            <img src="../../../assets/images/wallet-item.png" width=100px height=100px />
+                            <p>{{wallet.name}}</p>
+                        </div>
+                        <div *ngIf="i == selectedActionIndex">
+                            <!-- View Button -->
+                            <button class="view-remove-buttons" id="view-button" (click)="viewWalletInfo(wallet.id)">
+                                <div> view
+                                    <!-- <img src="../../../assets/images/wallet.png" height="50" width="50" /> -->
+                                </div>
+                            </button>
+
+                            <!-- Remove Button -->
+                            <button class="view-remove-buttons" id="remove-button" (click)="removeWallet(wallet.id)">
+                                <div> remove
+                                    <!-- <img src="../../../assets/images/minus.png" height="50" width="50" /> -->
+                                </div>
+                            </button>
+                        </div>
+                    </button>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+        </div>
+
+        <!-- Add Button -->
+        <button class="button" id="add-button" (click)="goToAddWaletPage()">
+            <div style="padding: 10px;">
+                <img src="../../../assets/images/plus.png" height="100" width="100" />
+            </div>
+        </button>
+
+        <!-- Remove Button -->
+        <!-- <button class="button" id="remove-button">
+            <div style="padding: 10px;">
+                <img src="../../../assets/images/minus.png" height="100" width="100" />
+            </div>
+        </button> -->
+
+    </div>
+    <div style="padding: 20px;"></div>
+  <app-footer></app-footer>
+</div>

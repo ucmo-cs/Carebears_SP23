@@ -1,0 +1,413 @@
+{
+  "wallets": [
+    {
+      "id": 1,
+      "name": "2022 Vaccines",
+      "purpose": "Test description for 2022 Vaccines.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        },
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/27/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Wallet1",
+      "purpose": "Test description for Wallet1.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        },
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/27/2020"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Wallet2",
+      "purpose": "Test description for Wallet2.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Wallet4",
+      "purpose": "Test description for Wallet4.",
+      "vaccines": [
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/27/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Wallet5",
+      "purpose": "Test description for Wallet5.",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/24/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Wallet6",
+      "purpose": "Test description for Wallet6.",
+      "vaccines": [
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ]
+    },
+    {
+      "name": "Wallet7",
+      "id": 7
+    },
+    {
+      "name": "Wallet Test",
+      "purpose": "Testing Adding Vaccines",
+      "vaccines": [
+        {
+          "id": 1,
+          "name": "Vaccine1",
+          "provider": "Provider1",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 2,
+          "name": "Vaccine2",
+          "provider": "Provider2",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ],
+      "id": 8
+    },
+    {
+      "name": "WaletTest2",
+      "purpose": "Wallet Test 2",
+      "vaccines": [
+        {
+          "id": 7,
+          "name": "Vaccine7",
+          "provider": "Provider7",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 6,
+          "name": "Vaccine6",
+          "provider": "Provider6",
+          "date": "02/29/2020"
+        }
+      ],
+      "id": 9
+    },
+    {
+      "name": "WalletTest3",
+      "purpose": "WalletTest3",
+      "vaccines": [
+        {
+          "id": 4,
+          "name": "Vaccine4",
+          "provider": "Provider4",
+          "date": "02/29/2020"
+        },
+        {
+          "id": 3,
+          "name": "Vaccine3",
+          "provider": "Provider3",
+          "date": "02/29/2020"
+        }
+      ],
+      "id": 10
+    }
+  ],
+  "vaccines": [
+    {
+      "id": 1,
+      "name": "Vaccine1",
+      "provider": "Provider1",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 2,
+      "name": "Vaccine2",
+      "provider": "Provider2",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 3,
+      "name": "Vaccine3",
+      "provider": "Provider3",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 4,
+      "name": "Vaccine4",
+      "provider": "Provider4",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 5,
+      "name": "Vaccine5",
+      "provider": "Provider5",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 6,
+      "name": "Vaccine6",
+      "provider": "Provider6",
+      "date": "02/29/2020"
+    },
+    {
+      "id": 7,
+      "name": "Vaccine7",
+      "provider": "Provider7",
+      "date": "02/29/2020"
+    }
+  ],
+  "vaccinationRecord": [
+    {
+      "vaccination": {
+          "vaccinationId": "a92203f8-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Booster)",
+          "type": "Core",
+          "age": "18 Months",
+          "frequency": "36 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-05-27T18:10:00Z",
+      "provider": {
+          "uuid": "e35ec3bd-02c0-4c19-a30d-e79891bab65f",
+          "name": "Blue Springs Pet Clinic",
+          "address1": "1201 US-40",
+          "address2": null,
+          "city": "Blue Springs",
+          "state": "MO",
+          "zipCode": "64015",
+          "email": "vet@bspetclinic.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a91ccd21-b25b-11ed-8531-0242ac120002",
+          "name": "Bordetella",
+          "type": "NonCore",
+          "age": "12 Months",
+          "frequency": "6-12 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-09-17T19:30:53Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": false
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a91ccd21-b25b-11ed-8531-0242ac120002",
+          "name": "Bordetella",
+          "type": "NonCore",
+          "age": "12 Months",
+          "frequency": "6-12 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2022-09-19T14:30:21Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a91dfba7-b25b-11ed-8531-0242ac120002",
+          "name": "Rabies (Canine)",
+          "type": "Core",
+          "age": "12 Months",
+          "frequency": "12-36 Months",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-09-17T19:30:53Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a92017c0-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Infant)",
+          "type": "Core",
+          "age": "6 weeks",
+          "frequency": "2-4 weeks",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-01-21T17:32:51Z",
+      "provider": {
+          "uuid": "e35ec3bd-02c0-4c19-a30d-e79891bab65f",
+          "name": "Blue Springs Pet Clinic",
+          "address1": "1201 US-40",
+          "address2": null,
+          "city": "Blue Springs",
+          "state": "MO",
+          "zipCode": "64015",
+          "email": "vet@bspetclinic.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": false
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a92017c0-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Infant)",
+          "type": "Core",
+          "age": "6 weeks",
+          "frequency": "2-4 weeks",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-03-04T22:22:31Z",
+      "provider": {
+          "uuid": "5b8a4d17-4095-48d2-9ed0-4ed89e1ed9fe",
+          "name": "Lee's Summit Hospital North",
+          "address1": "250 NW McNary Ct",
+          "address2": null,
+          "city": "Lee's Summit",
+          "state": "MO",
+          "zipCode": "64086",
+          "email": "vet@lsahnorth.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": false
+  },
+  {
+      "vaccination": {
+          "vaccinationId": "a92017c0-b25b-11ed-8531-0242ac120002",
+          "name": "DHPP (Infant)",
+          "type": "Core",
+          "age": "6 weeks",
+          "frequency": "2-4 weeks",
+          "species": "Canine",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "vaccinationDate": "2021-04-15T21:22:31Z",
+      "provider": {
+          "uuid": "e35ec3bd-02c0-4c19-a30d-e79891bab65f",
+          "name": "Blue Springs Pet Clinic",
+          "address1": "1201 US-40",
+          "address2": null,
+          "city": "Blue Springs",
+          "state": "MO",
+          "zipCode": "64015",
+          "email": "vet@bspetclinic.com",
+          "createdDate": "2023-04-16T03:22:11Z"
+      },
+      "active": true
+    }
+  ],
+  "pets": [
+    {
+      "uuid": "918b1b3a-d672-11ed-afa1-0242ac120002",
+      "name": "Agnes",
+      "speciesID": "43fcc314-d672-11ed-afa1-0242ac120002",
+      "breedID": "c3a61ec6-d672-11ed-afa1-0242ac120002",
+      "ownerID": "f1e18004-dc0b-443f-89e7-dc0c16734518",
+      "age": "7",
+      "active": true
+  },
+  {
+      "uuid": "a90a655e-b25b-11ed-8531-0242ac120002",
+      "name": "Huck",
+      "speciesID": "46e45c98-758f-4ff9-9811-389e5b206e0c",
+      "breedID": "c523cc7e-a5ed-4279-bda1-065c224abae4",
+      "ownerID": "f1e18004-dc0b-443f-89e7-dc0c16734518",
+      "age": "17",
+      "active": true
+  }
+  ]
+}

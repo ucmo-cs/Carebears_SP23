@@ -1,0 +1,25 @@
+.buttons{
+    width: auto;
+    height: 100px;
+    text-align: center;
+}
+
+.button{
+    padding: 10px 10px;
+    border-radius: 8px;
+    border: 2.5px solid #B2A4A4;
+    margin-left: 50px;
+    float: center;
+    font-size: 25px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgba(244,219,219);
+}
+
+button:hover{
+    background-color: #FCBA7F;
+}
+
+.icon{
+    height: 30px;
+    width: 30px;
+}

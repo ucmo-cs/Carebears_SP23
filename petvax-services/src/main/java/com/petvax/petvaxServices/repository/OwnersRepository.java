@@ -9,6 +9,6 @@ import java.util.Optional;
 @Repository
 public interface OwnersRepository extends JpaRepository<OwnerEntity, String> {
 
-    Optional<OwnerEntity> findOwnerByUserName(String username);
+    Optional<OwnerEntity> findOwnerByUuid(String uuid);
 
 }
