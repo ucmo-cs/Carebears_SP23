@@ -39,10 +39,7 @@ public class WalletVaccinationRecordController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/wallets/vaccinationRecord")
-    public List<WalletVaccinationRecordResponse> findVaccinationRecordByWalletId(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "walletId") final String walletId, HttpServletResponse response) throws SystemException {
-        Cookie cookie = new Cookie("walletId", walletId);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+    public List<WalletVaccinationRecordResponse> findVaccinationRecordByWalletId(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "walletId") final String walletId) throws SystemException {
 
         return walletVaccinationRecordService.findVaccinationRecordByWalletId(active, walletId);
     }
