@@ -12,6 +12,7 @@ export class LoginPageComponent implements OnInit {
   username = '';
   password = '';
   hide = true;
+  isInputFieldsValid = false;
   responseMessage:any;
 
   constructor(
@@ -21,6 +22,11 @@ export class LoginPageComponent implements OnInit {
   ){}
 
   ngOnInit() {
+  }
+
+  checkInputFields() {
+    // Check if both username and password fields are not empty
+    this.isInputFieldsValid = this.username && this.password ? true : false;
   }
 
   handleSubmit() {
@@ -58,8 +64,10 @@ export class LoginPageComponent implements OnInit {
         } else {
           this.responseMessage = 'Something went wrong';
         }
+        this.hide = false;
       }
     );
   }
 
+//   TODO: Implement Forgot Password
 }

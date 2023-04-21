@@ -7,8 +7,14 @@ import { CookieService } from 'ngx-cookie-service';
 interface Pet {
   uuid: string;
   name: string;
-  speciesID: string;
-  breedID: string;
+  breed: {
+    uuid: string;
+    name: string;
+    species: {
+      uuid: string;
+      speciesName: string;
+    };
+  };
   ownerID: string;
   age: string;
   active: boolean;
@@ -28,7 +34,6 @@ export class HomePageComponent {
   responseMessage: any;
   pets: Pet[] = [];
   owner: Owner = { fname: ''};
-
 
   constructor(
     private router: Router,
@@ -78,9 +83,9 @@ export class HomePageComponent {
       const catImg = "../../../assets/images/cat-head-temp.png";
 
       switch(petKind){
-        case "46e45c98-758f-4ff9-9811-389e5b206e0c":
+        case "Canine":
           return dogImg;
-        case "43fcc314-d672-11ed-afa1-0242ac120002":
+        case "Feline":
           return catImg;
         default :
           return "";
