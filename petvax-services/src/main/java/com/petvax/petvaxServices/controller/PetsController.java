@@ -78,10 +78,7 @@ public class PetsController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets")
-    public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID, HttpServletResponse response) throws SystemException {
-        Cookie cookie = new Cookie("ownerID", ownerID);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+    public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID) throws SystemException {
 
         return petsService.getPetByOwnerID(active, ownerID);
     }

@@ -14,16 +14,16 @@
             </button>
         </div>
 
-
-        <!--Once db is implement, user should be replaced by user's name and U letter by a variable that represents first letter of user's name-->
         <div class="user-section">
-            <button mat-button [matMenuTriggerFor]="menu" class="button">
-                <span class="circle">{{firstLetterName}}</span> {{owner.fname}}
-            </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>Profile</button>
-                <button mat-menu-item>Log-out</button>
-            </mat-menu>
+            <div class="button-container">
+                <button (click)="showOptions = !showOptions" class="button">
+                    <span class="circle">{{firstLetterName}}</span> {{owner.fname}}
+                </button>
+                <div class="options-container" *ngIf="showOptions">
+                  <button>Profile</button>
+                  <button (click)="logout()">Log-out</button>
+                </div>
+              </div>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { PetsService } from '../../services/pets.service';
 import { OwnerService } from '../../services/owner.service';
 import { CookieService } from 'ngx-cookie-service';

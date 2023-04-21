@@ -1,12 +1,11 @@
-import {AfterViewInit, Component, ViewChild, ElementRef} from '@angular/core';
+import {Component, ViewChild, ElementRef} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatSort, Sort} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 declare var require: any
 const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
-import { identifierName } from '@angular/compiler';
 
 export interface VaccinesList {
   name: string;

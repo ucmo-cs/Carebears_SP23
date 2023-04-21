@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OwnerService } from '../../services/owner.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../../services/auth.service';
 
 interface Owner {
   fname: string;
@@ -12,8 +13,10 @@ interface Owner {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent {
 
+  showOptions = false;
   firstLetterName = '';
   isHomePage = false;
   owner: Owner = { fname: ''};
@@ -22,7 +25,8 @@ export class HeaderComponent {
   constructor(
     private router: Router,
     private cookieService: CookieService,
-    private ownerService: OwnerService
+    private ownerService: OwnerService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -62,5 +66,9 @@ export class HeaderComponent {
     if(window.location.pathname === '/home') {
       this.isHomePage = true;
     }
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }

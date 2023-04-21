@@ -19,15 +19,10 @@
 
 .buttons-section{
     margin: 0;
-    //position: relative;
     width: 100%;
     height: auto;
-    //top: 30%;
-    //-ms-transform: translateY(-50%);
-    //transform: translateY(-50%);
-    border: 3px solid red;
     display: flex;
-    float: right;
+    justify-content: flex-end;
 }
 
 .button{
@@ -35,39 +30,16 @@
     border-radius: 8px;
     border: 2.5px solid #B2A4A4;
     margin-right: 50px;
-    float: right;
     font-size: 30px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    
+    margin-top: 50px;
 }
 
-.home-section{
-    border: 3px solid red;
-}
-///////////////////////
-.user-section, .help-section{
+.home-section, .user-section, .help-section{
     position: relative;
-    border: 3px solid red;
+    width: 20%;
   }
-  
-  .logout-option {
-    display: none;
-    position: absolute;
-    bottom: -50px;
-    left: -20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: 2.5px solid #B2A4A4;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    float: right;
-  }
-  
-  .wrapper:hover .logout-option {
-    display: block;
-  }
-//////////////////////
+
 .circle {
     height: 35px;
     width: 35px;
@@ -89,6 +61,32 @@
     float: left;
     width: 30%;
     height: auto;
-    border: 3px solid #B3A4A4;
 }
+
+.options-container {
+    position:absolute;
+    top: 80%;
+    left: 0%;
+    display: block;
+    background-color: white ;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    padding: 5px;
+    width: 150px;
+ 
+  }
+  
+  .options-container button {
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .options-container button:hover {
+    background-color: #FCBA7F;
+  }
+
   

@@ -1,6 +1,6 @@
 <div class="buttons">
     <button class="button">
-        <img src={{petImg}} class="icon"/>     {{petName}}
+        <img [src]="setAnimalImg(pet.speciesID)" class="icon"/>     {{pet.name}}
     </button>
     <button class="button" (click)="navigateVaccinePage()">
         <img src="../../../assets/images/syringe.png" class="icon"/>     Vaccines

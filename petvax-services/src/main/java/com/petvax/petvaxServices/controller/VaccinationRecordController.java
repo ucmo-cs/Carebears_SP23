@@ -39,10 +39,7 @@ public class VaccinationRecordController {
     })
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/vaccinationRecord")
-    public List<VaccinationRecordResponse> getVaccinationRecordByPetId(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "petId") final String petId, HttpServletResponse response) throws SystemException {
-        Cookie cookie = new Cookie("petId", petId);
-        cookie.setHttpOnly(true);
-        response.addCookie(cookie);
+    public List<VaccinationRecordResponse> getVaccinationRecordByPetId(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "petId") final String petId) throws SystemException {
 
         return vaccinationRecordService.getVaccinationRecordByPetId(active, petId);
     }
