@@ -1,26 +1,16 @@
-import { Component, ViewChild, ElementRef} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-declare var require: any
-const html2pdf = require('html2pdf.js');
-import jsPDF from 'jspdf';
 import { Vaccine } from '../wallet-page/wallet-modal';
 
-export interface VaccinesList {
-  name: string;
-  id: number;
-  provider: string;
-  date: string; 
-}
-
 @Component({
-  selector: 'app-wallet-details',
-  templateUrl: './wallet-details.component.html',
-  styleUrls: ['./wallet-details.component.scss']
+  selector: 'app-wallet-edit',
+  templateUrl: './wallet-edit.component.html',
+  styleUrls: ['./wallet-edit.component.scss']
 })
-export class WalletDetailsComponent {
+export class WalletEditComponent {
   
   urlVaccines = 'http://localhost:3000/vaccines';
   urlWallet = 'http://localhost:3000/wallets';
@@ -55,6 +45,9 @@ export class WalletDetailsComponent {
         console.log(data);
         this.walletData = data[0];
         this.setupDataSource();
+        this.newWalletName = this.walletData.name;
+        this.newWalletPurpose = this.walletData.purpose;
+        this.selectedVaccines = this.walletData.vaccines;
       });
     }
 
@@ -90,29 +83,6 @@ export class WalletDetailsComponent {
     this.dataSource.sort = this.sort;
   }
 
-  /*************************************************** PRINT FUNCTIONS ***************************************************/
-  @ViewChild('content', { static: false }) content!: ElementRef;
-  // Function to generate a pdf file for the print button. 
-  public generatePDF(): void {
-    const doc = new jsPDF('p', 'pt', 'a4');
-
-    const specialElementHandlers = {
-      '#editor': function (element: any, renderer: any) {
-        return true;
-      }
-    };
-
-    const table = this.content.nativeElement;
-
-    html2pdf().from(table).set({
-      margin: 10,
-      filename: 'vaccines.pdf',
-      image: { type: 'png', quality: 1 },
-      html2canvas: { dpi: 200, scale: 4, letterRendering: true },
-      jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait'},
-      pagebreak: { avoid: ['.table-header'] }
-    }).save();
-  }
 
   /*************************************************** OTHER FUNCTIONS ***************************************************/
   // Function for the back button routing.
@@ -121,8 +91,32 @@ export class WalletDetailsComponent {
   }
 
   onEdit() {
-    this.router.navigate(['/walletEdit']);
+    this.newWalletName = this.walletData.name;
+    this.newWalletPurpose = this.walletData.purpose;
+    this.selectedVaccines = this.walletData.vaccines;
+    this.isEdit = true;
+
   }
 
+  onUpdateDetailstoServer() {
+    const id = localStorage.getItem('id');
+    if (this.newWalletName) {
+      const newWallet = { 
+        name: this.newWalletName, 
+        purpose: this.newWalletPurpose, 
+        vaccines: this.selectedVaccines
+      };
+
+      this.http.put(this.urlWallet + '/' + id, newWallet).subscribe(() => {
+        this.router.navigate(['/walletDetail']);
+        window.scrollTo(0, 0);
+      });
+      
+    }
+  }
+
+  onCancelEdit() {
+    this.isEdit = false;
+  }
 
 }
