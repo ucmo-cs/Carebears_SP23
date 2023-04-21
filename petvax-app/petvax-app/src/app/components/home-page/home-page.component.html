@@ -9,8 +9,8 @@
       <div class = "pets" style="display: internal;">
         <button class="button" *ngFor="let pet of pets" (click)="navigateVaccinePage(pet.uuid)">
           <div style="padding: 30px;">
-            <img [src] = "setAnimalImg(pet.speciesID)" width=100px height=100px/>
-            <h2>{{pet.name}}</h2>
+            <img [src]="setAnimalImg(pet.breed.species.speciesName || '')" width="100px" height="100px" />
+            <h2>{{ pet.name }}</h2>
           </div>
         </button>
       </div>

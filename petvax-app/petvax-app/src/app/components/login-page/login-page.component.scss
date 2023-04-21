@@ -1,12 +1,12 @@
 .login-page-container {
     background-image: url('./../../../assets/images/background-image.jpg');
     background-position: center;
-    background-repeat: no-repeat; 
-    background-size: cover; 
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
     width: 100%;
     position: fixed;
-    
+
 }
 
 .login-page-title {
@@ -27,13 +27,14 @@
     height: auto;
     z-index: 1;
     max-height: calc(100% - 109px);
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .loginpage-input-container {
     display: flex;
     flex-direction: column;
     margin: 16px 24px;
+    position: relative;
 }
 
 .loginpage-header {
@@ -69,6 +70,19 @@
     font-weight: 600;
 }
 
+.forgot-password {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-left: 10%;
+}
+
+.bad-credentials {
+    color: white;
+    font-size: 22px;
+    font-style: italic;
+    margin-top: -25px;
+    margin-left: 10%;
+}
 
 .login-page-submit {
     width: 150px;
@@ -84,6 +98,8 @@
 .loginpage-submit-container {
     display: flex;
     justify-content: center;
+    margin-top: -50px;
+    padding-bottom: 100px;
 }
 
 .loginpage-footer {
