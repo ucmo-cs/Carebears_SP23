@@ -32,7 +32,7 @@ public class OpenAPIDocumentationConfig {
                                 .name("IT")
                                 .email(contactEmail))
                 )
-                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
-                .components(new Components().addSecuritySchemes("bearerAuth", bearerToken));
+                .addSecurityItem(new SecurityRequirement().addList("token"))
+                .components(new Components().addSecuritySchemes("token", bearerToken));
     }
 }
