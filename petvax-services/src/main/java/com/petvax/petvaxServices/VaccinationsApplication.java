@@ -7,7 +7,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @ServletComponentScan(basePackages = {"com.petvax.petvaxServices.config", "com.petvax.petvaxServices.servlet"})
 @SpringBootApplication
-@EnableSwagger2
 public class VaccinationsApplication {
 
     public static void main(final String[] args) {
