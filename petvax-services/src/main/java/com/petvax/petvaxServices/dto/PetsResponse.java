@@ -7,20 +7,18 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 public class PetsResponse {
     private String uuid;
     private String name;
-    private String speciesID;
-    private String breedID;
     private String ownerID;
+    private final BreedsResponse breed;
     private String age;
     private Boolean active;
 
     // Response constructor
-    public PetsResponse(final String uuid, String name, String speciesID, String breedID, String ownerID, String age, Boolean active) {
+    public PetsResponse(String uuid, String name, String ownerID, final BreedsResponse breed, String age, Boolean active) {
 
         this.uuid = uuid;
         this.name = name;
-        this.speciesID = speciesID;
-        this.breedID = breedID;
         this.ownerID = ownerID;
+        this.breed = breed;
         this.age = age;
         this.active = active;
     }
@@ -40,24 +38,17 @@ public class PetsResponse {
     }
 
     /**
-     * @return {@code speciesID}
-     */
-    public String getSpeciesID() {
-        return speciesID;
-    }
-
-    /**
-     * @return {@code breedID}
-     */
-    public String getBreedID() {
-        return breedID;
-    }
-
-    /**
      * @return {@code ownerID}
      */
     public String getOwnerID() {
         return ownerID;
+    }
+
+    /**
+     * @return {@code breed}
+     */
+    public BreedsResponse getBreed() {
+        return breed;
     }
 
     /**
@@ -78,9 +69,8 @@ public class PetsResponse {
     public static class Builder {
         private String uuid;
         private String name;
-        private String speciesID;
-        private String breedID;
         private String ownerID;
+        private BreedsResponse breed;
         private String age;
         private Boolean active;
 
@@ -93,9 +83,8 @@ public class PetsResponse {
 
             setUuid(petsResponse.getUuid());
             setName(petsResponse.getName());
-            setSpeciesID(petsResponse.getSpeciesID());
-            setBreedID(petsResponse.getBreedID());
             setOwnerID(petsResponse.getOwnerID());
+            setBreed(petsResponse.getBreed());
             setAge(petsResponse.getAge());
             setActive(petsResponse.getActive());
         }
@@ -119,30 +108,20 @@ public class PetsResponse {
         }
 
         /**
-         * @param speciesID the createdDate to set
-         * @return {@code this} builder
-         */
-        public PetsResponse.Builder setSpeciesID(String speciesID) {
-            this.speciesID = speciesID;
-            return this;
-        }
-
-        /**
-         * @param breedID the createdDate to set
-         * @return {@code this} builder
-         */
-        public PetsResponse.Builder setBreedID(String breedID) {
-            this.breedID = breedID;
-            return this;
-        }
-
-        /**
          * @param ownerID the createdDate to set
          * @return {@code this} builder
          */
         public PetsResponse.Builder setOwnerID(String ownerID) {
             this.ownerID = ownerID;
             return this;
+        }
+
+        /**
+         * @param breed the breed to set
+         * @return {@code this} builder
+         */
+        public void setBreed(BreedsResponse breed) {
+            this.breed = breed;
         }
 
         /**
@@ -165,7 +144,7 @@ public class PetsResponse {
 
         // Builds response object with appropriate values
         public PetsResponse build() {
-            return new PetsResponse(uuid, name, speciesID, breedID, ownerID, age, active);
+            return new PetsResponse(uuid, name, ownerID, breed, age, active);
         }
     }
 }

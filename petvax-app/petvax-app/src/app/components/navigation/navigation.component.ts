@@ -4,8 +4,19 @@ import { PetsService } from '../../services/pets.service';
 import { CookieService } from 'ngx-cookie-service';
 
 interface Pet {
+  uuid: string;
   name: string;
-  speciesID: string;
+  breed: {
+    uuid: string;
+    name: string;
+    species: {
+      uuid: string;
+      speciesName: string;
+    };
+  };
+  ownerID: string;
+  age: string;
+  active: boolean;
 }
 
 @Component({
@@ -15,11 +26,9 @@ interface Pet {
 })
 
 export class NavigationComponent {
-  pet: Pet = { name: '', speciesID: ''};
+  pet: Pet | null = null;
   responseMessage: any;
-  petName = "DogName";
-  petImg = "../../../assets/images/dog-head-temp.png"; 
-  
+
   constructor(
     private router:Router,
     private cookieService: CookieService,
@@ -43,24 +52,24 @@ export class NavigationComponent {
             } else {
               this.responseMessage = 'Something went wrong';
             }
+            this.pet = null;
           });
       } else {
         this.responseMessage = 'Token is null';
       }
-
     } else {
       console.log('Failed to get owner ID');
     }
   }
-  
+
   setAnimalImg(petKind:string): string {
     const dogImg = "../../../assets/images/dog-head-temp.png";
     const catImg = "../../../assets/images/cat-head-temp.png";
 
     switch(petKind){
-      case "46e45c98-758f-4ff9-9811-389e5b206e0c":
+      case "Canine":
         return dogImg;
-      case "43fcc314-d672-11ed-afa1-0242ac120002":
+      case "Feline":
         return catImg;
       default :
         return "";

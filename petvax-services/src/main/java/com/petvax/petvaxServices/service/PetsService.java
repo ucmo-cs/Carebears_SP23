@@ -60,32 +60,6 @@ public class PetsService {
     }
 
     /**
-     * @param speciesID
-     * @return
-     */
-    @Transactional(readOnly = true)
-    public PetsResponse getPetBySpeciesID(final String speciesID) {
-        // Optional object used in the case that the request returns a null value
-        // Uses the map function to determine whether or not to build the response
-        // If the pet object is null then it will throw the NotFoundException exception
-        Optional<PetEntity> pet = petsRepository.findByUuid(speciesID);
-        return pet.map(petsConverter::convertPetsToPetResponse).orElseThrow(() -> new NotFoundException(String.format("Id not found: [%s]", speciesID)));
-    }
-
-    /**
-     * @param breedID
-     * @return
-     */
-    @Transactional(readOnly = true)
-    public PetsResponse getPetByBreedID(final String breedID) {
-        // Optional object used in the case that the request returns a null value
-        // Uses the map function to determine whether or not to build the response
-        // If the pet object is null then it will throw the NotFoundException exception
-        Optional<PetEntity> pet = petsRepository.findByUuid(breedID);
-        return pet.map(petsConverter::convertPetsToPetResponse).orElseThrow(() -> new NotFoundException(String.format("Id not found: [%s]", breedID)));
-    }
-
-    /**
      * @param ownerID
      * @return
      */
@@ -111,18 +85,5 @@ public class PetsService {
         return petStream
                 .map(petsConverter::convertPetsToPetResponse)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * @param age
-     * @return
-     */
-    @Transactional(readOnly = true)
-    public PetsResponse getPetByAge(final String age) {
-        // Optional object used in the case that the request returns a null value
-        // Uses the map function to determine whether or not to build the response
-        // If the pet object is null then it will throw the NotFoundException exception
-        Optional<PetEntity> pet = petsRepository.findByUuid(age);
-        return pet.map(petsConverter::convertPetsToPetResponse).orElseThrow(() -> new NotFoundException(String.format("Age not found: [%s]", age)));
     }
 }
