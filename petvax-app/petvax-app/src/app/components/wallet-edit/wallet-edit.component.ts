@@ -25,7 +25,7 @@ export class WalletEditComponent {
   isEdit: boolean = false;
   newWalletName: any;
   newWalletPurpose: any;
-  selectedVaccines: Vaccine [] = [];
+  selectedVaccines: Vaccine[] = [];
   allVaccines: Vaccine[] = [];
   
 
@@ -61,19 +61,23 @@ export class WalletEditComponent {
   }
 
     /******************************************* DOUBLE CLICK FUNCTIONS *******************************************/
-    addVaccine(selectedVaccine: any): void {
-      if (!this.selectedVaccines.includes(selectedVaccine)) {
+  addVaccine(selectedVaccine: any): void {
+
+    if (Array.isArray(this.selectedVaccines)) {
+      if(this.selectedVaccines.findIndex((item) => item.id == selectedVaccine.id) == -1) {
         this.selectedVaccines.push(selectedVaccine);
       }
-      console.log("Working!");
+    } else {
+      this.selectedVaccines = [selectedVaccine];
     }
-    
-    removeVaccine(selectedVaccine: any): void {
-      const index = this.selectedVaccines.indexOf(selectedVaccine);
-      if (index >= 0) {
-        this.selectedVaccines.splice(index, 1);
-      }
+  }
+  
+  removeVaccine(selectedVaccine: any): void {
+    const index = this.selectedVaccines.indexOf(selectedVaccine);
+    if (index >= 0) {
+      this.selectedVaccines.splice(index, 1);
     }
+  }
   
   /*************************************************** TABLE FUNCTIONS ***************************************************/
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
@@ -117,6 +121,8 @@ export class WalletEditComponent {
 
   onCancelEdit() {
     this.isEdit = false;
+    this.router.navigate(['/walletDetail']);
+    window.scrollTo(0, 0);
   }
 
 }
