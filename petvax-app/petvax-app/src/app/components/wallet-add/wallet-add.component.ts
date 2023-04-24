@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Vaccine } from '../wallet-page/wallet-modal';
 
 @Component({

@@ -1,19 +1,29 @@
 <div class="container">
-    <div style="float: left;"><img src="../../../assets/images/logo.png" height="150" width="350" /></div>
-    <div class="buttons">
+    <div class = "logo-section"><img src="../../../assets/images/logo.png" height="100%" width="90%" /></div>
+    <div class="buttons-section">
 
-        <!--Once db is implement, user should be replaced by user's name and U letter by a variable that represents first letter of user's name-->
-        <button class="button">
-            <span class="circle">{{initialName}}</span> {{userName}}
-        </button>
+        <div class ="home-section">
+            <button class="button" (click)="onHomeButtonClick()" [ngClass]="isHomePage ? 'hide-home-button' : 'show-home-button' ">
+                <img src="../../../assets/images/dog-house.png" height="35" width="35"/>&nbsp;Home
+            </button>
+        </div>
 
-        <button class="button">
-            <span class="circle">?</span> Help
-        </button>
+        <div class ="help-section">
+            <button class="button">
+                <span class="circle">?</span> Help
+            </button>
+        </div>
 
-        <button class="button" (click)="onHomeButtonClick()" [ngClass]="isHomePage ? 'hide-home-button' : 'show-home-button' ">
-            <img src="../../../assets/images/dog-house.png" height="35" width="35"/>&nbsp;Home
-        </button>
+        <div class="user-section">
+            <div class="button-container">
+                <button (click)="showOptions = !showOptions" class="button">
+                    <span class="circle">{{firstLetterName}}</span> {{owner.fname}}
+                </button>
+                <div class="options-container" *ngIf="showOptions">
+                  <button>Profile</button>
+                  <button (click)="logout()">Log-out</button>
+                </div>
+              </div>
+        </div>
     </div>
-
 </div>

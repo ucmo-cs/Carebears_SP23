@@ -2,7 +2,8 @@
     width: auto;
     height: 150px;
     background-color: rgba(244,219,219, .9);
-    border: 1px solid #B3A4A4;
+    border: 3px solid #B3A4A4;
+    display: flex;
 }
 
 .buttonHome{
@@ -16,12 +17,12 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.buttons{
+.buttons-section{
     margin: 0;
-    position: relative;
-    top: 30%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .button{
@@ -29,10 +30,15 @@
     border-radius: 8px;
     border: 2.5px solid #B2A4A4;
     margin-right: 50px;
-    float: right;
     font-size: 30px;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 50px;
 }
+
+.home-section, .user-section, .help-section{
+    position: relative;
+    width: 20%;
+  }
 
 .circle {
     height: 35px;
@@ -50,3 +56,37 @@
 .show-home-button {
     display: flex;
 }
+
+.logo-section {
+    float: left;
+    width: 30%;
+    height: auto;
+}
+
+.options-container {
+    position:absolute;
+    top: 80%;
+    left: 0%;
+    display: block;
+    background-color: white ;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    padding: 5px;
+    width: 150px;
+ 
+  }
+  
+  .options-container button {
+    width: 100%;
+    text-align: left;
+    padding: 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .options-container button:hover {
+    background-color: #FCBA7F;
+  }
+
+  

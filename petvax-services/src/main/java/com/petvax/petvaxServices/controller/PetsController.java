@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.SystemException;
-import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping
 public class PetsController {
 
@@ -77,6 +79,7 @@ public class PetsController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(path="/pets")
     public List<PetsResponse> getPetByOwnerID(@RequestParam(required = false, defaultValue = "false") boolean active, @CookieValue(value = "ownerID") final String ownerID) throws SystemException {
+
         return petsService.getPetByOwnerID(active, ownerID);
     }
 }

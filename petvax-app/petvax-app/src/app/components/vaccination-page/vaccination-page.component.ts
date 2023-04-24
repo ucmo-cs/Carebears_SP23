@@ -21,17 +21,19 @@ export class VaccinationPageComponent {
   dataSource!: MatTableDataSource<any>;
   displayedColumns = ['vaccination.name', 'provider.name', 'vaccinationDate'];
   datePipe = new DatePipe('en-US');
+  private token = '';
+  private cookieValue = '';
 
   constructor(
-    
     private cookieService: CookieService,
     private router: Router,
     private http: HttpClient
   ) {}
-  
+
    // Code to fetch information from API using petiD
    ngOnInit(): void {
-    const cookieValue = this.cookieService.get('petId'); 
+    this.token = localStorage.getItem('token') || '';
+    this.cookieValue = this.cookieService.get('petId');
     this.setupDataSource();
   }
 
@@ -42,13 +44,15 @@ export class VaccinationPageComponent {
     const url = `http://localhost:8080/petvax-services/vaccinationRecord`;
     const httpOtions = {
       headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`,
         'Content-Type': 'application/json',
+        'Cookie': `petId=${this.cookieValue}`
       }),
       withCredentials: true
     };
-    
+
     this.http.get<VaccinationRecord[]>(url, httpOtions).subscribe((data: any) => {
-  
+
       this.dataSource = new MatTableDataSource<VaccinationRecord>(data);
 
       // Function used for sorting objects within object
@@ -68,9 +72,9 @@ export class VaccinationPageComponent {
   // Table Search Filter
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    
+
     this.dataSource.filter = filterValue;
-    
+
     // Function from MatTableDataSource to specify a custom filter
     // to determine rows to show or hide in table based on input
     this.dataSource.filterPredicate = (data, filter) => {
@@ -79,15 +83,15 @@ export class VaccinationPageComponent {
       const formattedDate = `${vaccinationDate.getMonth()+1}`.padStart(2, '0') +
                             `/${vaccinationDate.getDate()}`.padStart(2, '0') +
                             `/${vaccinationDate.getFullYear()}`;
-  
+
       return (
         data.vaccination.name.toLowerCase().includes(searchText) ||
-        data.provider.name.toLowerCase().includes(searchText) || 
+        data.provider.name.toLowerCase().includes(searchText) ||
         formattedDate.toLowerCase().includes(searchText)
       );
     };
   }
-  
+
 
   /*************************************************** PRINT PDF ***************************************************/
   @ViewChild('content', { static: false }) content!: ElementRef;
