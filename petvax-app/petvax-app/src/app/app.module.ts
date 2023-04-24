@@ -28,10 +28,12 @@ import { MatCardModule } from '@angular/material/card';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { WalletEditComponent } from './components/wallet-edit/wallet-edit.component';
 
 
 const appRoutes: Routes = [
   { path: 'walletAdd', component: WalletAddComponent},
+  { path: 'walletEdit', component: WalletEditComponent},
   { path: 'walletDetail', component: WalletDetailsComponent},
   { path: 'wallet', component: WalletPageComponent},
   { path: 'vaccines', component: VaccinationPageComponent},
@@ -52,7 +54,8 @@ const appRoutes: Routes = [
     NavigationComponent,
     WalletPageComponent,
     WalletDetailsComponent,
-    WalletAddComponent
+    WalletAddComponent,
+    WalletEditComponent
   ],
   imports: [
     FormsModule,

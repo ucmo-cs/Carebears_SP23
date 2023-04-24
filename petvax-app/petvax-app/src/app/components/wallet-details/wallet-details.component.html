@@ -3,11 +3,11 @@
     <div style="padding: 20px;"></div>
     <app-navigation></app-navigation>
 
-    <div class="body">
+    <div class="body" *ngIf="!isEdit">
 
         <div class ="first-section">
             <div class ="title-section"><h1 *ngIf="walletData">{{walletData.name}}</h1></div>
-            <div class ="edit-button-section"><button class = "editBttn">Edit</button></div>
+            <div class ="edit-button-section"><button class = "editBttn" (click)="onEdit()">Edit</button></div>
             <div class ="back-button-section">
                 <button class = "backBttn" (click)="goToWalletPage()">
                     <img src="../../../assets/images/back.png" height ="90" width="90" />
@@ -58,6 +58,7 @@
         </div>
     
     </div>
+
     <div style="padding: 20px;"></div>
     <app-footer></app-footer>
 </div>
