@@ -29,7 +29,7 @@
               <label>All Vaccines</label>
               <select multiple size="5">
                 <option *ngFor="let vaccine of allVaccines" [value]="vaccine" (dblclick)="addVaccine(vaccine)" >
-                  {{ vaccine.name }} at {{ vaccine.provider }} in {{ vaccine.date }}
+                  {{ vaccine.vaccination.name }} at {{ vaccine.provider.name }} in {{datePipe.transform(vaccine.vaccinationDate, 'MM/dd/yyyy')}}
                 </option>
               </select>
             </div>
@@ -43,7 +43,7 @@
               <label>Wallet Vaccines</label>
               <select multiple size="5">
                 <option *ngFor="let vaccine of selectedVaccines" [value]="vaccine" (dblclick)="removeVaccine(vaccine)">
-                  {{ vaccine.name }} at {{ vaccine.provider }} in {{ vaccine.date }}
+                  {{ vaccine.vaccination.name }} at {{ vaccine.provider.name }} in {{datePipe.transform(vaccine.vaccinationDate, 'MM/dd/yyyy')}}
                 </option>
               </select>
             </div>

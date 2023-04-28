@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +7,8 @@ import { Vaccine } from '../wallet-page/wallet-modal';
 
 import { CookieService } from 'ngx-cookie-service';
 import { WalletsService } from '../../services/wallet.service';
+import { DatePipe } from '@angular/common';
+import { VaccinationRecord } from '../vaccination-page/vaccinationRecord';
 
 interface Wallet {
   walletId: string;
@@ -23,8 +25,8 @@ interface Wallet {
   styleUrls: ['./wallet-edit.component.scss']
 })
 export class WalletEditComponent {
-  
-  urlVaccines = 'http://localhost:3000/vaccines';
+  datePipe = new DatePipe('en-US');
+  urlVaccines = `http://localhost:8080/petvax-services/vaccinationRecord`;
   urlWallet = 'http://localhost:3000/wallets';
   walletData: any;
   walletVaccinesData: any;
@@ -37,17 +39,19 @@ export class WalletEditComponent {
   isEdit: boolean = false;
   newWalletName: any;
   newWalletPurpose: any;
-  selectedVaccines: Vaccine[] = [];
-  allVaccines: Vaccine[] = [];
+  selectedVaccines: VaccinationRecord [] = [];
+  allVaccines: VaccinationRecord[] = [];
   
   wallet: Wallet | null = null;
   responseMessage: any;
+  private token = '';
+  private cookieValue = '';
 
   constructor(
-    private router: Router,
-    private http: HttpClient,
     private cookieService: CookieService,
     private walletsService: WalletsService,
+    private router: Router,
+    private http: HttpClient,
   ) { }
 
   // Code to fetch information from db.json only for the passed ID from WalletPage. 
@@ -93,25 +97,61 @@ export class WalletEditComponent {
       console.log('Failed to get wallet ID');
     }
 
-    this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
-    this.getVaccinesList();
+    // this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
+    // this.getVaccinesList();
+    //this.token = localStorage.getItem('token') || '';
+    this.cookieValue = this.cookieService.get('petId');
+    const httpOtions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+        'Cookie': `petId=${this.cookieValue}`
+      }),
+      withCredentials: true
+    };
+
+    this.http.get<VaccinationRecord[]>(this.urlVaccines, httpOtions).subscribe((data: any) => {
+        this.allVaccines = data;
+    });
 
   }
   
+  setupDataSource(): void {
+    const httpOtions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+        'Cookie': `petId=${this.cookieValue}`
+      }),
+      withCredentials: true
+    };
+
+    this.http.get<VaccinationRecord[]>(this.urlVaccines, httpOtions).subscribe((data: any) => {
+        this.allVaccines = data;
+    });
+  }
+
   getVaccinesList() {
     return this.http.get(this.urlVaccines);
   }
 
-    /******************************************* DOUBLE CLICK FUNCTIONS *******************************************/
-  addVaccine(selectedVaccine: any): void {
+  /******************************************* DOUBLE CLICK FUNCTIONS *******************************************/
+  // addVaccine(selectedVaccine: any): void {
 
-    if (Array.isArray(this.selectedVaccines)) {
-      if(this.selectedVaccines.findIndex((item) => item.id == selectedVaccine.id) == -1) {
-        this.selectedVaccines.push(selectedVaccine);
-      }
-    } else {
-      this.selectedVaccines = [selectedVaccine];
+  //   if (Array.isArray(this.selectedVaccines)) {
+  //     if(this.selectedVaccines.findIndex((item) => item.id == selectedVaccine.id) == -1) {
+  //       this.selectedVaccines.push(selectedVaccine);
+  //     }
+  //   } else {
+  //     this.selectedVaccines = [selectedVaccine];
+  //   }
+  // }
+
+  addVaccine(selectedVaccine: any): void {
+    if (!this.selectedVaccines.includes(selectedVaccine)) {
+      this.selectedVaccines.push(selectedVaccine);
     }
+    console.log("Working!");
   }
   
   removeVaccine(selectedVaccine: any): void {
@@ -121,13 +161,13 @@ export class WalletEditComponent {
     }
   }
   
-  /*************************************************** TABLE FUNCTIONS ***************************************************/
-  @ViewChild(MatSort, { static: false }) sort!: MatSort;
-  // Function set-ups data source for mat-table.
-  setupDataSource(): void {
-    this.dataSource = new MatTableDataSource(this.walletData.vaccines);
-    this.dataSource.sort = this.sort;
-  }
+  // /*************************************************** TABLE FUNCTIONS ***************************************************/
+  // @ViewChild(MatSort, { static: false }) sort!: MatSort;
+  // // Function set-ups data source for mat-table.
+  // setupDataSource(): void {
+  //   this.dataSource = new MatTableDataSource(this.walletData.vaccines);
+  //   this.dataSource.sort = this.sort;
+  // }
 
 
   /*************************************************** OTHER FUNCTIONS ***************************************************/

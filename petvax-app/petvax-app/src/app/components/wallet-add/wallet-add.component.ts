@@ -21,7 +21,6 @@ export class WalletAddComponent {
   newWalletName: string = "";
   newWalletPurpose: string = "";
   allVaccines: VaccinationRecord[] = [];
-  availableVaccines: VaccinationRecord[] = [...this.allVaccines];
   selectedVaccines: VaccinationRecord [] = [];
   private token = '';
   private cookieValue = '';
