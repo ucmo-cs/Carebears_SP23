@@ -8,6 +8,18 @@ const html2pdf = require('html2pdf.js');
 import jsPDF from 'jspdf';
 import { Vaccine } from '../wallet-page/wallet-modal';
 
+import { CookieService } from 'ngx-cookie-service';
+import { WalletsService } from '../../services/wallet.service';
+
+interface Wallet {
+  walletId: string;
+  petId: string;
+  name: string;
+  purpose: string;
+  active: boolean;
+}
+
+
 export interface VaccinesList {
   name: string;
   id: number;
@@ -20,42 +32,56 @@ export interface VaccinesList {
   templateUrl: './wallet-details.component.html',
   styleUrls: ['./wallet-details.component.scss']
 })
+
 export class WalletDetailsComponent {
-  
+  wallet: Wallet | null = null;
+  responseMessage: any;
+
   urlVaccines = 'http://localhost:3000/vaccines';
-  urlWallet = 'http://localhost:3000/wallets';
   walletData: any;
   walletVaccinesData: any;
 
   dataSource!: MatTableDataSource<any>;
   displayedColumns = ['name', 'provider', 'date'];
   
-  walletID?: number;
+
   walletName = 'WalletName';
   isEdit: boolean = false;
   newWalletName: any;
   newWalletPurpose: any;
-  selectedVaccines: Vaccine [] = [];
   allVaccines: Vaccine[] = [];
-  
 
   constructor(
+    private cookieService: CookieService,
+    private walletsService: WalletsService,
     private router: Router,
     private http: HttpClient,
   ) { }
 
-  // Code to fetch information from db.json only for the passed ID from WalletPage. 
   ngOnInit(): void {
-    const id = localStorage.getItem('id');
-
-    if (id) {
-      const url = `http://localhost:3000/wallets?id=${id}`;
-
-      this.http.get(url).subscribe((data: any) => {
-        console.log(data);
-        this.walletData = data[0];
-        this.setupDataSource();
-      });
+    
+    if (this.cookieService.check('ownerID')) {
+      const walletCookie = this.cookieService.get('walletID');
+      const token = localStorage.getItem('token');
+      if (token !== null) {
+        this.walletsService.getWalletByUUID(walletCookie, token).subscribe(
+          (response: any) => {
+            this.wallet = response;
+          },
+          (error: any) => {
+            if (error.error?.message) {
+              this.responseMessage = error.error?.message;
+            } else {
+              this.responseMessage = 'Something went wrong';
+            }
+            this.wallet = null;
+          });
+          
+      } else {
+        this.responseMessage = 'Token is null';
+      }
+    } else {
+      console.log('Failed to get wallet ID');
     }
 
     this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
@@ -67,21 +93,6 @@ export class WalletDetailsComponent {
     return this.http.get(this.urlVaccines);
   }
 
-    /******************************************* DOUBLE CLICK FUNCTIONS *******************************************/
-    addVaccine(selectedVaccine: any): void {
-      if (!this.selectedVaccines.includes(selectedVaccine)) {
-        this.selectedVaccines.push(selectedVaccine);
-      }
-      console.log("Working!");
-    }
-    
-    removeVaccine(selectedVaccine: any): void {
-      const index = this.selectedVaccines.indexOf(selectedVaccine);
-      if (index >= 0) {
-        this.selectedVaccines.splice(index, 1);
-      }
-    }
-  
   /*************************************************** TABLE FUNCTIONS ***************************************************/
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   // Function set-ups data source for mat-table.

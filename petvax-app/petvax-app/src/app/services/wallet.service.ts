@@ -28,4 +28,48 @@ export class WalletsService {
 
     return this.httpClient.get(`${this.url}/wallets?active=true`, options);
   }
+
+  getWalletByUUID(walletCookie: string, token: string): Observable<any> {
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'Cookie': `walletId=${walletCookie}; SameSite=None; Secure` 
+    }
+
+    const options = {
+      headers: new HttpHeaders(headers),
+      withCredentials: true
+    };
+
+    return this.httpClient.get(`${this.url}/wallets/{walletId}?active=true&walletId=${walletCookie}`, options);
+  }
+
+  createWallet(data: any, token: string): Observable<any> {
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    }
+
+    const options = {
+      headers: new HttpHeaders(headers),
+      withCredentials: true
+    };
+
+    return this.httpClient.post<any>(`${this.url}/wallet`, data, options);
+  }
+
+  deleteWallet(walletCookie: string, token: string): Observable<any> {
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      //'Cookie': `walletId=${walletCookie}; SameSite=None; Secure` 
+    }
+
+    const options = {
+      headers: new HttpHeaders(headers),
+      withCredentials: true
+    };
+
+    return this.httpClient.delete(`${this.url}/wallet/${walletCookie}`, options);
+  }
 }

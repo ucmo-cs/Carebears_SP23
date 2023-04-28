@@ -6,7 +6,7 @@
     <div class="body" *ngIf="!isEdit">
 
         <div class ="first-section">
-            <div class ="title-section"><h1 *ngIf="walletData">{{walletData.name}}</h1></div>
+            <div class ="title-section"><h1>{{wallet?.name}}</h1></div>
             <div class ="edit-button-section"><button class = "editBttn" (click)="onEdit()">Edit</button></div>
             <div class ="back-button-section">
                 <button class = "backBttn" (click)="goToWalletPage()">
@@ -17,7 +17,7 @@
 
         <div class ="second-section">
             <h2>Purpose: </h2> 
-            <p *ngIf="walletData">{{walletData.purpose}}</p>
+            <p >{{wallet?.purpose}}</p>
         </div>
 
         <div class = "third-section">

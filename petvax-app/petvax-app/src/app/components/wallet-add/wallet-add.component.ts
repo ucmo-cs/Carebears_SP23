@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Vaccine } from '../wallet-page/wallet-modal';
+import { WalletsService } from 'src/app/services/wallet.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-wallet-add',
@@ -19,6 +21,8 @@ export class WalletAddComponent {
   selectedVaccines: Vaccine [] = [];
 
   constructor(
+    private cookieService: CookieService,
+    private walletService: WalletsService,
     private http: HttpClient,
     private router:Router,
   ) {}
@@ -39,14 +43,23 @@ export class WalletAddComponent {
   onSubmit() {
     if (this.newWalletName) {
       const newWallet = { 
+        petId: this.cookieService.get('petId'),
         name: this.newWalletName, 
         purpose: this.newWalletPurpose, 
-        vaccines: this.selectedVaccines
+        active: true,
+        //vaccines: this.selectedVaccines
       };
-      this.http.post(this.urlWallet, newWallet).subscribe(() => {
-        this.router.navigate(['/wallet']);
-        window.scrollTo(0, 0);
-      });
+
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        this.walletService.createWallet(newWallet, token).subscribe(() => {
+          this.router.navigate(['/wallet']);
+          window.scrollTo(0, 0);
+        });
+    } else {
+        console.error('Token is null');
+    }
     }
   }
 

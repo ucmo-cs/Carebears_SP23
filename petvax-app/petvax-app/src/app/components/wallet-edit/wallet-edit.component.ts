@@ -5,6 +5,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Vaccine } from '../wallet-page/wallet-modal';
 
+import { CookieService } from 'ngx-cookie-service';
+import { WalletsService } from '../../services/wallet.service';
+
+interface Wallet {
+  walletId: string;
+  petId: string;
+  name: string;
+  purpose: string;
+  active: boolean;
+}
+
+
 @Component({
   selector: 'app-wallet-edit',
   templateUrl: './wallet-edit.component.html',
@@ -28,27 +40,57 @@ export class WalletEditComponent {
   selectedVaccines: Vaccine[] = [];
   allVaccines: Vaccine[] = [];
   
+  wallet: Wallet | null = null;
+  responseMessage: any;
 
   constructor(
     private router: Router,
     private http: HttpClient,
+    private cookieService: CookieService,
+    private walletsService: WalletsService,
   ) { }
 
   // Code to fetch information from db.json only for the passed ID from WalletPage. 
   ngOnInit(): void {
-    const id = localStorage.getItem('id');
+    // const id = localStorage.getItem('id');
 
-    if (id) {
-      const url = `http://localhost:3000/wallets?id=${id}`;
+    // if (id) {
+    //   const url = `http://localhost:3000/wallets?id=${id}`;
 
-      this.http.get(url).subscribe((data: any) => {
-        console.log(data);
-        this.walletData = data[0];
-        this.setupDataSource();
-        this.newWalletName = this.walletData.name;
-        this.newWalletPurpose = this.walletData.purpose;
-        this.selectedVaccines = this.walletData.vaccines;
-      });
+    //   this.http.get(url).subscribe((data: any) => {
+    //     console.log(data);
+    //     this.walletData = data[0];
+    //     this.setupDataSource();
+    //     this.newWalletName = this.walletData.name;
+    //     this.newWalletPurpose = this.walletData.purpose;
+    //     this.selectedVaccines = this.walletData.vaccines;
+    //   });
+    // }
+
+    if (this.cookieService.check('ownerID')) {
+      const walletCookie = this.cookieService.get('walletID');
+      const token = localStorage.getItem('token');
+      if (token !== null) {
+        this.walletsService.getWalletByUUID(walletCookie, token).subscribe(
+          (response: any) => {
+            this.wallet = response;
+            this.newWalletName = this.wallet?.name;
+            this.newWalletPurpose = this.wallet?.purpose;
+          },
+          (error: any) => {
+            if (error.error?.message) {
+              this.responseMessage = error.error?.message;
+            } else {
+              this.responseMessage = 'Something went wrong';
+            }
+            this.wallet = null;
+          });
+          
+      } else {
+        this.responseMessage = 'Token is null';
+      }
+    } else {
+      console.log('Failed to get wallet ID');
     }
 
     this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
@@ -95,9 +137,9 @@ export class WalletEditComponent {
   }
 
   onEdit() {
-    this.newWalletName = this.walletData.name;
-    this.newWalletPurpose = this.walletData.purpose;
-    this.selectedVaccines = this.walletData.vaccines;
+    this.newWalletName = this.wallet?.name;
+    this.newWalletPurpose = this.wallet?.purpose;
+    //this.selectedVaccines = this.walletData.vaccines;
     this.isEdit = true;
 
   }

@@ -4,15 +4,15 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WalletAddComponent } from '../wallet-add/wallet-add.component';
 import {FormsModule} from '@angular/forms';
-import { Wallets } from './wallet-modal';
+//import { Wallets } from './wallet-modal';
 import { WalletDetailsComponent } from '../wallet-details/wallet-details.component';
 import { CookieService } from 'ngx-cookie-service';
 
 import { WalletsService } from '../../services/wallet.service';
 
 interface Wallet {
-  walleID: string;
-  petID: string;
+  walletId: string;
+  petId: string;
   name: string;
   purpose: string;
   active: boolean;
@@ -27,7 +27,7 @@ interface Wallet {
 
 export class WalletPageComponent {
   data: any;
-  wallets: Wallets[] = [];
+  wallets: Wallet[] = [];
   responseMessage: any;
 
   // URL used for calls from json.db file. Will be changed to APIs when ready. 
@@ -83,8 +83,8 @@ export class WalletPageComponent {
 
   // Function to set a WalletID to local storage when clicked on a wallet. 
   // It also redirects to wallet-details page. 
-  viewWalletInfo(walletID: number){
-    localStorage.setItem('id', walletID.toString());
+  viewWalletInfo(walletID: string){
+    this.cookieService.set('walletID', walletID);
     this.router.navigate(['/walletDetail']);
   }
 
@@ -92,11 +92,13 @@ export class WalletPageComponent {
     this.router.navigate(['/walletAdd']);
   }
 
-  removeWallet(deletedIndex: number) {
-    this.http.delete<Wallets[]>(`${this.url}/${deletedIndex}`).subscribe(() => {
-        this.selectedActionIndex = -1;
-        window.location.reload();
+  removeWallet(walletID: string) {
+    const token = localStorage.getItem('token');
+    if(token) {
+      this.walletsService.deleteWallet(walletID, token).subscribe(() => {
+          this.selectedActionIndex = -1;
+          window.location.reload();
+      });
     }
-    )
   }
 }
