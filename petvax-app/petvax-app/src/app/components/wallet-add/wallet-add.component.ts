@@ -14,7 +14,6 @@ import { DatePipe } from '@angular/common';
 })
 
 export class WalletAddComponent {
-  //urlWallet = 'http://localhost:3000/wallets';
   //urlVaccines = 'http://localhost:3000/vaccines';
   datePipe = new DatePipe('en-US');
   urlVaccines = `http://localhost:8080/petvax-services/vaccinationRecord`;

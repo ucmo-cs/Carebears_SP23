@@ -24,6 +24,7 @@ interface Wallet {
   templateUrl: './wallet-edit.component.html',
   styleUrls: ['./wallet-edit.component.scss']
 })
+
 export class WalletEditComponent {
   datePipe = new DatePipe('en-US');
   urlVaccines = `http://localhost:8080/petvax-services/vaccinationRecord`;
@@ -54,22 +55,8 @@ export class WalletEditComponent {
     private http: HttpClient,
   ) { }
 
-  // Code to fetch information from db.json only for the passed ID from WalletPage. 
+  // Code to fetch information 
   ngOnInit(): void {
-    // const id = localStorage.getItem('id');
-
-    // if (id) {
-    //   const url = `http://localhost:3000/wallets?id=${id}`;
-
-    //   this.http.get(url).subscribe((data: any) => {
-    //     console.log(data);
-    //     this.walletData = data[0];
-    //     this.setupDataSource();
-    //     this.newWalletName = this.walletData.name;
-    //     this.newWalletPurpose = this.walletData.purpose;
-    //     this.selectedVaccines = this.walletData.vaccines;
-    //   });
-    // }
 
     if (this.cookieService.check('ownerID')) {
       const walletCookie = this.cookieService.get('walletID');
@@ -99,7 +86,7 @@ export class WalletEditComponent {
 
     // this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
     // this.getVaccinesList();
-    //this.token = localStorage.getItem('token') || '';
+
     this.cookieValue = this.cookieService.get('petId');
     const httpOtions = {
       headers: new HttpHeaders({
@@ -136,16 +123,6 @@ export class WalletEditComponent {
   }
 
   /******************************************* DOUBLE CLICK FUNCTIONS *******************************************/
-  // addVaccine(selectedVaccine: any): void {
-
-  //   if (Array.isArray(this.selectedVaccines)) {
-  //     if(this.selectedVaccines.findIndex((item) => item.id == selectedVaccine.id) == -1) {
-  //       this.selectedVaccines.push(selectedVaccine);
-  //     }
-  //   } else {
-  //     this.selectedVaccines = [selectedVaccine];
-  //   }
-  // }
 
   addVaccine(selectedVaccine: any): void {
     if (!this.selectedVaccines.includes(selectedVaccine)) {
@@ -160,15 +137,6 @@ export class WalletEditComponent {
       this.selectedVaccines.splice(index, 1);
     }
   }
-  
-  // /*************************************************** TABLE FUNCTIONS ***************************************************/
-  // @ViewChild(MatSort, { static: false }) sort!: MatSort;
-  // // Function set-ups data source for mat-table.
-  // setupDataSource(): void {
-  //   this.dataSource = new MatTableDataSource(this.walletData.vaccines);
-  //   this.dataSource.sort = this.sort;
-  // }
-
 
   /*************************************************** OTHER FUNCTIONS ***************************************************/
   // Function for the back button routing.

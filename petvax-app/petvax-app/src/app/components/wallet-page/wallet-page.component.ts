@@ -4,7 +4,6 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { WalletAddComponent } from '../wallet-add/wallet-add.component';
 import {FormsModule} from '@angular/forms';
-//import { Wallets } from './wallet-modal';
 import { WalletDetailsComponent } from '../wallet-details/wallet-details.component';
 import { CookieService } from 'ngx-cookie-service';
 
