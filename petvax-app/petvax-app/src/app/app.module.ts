@@ -17,6 +17,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { WalletPageComponent } from './components/wallet-page/wallet-page.component';
 import { WalletDetailsComponent } from './components/wallet-details/wallet-details.component';
 import { WalletAddComponent } from './components/wallet-add/wallet-add.component';
+import { WalletEditComponent } from './components/wallet-edit/wallet-edit.component';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -28,11 +29,11 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
 
-//import {LiveAnnouncer} from '@angular/cdk/a11y';
-//import {AfterViewInit, ViewChild} from '@angular/core';
+
 
 const appRoutes: Routes = [
   { path: 'walletAdd', component: WalletAddComponent},
+  { path: 'walletEdit', component: WalletEditComponent},
   { path: 'walletDetail', component: WalletDetailsComponent},
   { path: 'wallet', component: WalletPageComponent},
   { path: 'vaccines', component: VaccinationPageComponent},
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     NavigationComponent,
     WalletPageComponent,
     WalletDetailsComponent,
-    WalletAddComponent
+    WalletAddComponent,
+    WalletEditComponent
   ],
   imports: [
     FormsModule,

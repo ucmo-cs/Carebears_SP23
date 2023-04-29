@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Vaccine } from '../wallet-page/wallet-modal';
+import { WalletsService } from 'src/app/services/wallet.service';
+import { CookieService } from 'ngx-cookie-service';
+import { VaccinationRecord } from '../vaccination-page/vaccinationRecord';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-wallet-add',
@@ -10,24 +14,45 @@ import { Vaccine } from '../wallet-page/wallet-modal';
 })
 
 export class WalletAddComponent {
-  urlWallet = 'http://localhost:3000/wallets';
-  urlVaccines = 'http://localhost:3000/vaccines';
+  //urlVaccines = 'http://localhost:3000/vaccines';
+  datePipe = new DatePipe('en-US');
+  urlVaccines = `http://localhost:8080/petvax-services/vaccinationRecord`;
   newWalletName: string = "";
   newWalletPurpose: string = "";
-  allVaccines: Vaccine[] = [];
-  availableVaccines: Vaccine[] = [...this.allVaccines];
-  selectedVaccines: Vaccine [] = [];
+  allVaccines: VaccinationRecord[] = [];
+  selectedVaccines: VaccinationRecord [] = [];
+  private token = '';
+  private cookieValue = '';
 
   constructor(
+    private cookieService: CookieService,
+    private walletService: WalletsService,
     private http: HttpClient,
     private router:Router,
   ) {}
   
   // Code fetches data from the db.json and assigns it to a local variable wallets that can be used in the component's template.
   ngOnInit(): void {
-    
-    this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
+    this.token = localStorage.getItem('token') || '';
+    this.cookieValue = this.cookieService.get('petId');
+    this.setupDataSource();
+    // this.http.get<Vaccine[]>(this.urlVaccines).subscribe((data) => { this.allVaccines = data; });
     this.getVaccinesList();
+  }
+
+  setupDataSource(): void {
+    const httpOtions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+        'Cookie': `petId=${this.cookieValue}`
+      }),
+      withCredentials: true
+    };
+
+    this.http.get<VaccinationRecord[]>(this.urlVaccines, httpOtions).subscribe((data: any) => {
+        this.allVaccines = data;
+    });
   }
 
   // Function to get wallets from URL. Used in HTML. 
@@ -39,14 +64,23 @@ export class WalletAddComponent {
   onSubmit() {
     if (this.newWalletName) {
       const newWallet = { 
+        petId: this.cookieService.get('petId'),
         name: this.newWalletName, 
         purpose: this.newWalletPurpose, 
-        vaccines: this.selectedVaccines
+        active: true,
+        //vaccines: this.selectedVaccines
       };
-      this.http.post(this.urlWallet, newWallet).subscribe(() => {
-        this.router.navigate(['/wallet']);
-        window.scrollTo(0, 0);
-      });
+
+    const token = localStorage.getItem('token');
+
+    if (token) {
+        this.walletService.createWallet(newWallet, token).subscribe(() => {
+          this.router.navigate(['/wallet']);
+          window.scrollTo(0, 0);
+        });
+    } else {
+        console.error('Token is null');
+    }
     }
   }
 

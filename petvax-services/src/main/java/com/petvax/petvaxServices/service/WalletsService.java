@@ -41,8 +41,7 @@ public class WalletsService {
      * @return
      */
     @Transactional(readOnly = true)
-    public List<WalletsResponse> getWalletByPetId(boolean active,
-                                                                       final String petId) throws SystemException {
+    public List<WalletsResponse> getWalletByPetId(boolean active, final String petId) throws SystemException {
 
         List<WalletEntity> walletEntities = walletsRepository.findByPetId(petId);
 
